@@ -1,34 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/Username.module.css";
-import avatar from "../../public/profile.png";
-import Image from "next/image";
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { curpCalculation, registerUser } from "../../featuress/auth/authSlice";
-import globalAxios from "../../axios/index";
+import { registerUser } from "../../features/auth/authSlice";
 import States from "../Catalgues/states/States";
 import useGetIdentificationType from "../../hooks/useGetIdentificationType";
 import Gender from "../Catalgues/gender/Gender";
 import Link from "next/link";
 import RegisterForm from "../registerForms";
-import Logo from "../../common/logo";
-import { schema } from "../../validators/schema";
+import Logo from "../common/logo";
+import useGetCurpCalculation from "../../hooks/useGetCurpCalculation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "../../utils/formSchema/registerSchema";
 
 const Register = () => {
+  const identificationTypeRef = useRef();
   const idTypes = useGetIdentificationType();
-  const { isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.auth
-  );
+  const { isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const {
-    register,
-    getValues,
-    handleSubmit,
-    resetField,
-    setValue,
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     defaultValues: {
       firstName: "",
       secondName: "",
@@ -39,16 +29,18 @@ const Register = () => {
       birthDate: "",
       identificationNumber: "",
       genderId: "",
+      stateId: "",
+      hasAgreementCode: "",
+      agreementCode: "",
+      //terminsConditions: "",
+      //privacity: "",
     },
-    resolver: yupResolver(schema),
-  });
-  const { register: register2, handleSubmit: handleSubmit2 } = useForm({
-    mode: "onChange",
-    defaultValues: {
-      identificationNumber: "",
-    },
+    //resolver: yupResolver(registerSchema),
   });
 
+  const { register, handleSubmit, resetField, setValue } = methods;
+
+  const GetCurpCalculation = useGetCurpCalculation();
   //console.log(formData);
 
   const [getIdIden, setGetId] = useState("");
@@ -61,22 +53,26 @@ const Register = () => {
     const getId = event.target.value;
     setGetId(getId);
     resetField("identificationNumber");
+    console.log(identificationTypeRef.current);
 
     //getValues(getId);
   };
 
   const submitFormCurp = async (data) => {
     //console.log(data);
+    const payload = {
+      firstName: data.firstName,
+      secondName: data.secondName,
+      firstLastName: data.firstLastName,
+      secondLastName: data.secondLastName,
+      stateId: data.stateId,
+      birthDate: data.birthDate,
+      genderId: data.genderId,
+    };
     data.email = data.email.toLowerCase();
-    const callback = ({ data }) => setValue("identificationNumber", data);
-
-    dispatch(curpCalculation({ userData: data, callback }));
-
-    //console.info(JSON.stringify(data));
-    //console.log(message)
-
-    //resetField("identificationNumber");
-    // console.log(data);
+    GetCurpCalculation(payload).then((data) =>
+      setValue("identificationNumber", data)
+    );
   };
 
   // const result = message;
@@ -84,10 +80,9 @@ const Register = () => {
 
   //console.log(message.data);
   const submitFormRegister = async (data) => {
-    const values = getValues();
     //console.log(values);
 
-    dispatch(registerUser({ ...data, ...values }));
+    dispatch(registerUser({ data }));
 
     //console.info(JSON.stringify(data));
   };
@@ -99,19 +94,8 @@ const Register = () => {
           Credito al alcance de todos
         </span>
       </div>
-      <FormProvider {...{ register, getValues }}>
-        <form className="py-1" onSubmit={handleSubmit(submitFormCurp)}>
-          {/*  <div className="profile flex justify-center py-4">
-                <label htmlFor="profile">
-                  <Image
-                    src={avatar}
-                    alt="avatar"
-                    className={styles.profile_img}
-                  />
-                </label>
-               
-              </div> */}
-
+      <FormProvider {...methods}>
+        <form className="py-1" ref={identificationTypeRef}>
           <div className="items-center">
             <div>
               <RegisterForm />
@@ -127,14 +111,6 @@ const Register = () => {
               </div>
             </div>
             <div className="flex  w-full gap-6 mb-3">
-              {/*           <Select
-                    className={styles.textbox}
-                    onChange={handleIdentificationTypes}
-                    options={idTypes?.data}
-                    emptyOptions='Selecciona tu documento'
-                    name='curp'
-                    register={register}
-                  /> */}
               <select
                 className={styles.textbox}
                 onChange={(e) => handleIdentificationTypes(e)}
@@ -149,12 +125,13 @@ const Register = () => {
               </select>
             </div>
             {getIdIden === "08db0949-ff0f-42f1-8a22-e6787570f3da" && (
-              <div className="name flex flex-col w-3/4 gap-6 ">
-                <div className="flex justify-center ">
+              <div className="flex flex-col justify-center w-full gap-6 ">
+                <div className="flex items-center">
                   <button
                     type="submit"
                     className={styles.btn}
                     disabled={isLoading}
+                    onClick={handleSubmit(submitFormCurp)}
                   >
                     {isLoading ? "cargando" : "Calcula Curp"}
                   </button>
@@ -191,23 +168,19 @@ const Register = () => {
               </div>
             )}
           </div>
-        </form>
-        <form key={2} onSubmit={handleSubmit2(submitFormRegister)}>
-          {" "}
           <div className="flex flex-col justify-center">
             <div className="flex justify-center">
               <input
                 type="checkbox"
                 defaultChecked={isChecked}
                 onClick={() => setIsChecked(!isChecked)}
-                {...register2("hasAgreementCode")}
               />
               <label>¿Tienes convenio con tu empresa?</label>
               <div>
                 {isChecked ? (
                   <input
                     placeholder="ingresa tu codigo"
-                    {...register2("agreementCode")}
+                    {...register("agreementCode")}
                   />
                 ) : (
                   ""
@@ -215,24 +188,37 @@ const Register = () => {
               </div>
             </div>
             <div className="flex justify-center mt-3">
-              <input type="checkbox" id="termins" />
+              <input
+                type="checkbox"
+                id="termins"
+                // {...register("terminsConditions")}
+              />
               <label htmlFor="agree">
                 <Link href={"/termin"}>Términos y condiciones</Link>
               </label>
             </div>
             <div className="flex  mt-3 ml-32">
-              <input type="checkbox" id="privacy" />
+              <input
+                type="checkbox"
+                id="privacy"
+                // {...register("privacity")}
+              />
               <label htmlFor="agree">
                 <Link href={"/termin"}>Aviso de privacidad</Link>
               </label>
             </div>
           </div>
           <div className=" flex justify-center mt-3">
-            <button type="submit" className={styles.btn} disabled={isLoading}>
+            <button
+              type="submit"
+              className={styles.btn}
+              disabled={isLoading}
+              onClick={handleSubmit(submitFormRegister)}
+            >
               {isLoading ? "cargando" : "Registrate"}
             </button>
           </div>
-        </form>
+        </form>{" "}
       </FormProvider>
       <div className="text-center py-2 text-gray">
         <span>

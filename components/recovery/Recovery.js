@@ -1,17 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styles from '../../styles/Username.module.css';
-import { Toaster } from 'react-hot-toast';
-import { useRouter } from 'next/router';
-import authService from '../../featuress/auth/authServices';
-import Footer from '../footer/Footer';
-import Logo from '../../common/logo';
-import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import styles from "../../styles/Username.module.css";
+import { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
+import authService from "../../features/auth/authServices";
+import Footer from "../footer/Footer";
+import Logo from "../common/logo";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import Input from "../common/input";
+import { recoveryPasswordSchema } from "../../utils/formSchema/recoveryPasswordSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const ResetPasswordConfirm = () => {
-  const [form, setForm] = useState({ newPassword: '', confirmPassword: '' });
-
-  const { newPassword, confirmPassword } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(recoveryPasswordSchema),
+    initialValues: {
+      newPassword: "",
+      confirmPassword: "",
+    },
+  });
 
   const router = useRouter();
 
@@ -19,63 +31,25 @@ const ResetPasswordConfirm = () => {
     (state) => state.auth
   );
 
-  const [message, setMessage] = useState('');
-  const [showAlert, setAlert] = useState(false);
-  const [isProcessing, setProcessing] = useState(false);
-
-  const formRef = useRef(null);
-
-  /*   useEffect(() => {
-    if (isSuccess || authDetails) {
-      navigate(router, authDetails);
-    }
-  }, [authDetails, isSuccess]); */
-
-  const onInputChange = (e) => {
-    setForm((previousState) => ({
-      ...previousState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onForgotPasswordFormSubmitted = async (e) => {
-    e.preventDefault();
-
-    setAlert(false);
-    setProcessing(true);
-
+  const onForgotPasswordFormSubmitted = async (data) => {
     const payload = {
-      newPassword: newPassword,
-      confirmPassword: confirmPassword,
+      ...data,
       uid: router.query.uid,
       token: router.query.token,
     };
 
-    if (payload.newPassword !== payload.confirmPassword) {
-      alert('Contraseñas no coinciden');
-      setProcessing(false);
-      return;
+    try {
+      const response = await authService.passwordResetConfirm(payload);
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+      toast.error("A ocurrido un error");
     }
-    const error = '';
-
-    const { data } = await authService.passwordResetConfirm(payload);
-    console.log(data);
-
-    if (error) {
-      toast.error('');
-      toast.error('A ocurrido un error');
-      setProcessing(false);
-      return;
-    }
-   
-    toast.info('Contraseña cambiada con exito');
-    
-    setForm({ newPassword: '', confirmPassword: '' });
   };
 
   useEffect(() => {
     if (isSuccess || authDetails) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [router, authDetails, isSuccess]);
 
@@ -93,34 +67,33 @@ const ResetPasswordConfirm = () => {
             </div>
             <form
               className="py-20"
-              onSubmit={onForgotPasswordFormSubmitted}
-              ref={formRef}
+              onSubmit={handleSubmit(onForgotPasswordFormSubmitted)}
             >
               <div className="textbox flex flex-col items-center gap-6">
-                <input
-                  type="text"
-                  placeholder="Contraseña Nueva"
+                <Input
+                  type="password"
+                  placeholder="Contraseña"
                   className={styles.textbox}
-                  value={newPassword}
-                  onChange={onInputChange}
-                  autoFocus
                   name="newPassword"
+                  register={register}
+                  error={errors?.newPassword?.message}
                 />
-                <input
-                  type="text"
-                  placeholder="Confirmar Contraseña"
+
+                <Input
+                  type="password"
+                  placeholder="Contraseña"
                   className={styles.textbox}
-                  autoFocus
                   name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={onInputChange}
+                  register={register}
+                  error={errors?.confirmPassword?.message}
                 />
+
                 <button
                   type="submit"
                   className={styles.btn}
                   disabled={isLoading}
                 >
-                  {isLoading ? 'cargando' : 'Acceder'}
+                  {isLoading ? "cargando" : "Cambiar"}
                 </button>
               </div>
             </form>

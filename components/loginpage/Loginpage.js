@@ -1,64 +1,52 @@
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { login, reset } from "../../featuress/auth/authSlice";
+import { useEffect, useState } from "react";
+import { login } from "../../features/auth/authSlice";
 import styles from "../../styles/Username.module.css";
-import Logo from "../../common/logo";
+import Logo from "../common/logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-
+import Input from "../common/input";
 import { useForm } from "react-hook-form";
-import Input from "../../common/input";
+import { loginSchema } from "../../utils/formSchema/loginSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+    initialValues: {
+      UserName: "",
+      Password: "",
+    },
+  });
 
   const router = useRouter();
 
-  const { authDetails, isLoading, isSuccess, isError, message, error } =
-    useSelector((state) => state.auth);
+  const { authDetails, isLoading, isFirstLogin } = useSelector(
+    (state) => state.auth
+  );
   const dispatch = useDispatch();
-  const [activated, setActivated] = useState(false);
-
-  /*   useEffect(() => {
-    if (isError) {
-      toast.error("sdasdasd");
-    }
-    dispatch(reset());
-  }, [isError, message]);
- */
 
   const onLoginFormSubmitted = (data) => {
     dispatch(login(data));
-    setActivated(true);
+   
   };
 
-  /* useEffect(() => {
-    if (authDetails && activated) {
-      router.push('/profile', authDetails);
-    }
-  }, [router, authDetails, activated]);
- */
-  /*   useEffect(() => {
-    if (isSuccess || authDetails) {
-      router.push('/profile', authDetails);
-    }
-  }, [authDetails, isSuccess]);
-
-   useEffect(() => {
-    if (userInfo && activated) {
-      router.push('/profile');
-    }
-  }, [router, userInfo, activated]);
- */
-
-  useEffect(() => {
-    if (authDetails && isSuccess) {
+  //console.log(errors);
+  //console.log(authDetails);
+ useEffect(() => {
+    if (authDetails ) {
       router.push("/profile");
-    } else {
-      router.push("/login");
     }
-  }, [router, authDetails, isSuccess]);
+    // if (isError && twoFactor) {
+    //   dispatch(sendLoginCode(UserName));
+    //   router.push(`/loginWithCode/${email}`);
+    // }
+ }, [router, authDetails]);
 
   return (
     <div className="container mx-auto">
@@ -82,30 +70,27 @@ const Login = () => {
             </div>
             <div className="textbox flex flex-col items-center gap-6">
               <div className="flex w-full mb-3 gap-3">
-              <Input
-                type="email"
-                placeholder="Correo electronico"
-                className={styles.textbox}
-                name="UserName"
-                register={register}
-              />
+                <Input
+                  type="email"
+                  placeholder="Correo electronico"
+                  className={styles.textbox}
+                  name="UserName"
+                  register={register}
+                  error={errors?.UserName?.message}
+                />
               </div>
 
               <div className="flex w-full mb-3 gap-3">
-                <Input 
-                 type="password"
-                 placeholder="Contraseña"
-                 className={styles.textbox}
-                 name="Password"
-                 register={register}
-                
+                <Input
+                  type="password"
+                  placeholder="Contraseña"
+                  className={styles.textbox}
+                  name="Password"
+                  register={register}
+                  error={errors?.Password?.message}
                 />
               </div>
-              <button
-                type="submit"
-                className={styles.btn}
-                disabled={isLoading | isSuccess}
-              >
+              <button type="submit" className={styles.btn} disabled={isLoading}>
                 {isLoading ? "cargando" : "Ingreso"}
               </button>
             </div>

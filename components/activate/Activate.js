@@ -1,31 +1,34 @@
 import styles from "../../styles/Username.module.css";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Footer from "../footer/Footer";
-import Logo from "../../common/logo";
-import { useSelector } from "react-redux";
-import authService from "../../featuress/auth/authServices";
+import Logo from "../common/logo";
+import authService from "../../features/auth/authServices";
 
 const Activate = () => {
-  const { isLoading } = useSelector((state) => state.auth);
-  const [activated, setActivated] = useState(false);
   const router = useRouter();
-
-  const activate_account = async (e) => {
+  const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState();
+  const activate_account = useCallback(async () => {
     const payload = {
       uid: router.query.uid,
       token: router.query.token,
     };
-
-    await authService.activateEmail(payload);
-    setActivated(true);
-  };
+    try {
+      await authService.activateEmail(payload);
+      setTimeout(() => {
+        router.push("/login");
+      }, 5000);
+    } catch (e) {
+      setErrors("Error al cargar, en estos momentos no es posible atender su solicitud.");
+    } finally {
+      setLoading(false);
+    }
+  }, [router.query.uid, router.query.token]);
 
   useEffect(() => {
-    if (activated) {
-      router.push("/login");
-    }
-  }, [router, activated]);
+    activate_account();
+  }, [activate_account]);
 
   return (
     <>
@@ -34,20 +37,12 @@ const Activate = () => {
           <div className={styles.glass}>
             <div className="title flex flex-col items-center">
               <Logo />
-              <span className="py-4 text-xl w-2/3 text-center text-gray">
-                Activar correo
-              </span>
             </div>
-
-            <div className="max-w-3xl ml-14">
-              <button
-                onClick={activate_account}
-                className={styles.btn}
-                disabled={isLoading}
-              >
-                {isLoading ? "cargando" : "Confirmar"}
-              </button>
-            </div>
+            {loading && <p>Cargando su solicitud.</p>}
+            {errors && <p>{errors}</p>}
+            {!loading && !errors && (
+              <p>Cuenta registrada con exito, ahora puede acceder desde nuestro portal</p>
+            )}
           </div>
         </div>
       </div>

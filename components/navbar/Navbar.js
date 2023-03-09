@@ -1,4 +1,4 @@
-import { Menu, Popover, Transition } from '@headlessui/react';
+import { Menu, Popover, Transition } from "@headlessui/react";
 import {
   Bars3CenterLeftIcon,
   BellIcon,
@@ -6,17 +6,17 @@ import {
   ChevronUpDownIcon,
   Cog8ToothIcon,
   PencilIcon,
-} from '@heroicons/react/24/solid';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { reset, resetAuthDetails } from '../../featuress/auth/authSlice';
-import authService from '../../featuress/auth/authServices';
+} from "@heroicons/react/24/solid";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { reset, resetAuthDetails } from "../../features/auth/authSlice";
+import authService from "../../features/auth/authServices";
 
 function Navbar({ showNav, setShowNav }) {
   const { authDetails, userInfo } = useSelector((state) => state.auth);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -31,12 +31,12 @@ function Navbar({ showNav, setShowNav }) {
     dispatch(resetAuthDetails());
     dispatch(reset());
     authService.logout();
-    router.push('/login');
+    router.push("/login");
   };
   return (
     <div
       className={`fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] bg-white 
-       ${showNav ? 'pl-56' : ''}`}
+       ${showNav ? "pl-56" : ""}`}
     >
       <div className="pl-4 md:pl-16">
         <Bars3CenterLeftIcon
@@ -76,7 +76,7 @@ function Navbar({ showNav, setShowNav }) {
                         Titulo Notificaciones
                       </p>
                       <p className="text-sm text-gray">
-                        {' '}
+                        {" "}
                         Prueba diseño texto Notificaciones
                       </p>
                     </div>
@@ -90,7 +90,7 @@ function Navbar({ showNav, setShowNav }) {
                         Titulo Notificaciones
                       </p>
                       <p className="text-sm text-gray">
-                        {' '}
+                        {" "}
                         Prueba diseño texto Notificaciones
                       </p>
                     </div>
@@ -104,7 +104,7 @@ function Navbar({ showNav, setShowNav }) {
                         Titulo Notificaciones
                       </p>
                       <p className="text-sm text-gray">
-                        {' '}
+                        {" "}
                         Prueba diseño texto Notificaciones
                       </p>
                     </div>
@@ -118,7 +118,7 @@ function Navbar({ showNav, setShowNav }) {
                         Titulo Notificaciones
                       </p>
                       <p className="text-sm text-gray">
-                        {' '}
+                        {" "}
                         Prueba diseño texto Notificaciones
                       </p>
                     </div>
@@ -140,7 +140,7 @@ function Navbar({ showNav, setShowNav }) {
               </picture>
 
               <span className="hidden md:block font-medium text-gray-dark">
-                {authDetails?.user ? { title } : ''}
+                {authDetails?.user ? { title } : ""}
               </span>
               <ChevronUpDownIcon className="ml-2 h-4 w-4 text-gray-dark" />
             </Menu.Button>

@@ -15,7 +15,7 @@ const registerUser = async (userData) => {
   return response.data;
 };
 
-const curpCalculation = async (userData, callback) => {
+/* const curpCalculation = async (userData, callback) => {
   const response = await globalAxios.post(
     "identification-types/calculate-curp",
     userData
@@ -26,7 +26,7 @@ const curpCalculation = async (userData, callback) => {
 
   return response.data;
 };
-
+ */
 const verifyToken = async (token) => {
   try {
     const response = await globalAxios.post("auth/token/verify/", { token });
@@ -82,7 +82,7 @@ const updatePassword = async (accessToken, newPassword) => {
 const forgotPasswordRequest = async (userData) => {
   try {
     const response = await globalAxios.post("password/reset-token", {
-      userData
+      userData,
     });
 
     return { data: response.data };
@@ -93,25 +93,40 @@ const forgotPasswordRequest = async (userData) => {
 
 const passwordResetConfirm = async (payload) => {
   console.log(payload);
-
   try {
     const response = await globalAxios.post("/password/reset/", payload);
-
     return { data: response.data };
   } catch (error) {
-    return { error };
+    return Promise.reject(error);
   }
 };
 
 const activateEmail = async (payload) => {
-  console.log(payload);
-
+  //console.log(payload);
   try {
     const response = await globalAxios.post("/auth/confirm-email/", payload);
 
     return { data: response.data };
   } catch (error) {
-    return { error };
+    return Promise.reject(error);
+  }
+};
+
+const sendLoginCode = async (email) => {
+  try {
+    const response = await globalAxios.post("/auth/sendLoginCode/", { email });
+    return { data: response.data };
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+const loginWithCode = async (payload) => {
+  try {
+    const response = await globalAxios.post("/auth/loginWithCode/", payload);
+    return { data: response.data };
+  } catch (error) {
+    return Promise.reject(error);
   }
 };
 
@@ -124,8 +139,9 @@ const authService = {
   updatePassword,
   forgotPasswordRequest,
   passwordResetConfirm,
-  curpCalculation,
   activateEmail,
+  sendLoginCode,
+  loginWithCode,
 };
 
 export default authService;

@@ -2,29 +2,31 @@ import styles from "../../styles/Username.module.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import Logo from "../../common/logo";
+import Logo from "../common/logo";
 import { useRouter } from "next/router";
-import authService from "../../featuress/auth/authServices";
-import Input from "../../common/input";
+import authService from "../../features/auth/authServices";
+import Input from "../common/input";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { resetSchema } from "../../utils/formSchema/resetSchema";
 
 const Reset = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm({
+    resolver: yupResolver(resetSchema),
+    initialValues: {
+      email: "",
+    },
+  });
 
   const router = useRouter();
 
-  const {  isLoading, isSuccess, isError } = useSelector(
-    (state) => state.auth
-  );
-
+  const { isLoading, isSuccess, isError } = useSelector((state) => state.auth);
 
   const onForgotPasswordFormSubmitted = async (data) => {
-   
-
-  await  authService.forgotPasswordRequest(data);
+    await authService.forgotPasswordRequest(data);
     if (isError) {
       toast.error("Ocurrió un error");
-    
+      
     }
 
     toast.info("Por favor valida tu correo electronico");
@@ -58,12 +60,13 @@ const Reset = () => {
                   className={styles.textbox}
                   name="email"
                   register={register}
+                  error={errors?.email?.message}
                 />
 
                 <button
                   type="submit"
                   className={styles.btn}
-                  disabled={isLoading | isSuccess}
+                  disabled={isLoading}
                 >
                   {isLoading ? "Cargando" : "Enviar"}
                 </button>

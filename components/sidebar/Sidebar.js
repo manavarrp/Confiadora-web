@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { forwardRef } from 'react';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { forwardRef } from "react";
 import {
   CreditCardIcon,
   HomeIcon,
   UserIcon,
   CircleStackIcon,
   ClipboardDocumentCheckIcon,
-} from '@heroicons/react/24/solid';
-import Logo from '../../common/logo';
+} from "@heroicons/react/24/solid";
+import Logo from "../common/logo";
 
 const Sidebar = forwardRef(({ showNav }, ref) => {
   const router = useRouter();
@@ -22,9 +22,9 @@ const Sidebar = forwardRef(({ showNav }, ref) => {
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname == '/'
-                ? 'bg-darkBlue  text-white'
-                : 'text-gray-dark hover:bg-gray-light hover:text-gray'
+              router.pathname == "/"
+                ? "bg-darkBlue  text-white"
+                : "text-gray-dark hover:bg-gray-light hover:text-gray"
             }`}
           >
             <div className="mr-2">
@@ -40,9 +40,9 @@ const Sidebar = forwardRef(({ showNav }, ref) => {
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname == '/account'
-                ? 'bg-darkBlue text-white'
-                : 'text-gray-dark hover:bg-gray-light hover:text-gray'
+              router.pathname == "/account"
+                ? "bg-darkBlue text-white"
+                : "text-gray-dark hover:bg-gray-light hover:text-gray"
             }`}
           >
             <div className="mr-2">
@@ -58,9 +58,9 @@ const Sidebar = forwardRef(({ showNav }, ref) => {
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname == '/billing'
-                ? 'bg-darkBlue text-white'
-                : 'text-gray-dark hover:bg-gray-light hover:text-gray'
+              router.pathname == "/billing"
+                ? "bg-darkBlue text-white"
+                : "text-gray-dark hover:bg-gray-light hover:text-gray"
             }`}
           >
             <div className="mr-2">
@@ -76,9 +76,9 @@ const Sidebar = forwardRef(({ showNav }, ref) => {
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname == '/billing'
-                ? 'bg-darkBlue text-white'
-                : 'text-gray-dark hover:bg-gray-light hover:text-gray'
+              router.pathname == "/billing"
+                ? "bg-darkBlue text-white"
+                : "text-gray-dark hover:bg-gray-light hover:text-gray"
             }`}
           >
             <div className="mr-2">
@@ -94,9 +94,9 @@ const Sidebar = forwardRef(({ showNav }, ref) => {
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname == '/billing'
-                ? 'bg-darkBlue text-white'
-                : 'text-gray-dark hover:bg-gray-light hover:text-gray'
+              router.pathname == "/billing"
+                ? "bg-darkBlue text-white"
+                : "text-gray-dark hover:bg-gray-light hover:text-gray"
             }`}
           >
             <div className="mr-2">
@@ -112,6 +112,6 @@ const Sidebar = forwardRef(({ showNav }, ref) => {
   );
 });
 
-Sidebar.displayName = 'Sidebar';
+Sidebar.displayName = "Sidebar";
 
 export default Sidebar;

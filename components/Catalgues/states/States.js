@@ -4,11 +4,15 @@ import styles from "../../../styles/Username.module.css";
 import { useFormContext } from "react-hook-form";
 
 import useGetState from "../../../hooks/useGetState";
-import Select from "../../../common/select";
+import Select from "../../common/select";
 
 const States = () => {
   const valuesStates = useGetState();
-  const { register, getValues } = useFormContext();
+  const {
+    register,
+    getValues,
+    formState: { errors },
+  } = useFormContext();
 
   const handleMunipality = (event) => {
     const getId = event.target.value;
@@ -25,6 +29,7 @@ const States = () => {
         options={valuesStates?.data}
         emptyOptions="Estado de nacimiento"
         name="stateId"
+        error={errors?.stateId?.message}
       />
     </div>
   );
