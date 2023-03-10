@@ -30,7 +30,7 @@ const Register = () => {
       identificationNumber: "",
       genderId: "",
       stateId: "",
-      hasAgreementCode: "",
+      hasAgreementCode: false,
       agreementCode: "",
       //terminsConditions: "",
       //privacity: "",
@@ -82,7 +82,7 @@ const Register = () => {
   const submitFormRegister = async (data) => {
     //console.log(values);
 
-    dispatch(registerUser({ data }));
+    dispatch(registerUser(data));
 
     //console.info(JSON.stringify(data));
   };
@@ -141,7 +141,7 @@ const Register = () => {
                 </label>
                 <input
                   className="visibility: hidden"
-                  value="08db0949-ff0f-42f1-8a22-e6787570f3da"
+                  value={getIdIden}
                   {...register("identificationTypeId")}
                 />
                 <input
@@ -158,7 +158,7 @@ const Register = () => {
                 </label>
                 <input
                   className="visibility: hidden"
-                  value="08db0949-ff18-4dc9-87c2-23d43aaa271b"
+                  value={getIdIden}
                   {...register("identificationTypeId")}
                 />
                 <input
@@ -174,6 +174,7 @@ const Register = () => {
                 type="checkbox"
                 defaultChecked={isChecked}
                 onClick={() => setIsChecked(!isChecked)}
+                {...register("hasAgreementCode")}
               />
               <label>¿Tienes convenio con tu empresa?</label>
               <div>
@@ -191,7 +192,7 @@ const Register = () => {
               <input
                 type="checkbox"
                 id="termins"
-                // {...register("terminsConditions")}
+                {...register("terminsConditions")}
               />
               <label htmlFor="agree">
                 <Link href={"/termin"}>Términos y condiciones</Link>
