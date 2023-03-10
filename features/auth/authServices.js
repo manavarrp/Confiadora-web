@@ -79,12 +79,9 @@ const updatePassword = async (accessToken, newPassword) => {
   }
 };
 
-const forgotPasswordRequest = async (email) => {
+const forgotPasswordRequest = async (payload) => {
   try {
-    const response = await globalAxios.post("password/reset-token", {
-      email,
-    });
-    conso
+    const response = await globalAxios.post("password/reset-token", payload);
     return response.data;
   } catch (error) {
     return { error };

@@ -41,6 +41,8 @@ const ResetPasswordConfirm = () => {
     try {
       const response = await authService.passwordResetConfirm(payload);
       console.log(response);
+      toast.success("Contraseña cambiada con exito")
+      router.push("/login");
     } catch (e) {
       console.log(e);
       toast.error("A ocurrido un error");
@@ -48,10 +50,10 @@ const ResetPasswordConfirm = () => {
   };
 
   useEffect(() => {
-    if (isSuccess || authDetails) {
+    if (!isLoading && isSuccess) {
       router.push("/login");
     }
-  }, [router, authDetails, isSuccess]);
+  }, [router, isLoading,isSuccess]);
 
   return (
     <>

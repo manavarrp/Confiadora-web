@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import Logo from "../common/logo";
 import authService from "../../features/auth/authServices";
+import { toast } from "react-toastify";
 
 const Activate = () => {
   const router = useRouter();
@@ -19,8 +20,9 @@ const Activate = () => {
       setTimeout(() => {
         router.push("/login");
       }, 5000);
+      toast.success("Cuenta registrada con exito, ahora puede acceder desde nuestro portal sevicio")
     } catch (e) {
-      setErrors("Error al cargar, en estos momentos no es posible atender su solicitud.");
+      toast.error("Error al cargar, en estos momentos no es posible atender su solicitud.");
     } finally {
       setLoading(false);
     }
@@ -38,11 +40,7 @@ const Activate = () => {
             <div className="title flex flex-col items-center">
               <Logo />
             </div>
-            {loading && <p>Cargando su solicitud.</p>}
-            {errors && <p>{errors}</p>}
-            {!loading && !errors && (
-              <p>Cuenta registrada con exito, ahora puede acceder desde nuestro portal</p>
-            )}
+                <span>Estamos gestionando tu solicitud...</span>
           </div>
         </div>
       </div>

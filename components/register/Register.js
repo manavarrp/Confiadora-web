@@ -132,7 +132,7 @@ const Register = () => {
                   ))}
               </select>
             </div>
-            {getIdIden === "08db134f-77d3-4f8a-8f52-e7e9434060be" && (
+            {getIdIden === "08db2199-2401-4763-84e5-34a1ac5df372" && (
               <div className="flex flex-col justify-center w-full gap-6 ">
                 <div className="flex items-center">
                   <button
@@ -159,7 +159,7 @@ const Register = () => {
                 />
               </div>
             )}
-            {getIdIden === "08db134f-77ee-49f1-8d63-167dbe81798a" && (
+            {getIdIden === "08db2199-2426-44dd-812e-339824b5e3d8" && (
               <div className=" flex flex-col w-3/4 gap-6 ">
                 <label className="w-full">
                   Por favor ingresa tu numero de extranjeria
@@ -206,7 +206,7 @@ const Register = () => {
                 <Link href={"/termin"}>Términos y condiciones</Link>
               </label>
             </div>
-            <div className="flex  mt-3 ml-32">
+            {/* <div className="flex  mt-3 ml-32">
               <input
                 type="checkbox"
                 id="privacy"
@@ -215,7 +215,7 @@ const Register = () => {
               <label htmlFor="agree">
                 <Link href={"/termin"}>Aviso de privacidad</Link>
               </label>
-            </div>
+            </div> */}
           </div>
           <div className=" flex justify-center mt-3">
             <button
