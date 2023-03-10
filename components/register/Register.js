@@ -12,12 +12,14 @@ import Logo from "../common/logo";
 import useGetCurpCalculation from "../../hooks/useGetCurpCalculation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../utils/formSchema/registerSchema";
+import { useRouter } from "next/router";
 
 const Register = () => {
   const identificationTypeRef = useRef();
   const idTypes = useGetIdentificationType();
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading, isSuccess } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const router = useRouter();
   const methods = useForm({
     defaultValues: {
       firstName: "",
@@ -32,8 +34,8 @@ const Register = () => {
       stateId: "",
       hasAgreementCode: false,
       agreementCode: "",
-      //terminsConditions: "",
-      //privacity: "",
+      AcceptTermsAndConditions:"",
+    
     },
     //resolver: yupResolver(registerSchema),
   });
@@ -86,6 +88,12 @@ const Register = () => {
 
     //console.info(JSON.stringify(data));
   };
+  useEffect(()=>{
+    if (isSuccess){
+      router.push("/login");
+    }
+
+  },[isSuccess, router])
   return (
     <div className="md:w-[500px] shadow-sm shadow-gray bg-white w-[320px] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
       <div className="title flex flex-col items-center">
@@ -124,7 +132,7 @@ const Register = () => {
                   ))}
               </select>
             </div>
-            {getIdIden === "08db0949-ff0f-42f1-8a22-e6787570f3da" && (
+            {getIdIden === "08db134f-77d3-4f8a-8f52-e7e9434060be" && (
               <div className="flex flex-col justify-center w-full gap-6 ">
                 <div className="flex items-center">
                   <button
@@ -151,7 +159,7 @@ const Register = () => {
                 />
               </div>
             )}
-            {getIdIden === "08db0949-ff18-4dc9-87c2-23d43aaa271b" && (
+            {getIdIden === "08db134f-77ee-49f1-8d63-167dbe81798a" && (
               <div className=" flex flex-col w-3/4 gap-6 ">
                 <label className="w-full">
                   Por favor ingresa tu numero de extranjeria
@@ -192,7 +200,7 @@ const Register = () => {
               <input
                 type="checkbox"
                 id="termins"
-                {...register("terminsConditions")}
+                {...register("AcceptTermsAndConditions")}
               />
               <label htmlFor="agree">
                 <Link href={"/termin"}>Términos y condiciones</Link>

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const HOSTED_API_URL =
-  "http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/";
+const HOSTED_API_URL = "https://localhost:44302/api/v1/";
+//const HOSTED_API_URL = "http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/";
 //const HOSTED_API_URL = "https://8ec4-181-51-32-203.ngrok.io/api/v1/";
 const CURRENT_API_URL = HOSTED_API_URL;
 

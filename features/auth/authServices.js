@@ -11,7 +11,7 @@ const login = async (userData) => {
 
 // Register User
 const registerUser = async (userData) => {
-  const response = await globalAxios.post("customers", userData);
+  const response = await globalAxios.post("customers/web", userData);
   return response.data;
 };
 
@@ -79,13 +79,13 @@ const updatePassword = async (accessToken, newPassword) => {
   }
 };
 
-const forgotPasswordRequest = async (userData) => {
+const forgotPasswordRequest = async (email) => {
   try {
     const response = await globalAxios.post("password/reset-token", {
-      userData,
+      email,
     });
-
-    return { data: response.data };
+    conso
+    return response.data;
   } catch (error) {
     return { error };
   }

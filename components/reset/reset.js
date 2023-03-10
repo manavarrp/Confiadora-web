@@ -23,7 +23,11 @@ const Reset = () => {
   const { isLoading, isSuccess, isError } = useSelector((state) => state.auth);
 
   const onForgotPasswordFormSubmitted = async (data) => {
-    await authService.forgotPasswordRequest(data);
+    const payload = {
+      email:data.email,
+    }
+    console.log(payload)
+  await authService.forgotPasswordRequest(payload);
     if (isError) {
       toast.error("Ocurrió un error");
       

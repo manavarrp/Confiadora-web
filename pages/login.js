@@ -7,7 +7,7 @@ const login = () => {
   return (
     <>
       <Loginpage />
-      <Footer />
+      
     </>
   );
 };
