@@ -13,6 +13,9 @@ import useGetCurpCalculation from "../../hooks/useGetCurpCalculation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../utils/formSchema/registerSchema";
 import { useRouter } from "next/router";
+import Input from "../common/input";
+import { Checkbox } from "../common/checkbox";
+import Footer from "../footer/Footer";
 
 const Register = () => {
   const identificationTypeRef = useRef();
@@ -34,20 +37,29 @@ const Register = () => {
       stateId: "",
       hasAgreementCode: false,
       agreementCode: "",
-      AcceptTermsAndConditions:"",
-    
+      AcceptTermsAndConditions: "",
+      canRegister: false,
     },
-    //resolver: yupResolver(registerSchema),
+    resolver: yupResolver(registerSchema),
+    mode: "onChange",
   });
 
-  const { register, handleSubmit, resetField, setValue } = methods;
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    setValue,
+    watch,
+    getValues,
+    formState: { errors },
+  } = methods;
 
   const GetCurpCalculation = useGetCurpCalculation();
   //console.log(formData);
-
+  const values = getValues();
+  console.log(errors);
+  watch(["hasAgreementCode"]);
   const [getIdIden, setGetId] = useState("");
-
-  const [isChecked, setIsChecked] = useState(false);
 
   const identiTypes = idTypes.data;
 
@@ -55,7 +67,7 @@ const Register = () => {
     const getId = event.target.value;
     setGetId(getId);
     resetField("identificationNumber");
-    console.log(identificationTypeRef.current);
+    //console.log(identificationTypeRef.current);
 
     //getValues(getId);
   };
@@ -72,8 +84,9 @@ const Register = () => {
       genderId: data.genderId,
     };
     data.email = data.email.toLowerCase();
-    GetCurpCalculation(payload).then((data) =>
-      setValue("identificationNumber", data)
+    GetCurpCalculation(payload).then(
+      (data) => setValue("identificationNumber", data),
+      setValue("canRegister", true)
     );
   };
 
@@ -88,157 +101,181 @@ const Register = () => {
 
     //console.info(JSON.stringify(data));
   };
-  useEffect(()=>{
-    if (isSuccess){
+  useEffect(() => {
+    if (isSuccess) {
       router.push("/login");
     }
-
-  },[isSuccess, router])
+  }, [isSuccess, router]);
   return (
-    <div className="md:w-[500px] shadow-sm shadow-gray bg-white w-[320px] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
-      <div className="title flex flex-col items-center">
-        <Logo />
-        <span className=" text-center text-gray ml-6">
-          Credito al alcance de todos
-        </span>
-      </div>
-      <FormProvider {...methods}>
-        <form className="py-1" ref={identificationTypeRef}>
-          <div className="items-center">
-            <div>
-              <RegisterForm />
-            </div>
-            <div className="w-full gap-1">
-              <div className="mb-3">
-                {" "}
-                <Gender />
-              </div>
-              <div className="mb-3">
-                {" "}
-                <States />
-              </div>
-            </div>
-            <div className="flex  w-full gap-6 mb-3">
-              <select
-                className={styles.textbox}
-                onChange={(e) => handleIdentificationTypes(e)}
-              >
-                <option value="">Tipo de documento</option>
-                {identiTypes &&
-                  identiTypes.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            {getIdIden === "08db2199-2401-4763-84e5-34a1ac5df372" && (
-              <div className="flex flex-col justify-center w-full gap-6 ">
-                <div className="flex items-center">
-                  <button
-                    type="submit"
-                    className={styles.btn}
-                    disabled={isLoading}
-                    onClick={handleSubmit(submitFormCurp)}
-                  >
-                    {isLoading ? "cargando" : "Calcula Curp"}
-                  </button>
-                </div>
-                <label className="w-full">
-                  Por favor valida si tu CURP es correcto:{" "}
-                </label>
-                <input
-                  className="visibility: hidden"
-                  value={getIdIden}
-                  {...register("identificationTypeId")}
-                />
-                <input
-                  className={styles.textbox}
-                  {...register("identificationNumber")}
-                  readOnly
-                />
-              </div>
-            )}
-            {getIdIden === "08db2199-2426-44dd-812e-339824b5e3d8" && (
-              <div className=" flex flex-col w-3/4 gap-6 ">
-                <label className="w-full">
-                  Por favor ingresa tu numero de extranjeria
-                </label>
-                <input
-                  className="visibility: hidden"
-                  value={getIdIden}
-                  {...register("identificationTypeId")}
-                />
-                <input
-                  className={styles.textbox}
-                  {...register("identificationNumber")}
-                />
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col justify-center">
-            <div className="flex justify-center">
-              <input
-                type="checkbox"
-                defaultChecked={isChecked}
-                onClick={() => setIsChecked(!isChecked)}
-                {...register("hasAgreementCode")}
-              />
-              <label>¿Tienes convenio con tu empresa?</label>
+    <>
+      <div className="md:w-[500px] shadow-sm shadow-gray bg-white w-[320px] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
+        <div className="title flex flex-col items-center">
+          <Logo />
+          <span className=" text-center text-gray ml-6">
+            Credito al alcance de todos
+          </span>
+        </div>
+        <FormProvider {...methods}>
+          <form className="py-1" ref={identificationTypeRef}>
+            <div className="items-center">
               <div>
-                {isChecked ? (
+                <RegisterForm />
+              </div>
+              <div className="w-full gap-1">
+                <div className="mb-3">
+                  {" "}
+                  <Gender />
+                </div>
+                <div className="mb-3">
+                  {" "}
+                  <States />
+                </div>
+              </div>
+              <div className="flex  w-full gap-6 mb-3">
+                <select
+                  className={styles.textbox}
+                  onChange={(e) => handleIdentificationTypes(e)}
+                >
+                  <option value="">Tipo de documento</option>
+                  {identiTypes &&
+                    identiTypes.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              {getIdIden === "08db0949-ff0f-42f1-8a22-e6787570f3da" && (
+                <div className="flex flex-col justify-center w-full gap-6 ">
+                  <div className="flex justify-center">
+                    <button
+                      type="submit"
+                      className={styles.btn}
+                      disabled={isLoading}
+                      onClick={handleSubmit(submitFormCurp)}
+                    >
+                      {isLoading ? "cargando" : "Calcula Curp"}
+                    </button>
+                  </div>
+                  <label className="w-full flex justify-center">
+                    Por favor valida si tu CURP es correcto:
+                  </label>
                   <input
-                    placeholder="ingresa tu codigo"
-                    {...register("agreementCode")}
+                    className="visibility: hidden"
+                    value={getIdIden}
+                    {...register("identificationTypeId")}
                   />
-                ) : (
-                  ""
-                )}
+                  <input
+                    className={styles.textbox}
+                    {...register("identificationNumber")}
+                    readOnly
+                  />
+                </div>
+              )}
+              {getIdIden === "08db0949-ff18-4dc9-87c2-23d43aaa271b" && (
+                <div className=" flex flex-col items-center gap-6 ">
+                  <label className="w-full flex justify-center mt-2">
+                    Por favor ingresa tu numero de extranjeria
+                  </label>
+                  <input
+                    className="visibility: hidden"
+                    value={getIdIden}
+                    {...register("identificationTypeId")}
+                  />
+                  <Input
+                    type="text"
+                    placeholder="Numero de extranjeria"
+                    className={styles.textbox}
+                    name="identificationNumber"
+                    register={register}
+                    error={errors?.identificationNumber?.message}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col justify-center items-center mt-2">
+              <div className="flex justify-center mt-1 gap-2">
+                <Checkbox
+                  type="checkbox"
+                  id="hasAgreementCode"
+                  name="hasAgreementCode"
+                  register={register}
+                  error={errors?.hasAgreementCode?.message}
+                />
+                <label
+                  className="transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                  data-te-toggle="tooltip"
+                  title="Si tu empresa no tiene convenio con nosotros omite este campo"
+                >
+                  ¿Tienes convenio con tu empresa?
+                </label>
+                <div>
+                  {values.hasAgreementCode ? (
+                    <input
+                      placeholder="ingresa tu codigo"
+                      {...register("agreementCode")}
+                      className={styles.textbox}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-col justify-center items-center mt-2 w-full">
+                <div className="flex justify-center mt-1 gap-2 w-full">
+                  <Checkbox
+                    id="AcceptTermsAndConditions"
+                    type="checkbox"
+                    name="AcceptTermsAndConditions"
+                    register={register}
+                  >
+                    <label>
+                      <Link
+                        href="/termin"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="text-blue w-full"
+                      >
+                        <label
+                          className="transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
+                          data-te-toggle="tooltip"
+                          title="Debes aceptar terminos y condiciones para el registro"
+                        >
+                          Términos y condiciones
+                        </label>
+                      </Link>
+                    </label>
+
+                    {/*  {*<Link href="https://google.com" rel="noopener noreferrer" target="_blank"> Google </Link>*} */}
+                  </Checkbox>
+                </div>
               </div>
             </div>
-            <div className="flex justify-center mt-3">
-              <input
-                type="checkbox"
-                id="termins"
-                {...register("AcceptTermsAndConditions")}
-              />
-              <label htmlFor="agree">
-                <Link href={"/termin"}>Términos y condiciones</Link>
-              </label>
+            <div className=" flex justify-center mt-3">
+              <button
+                type="submit"
+                className={styles.btn}
+                //disabled={isLoading}
+                disabled={!watch("AcceptTermsAndConditions")}
+                onClick={handleSubmit(submitFormRegister)}
+              >
+                {isLoading ? "cargando" : "Registrate"}
+              </button>
             </div>
-            {/* <div className="flex  mt-3 ml-32">
-              <input
-                type="checkbox"
-                id="privacy"
-                // {...register("privacity")}
-              />
-              <label htmlFor="agree">
-                <Link href={"/termin"}>Aviso de privacidad</Link>
-              </label>
-            </div> */}
-          </div>
-          <div className=" flex justify-center mt-3">
-            <button
-              type="submit"
-              className={styles.btn}
-              disabled={isLoading}
-              onClick={handleSubmit(submitFormRegister)}
-            >
-              {isLoading ? "cargando" : "Registrate"}
-            </button>
-          </div>
-        </form>{" "}
-      </FormProvider>
-      <div className="text-center py-2 text-gray">
-        <span>
-          ¿ Ya tienes cuenta ?
-          <Link className="text-darkBlue" href="/login">
-            {" "}
-            Ingresa
-          </Link>
-        </span>
+          </form>{" "}
+        </FormProvider>
+        <div className="text-center py-2 text-gray">
+          <span>
+            ¿ Ya tienes cuenta ?
+            <Link className="text-darkBlue" href="/login">
+              {" "}
+              Ingresa
+            </Link>
+          </span>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

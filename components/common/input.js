@@ -7,8 +7,6 @@ function Input({
   error,
   ...props
 }) {
-  console.log(error);
-  console.log(props);
   return (
     <div className="flex flex-col w-full">
       <input

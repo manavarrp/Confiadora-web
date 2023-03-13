@@ -9,9 +9,14 @@ import Input from "../common/input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { resetSchema } from "../../utils/formSchema/resetSchema";
+import Footer from "../footer/Footer";
 
 const Reset = () => {
-  const { register, handleSubmit, formState: {errors} } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(resetSchema),
     initialValues: {
       email: "",
@@ -24,13 +29,12 @@ const Reset = () => {
 
   const onForgotPasswordFormSubmitted = async (data) => {
     const payload = {
-      email:data.email,
-    }
-    console.log(payload)
-  await authService.forgotPasswordRequest(payload);
+      email: data.email,
+    };
+    console.log(payload);
+    await authService.forgotPasswordRequest(payload);
     if (isError) {
       toast.error("Ocurrió un error");
-      
     }
 
     toast.info("Por favor valida tu correo electronico");
@@ -79,6 +83,7 @@ const Reset = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

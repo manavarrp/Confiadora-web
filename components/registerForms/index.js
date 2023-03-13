@@ -2,15 +2,11 @@ import { useFormContext } from "react-hook-form";
 import styles from "../../styles/Username.module.css";
 import Input from "../common/input";
 
-
-
-import React from "react";
-
 function RegisterForms() {
   const {
     register,
     formState: { errors },
-  } = useFormContext(); 
+  } = useFormContext();
   return (
     <div>
       <div className="flex w-full mb-3 gap-3">
