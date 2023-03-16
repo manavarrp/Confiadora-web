@@ -14,10 +14,16 @@ export const validateEmail = (value) => {
   );
 };
 
-
 export const validateOnlyLetters = (value) => {
-    if (value === undefined) return false;
-  
-    return /[\D]{3}/.test(value);
-  }
-  
+  if (value === undefined) return false;
+
+  return /[\D]{3}/.test(value);
+};
+
+export const validatePhoneNumber = (value) => {
+  if (value === undefined) return false;
+
+  return /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/.test(
+    value
+  );
+};

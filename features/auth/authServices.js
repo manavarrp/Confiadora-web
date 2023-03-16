@@ -11,7 +11,12 @@ const login = async (userData) => {
 
 // Register User
 const registerUser = async (userData) => {
-  const response = await globalAxios.post("customers/web", userData);
+  const response = await globalAxios.post("customers", userData);
+  return response.data;
+};
+
+const getUser = async () => {
+  const response = await globalAxios.get(`customers/${uid}`);
   return response.data;
 };
 
@@ -105,7 +110,7 @@ const activateEmail = async (payload) => {
 
     return { data: response.data };
   } catch (error) {
-    return Promise.reject(error);
+    return error;
   }
 };
 
@@ -139,6 +144,7 @@ const authService = {
   activateEmail,
   sendLoginCode,
   loginWithCode,
+  getUser,
 };
 
 export default authService;

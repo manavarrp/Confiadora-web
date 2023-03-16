@@ -1,8 +1,9 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const HOSTED_API_URL = "https://localhost:44302/api/v1/";
-//const HOSTED_API_URL = "http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/";
+//const HOSTED_API_URL = "https://localhost:44302/api/v1/";
+const HOSTED_API_URL =
+  "http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/";
 //const HOSTED_API_URL = "https://8ec4-181-51-32-203.ngrok.io/api/v1/";
 const CURRENT_API_URL = HOSTED_API_URL;
 
@@ -14,8 +15,8 @@ instance.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error?.message == "Network Error") {
-      toast.error("Network error");
+    if (error?.message == "Error de conexión") {
+      toast.error("Error de conexión");
       return;
     }
     if (error?.response?.status === 401) {

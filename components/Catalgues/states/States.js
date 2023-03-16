@@ -6,7 +6,7 @@ import { useFormContext } from "react-hook-form";
 import useGetState from "../../../hooks/useGetState";
 import Select from "../../common/select";
 
-const States = () => {
+const States = ({ onBlurData }) => {
   const valuesStates = useGetState();
   const {
     register,
@@ -29,6 +29,7 @@ const States = () => {
         options={valuesStates?.data}
         emptyOptions="Estado de nacimiento"
         name="stateId"
+        onBlur={onBlurData}
         error={errors?.stateId?.message}
       />
     </div>

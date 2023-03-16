@@ -1,16 +1,18 @@
-import styles from "../../styles/Username.module.css";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import Logo from "../common/logo";
 import authService from "../../features/auth/authServices";
-import { toast } from "react-toastify";
 
 const Activate = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState();
+
   const activate_account = useCallback(async () => {
+    if (!router.query.uid && !router.query.token) {
+      return;
+    }
     const payload = {
       uid: router.query.uid,
       token: router.query.token,
@@ -20,9 +22,8 @@ const Activate = () => {
       setTimeout(() => {
         router.push("/login");
       }, 5000);
-      toast.success("Cuenta registrada con exito, ahora puede acceder desde nuestro portal sevicio")
     } catch (e) {
-      toast.error("Error al cargar, en estos momentos no es posible atender su solicitud.");
+      setErrors("Error al cargar");
     } finally {
       setLoading(false);
     }
@@ -34,16 +35,20 @@ const Activate = () => {
 
   return (
     <>
-      <div className="container mx-auto pb-2">
-        <div className="flex justify-center items-center h-screen py-1">
-          <div className={styles.glass}>
-            <div className="title flex flex-col items-center">
-              <Logo />
-            </div>
-                <span>Estamos gestionando tu solicitud...</span>
-          </div>
+      <div className="md:w-[500px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
+        <div className="title flex flex-col items-center">
+          <Logo />
         </div>
+        {loading && <p>Cargando ....</p>}
+        {errors && <p>{errors}</p>}
+        {!loading && !errors && (
+          <p>
+            Cuenta registrada con exito, en un momento podrá acceder desde
+            nuestro portal.
+          </p>
+        )}
       </div>
+
       <Footer />
     </>
   );

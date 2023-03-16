@@ -6,10 +6,16 @@ const Select = ({
   name,
   register,
   error,
+  ...props
 }) => {
   return (
     <div className="flex flex-col w-full">
-      <select className={className} onChange={onChange} {...register(name)}>
+      <select
+        className={className}
+        onChange={onChange}
+        {...register(name)}
+        {...props}
+      >
         <option value="">{emptyOptions}</option>
         {options.map((item) => (
           <option key={item.id} value={item.id}>

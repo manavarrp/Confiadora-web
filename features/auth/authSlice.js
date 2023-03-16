@@ -14,7 +14,6 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   twoFactor: false,
-  isFirstLogin:true,
   message: "",
 };
 
@@ -51,6 +50,20 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
+export const getUser = createAsyncThunk("auth/getUser", async (thunkAPI)=>{
+  try {
+    return await authService.getUser();
+  } catch (error) {
+    const message =
+      (error.response &&
+        error.response.data &&
+        error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+})
 
 // export const curpCalculation = createAsyncThunk(
 //   "auth/curpCalculation",
@@ -99,11 +112,10 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.authDetails = action.payload;
+        state.authDetails = {...action.payload, isFirstLogin:false};
+        
         toast.success("Bienvenido");
-       /*  if (action.payload.includes("New browser")) {
-          state.twoFactor = true;
-        } */
+     
       })
       .addCase(login.rejected, (state, action) => {
         (state.isLoading = false),
@@ -111,6 +123,9 @@ export const authSlice = createSlice({
           (state.message = action.payload);
         state.authDetails = null;
         toast.error(action.payload);
+          /*  if (action.payload.includes("New browser")) {
+          state.twoFactor = true;
+        } */
       })
       // Register User
       .addCase(registerUser.pending, (state) => {
@@ -129,28 +144,23 @@ export const authSlice = createSlice({
         state.message = action.payload;
         toast.error(action.payload);
       })
-
-      // Curp Calculation
-      // .addCase(curpCalculation.pending, (state) => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(curpCalculation.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.isSuccess = true;
-      //   state.isLoggedIn = true;
-      //   state.message = action.payload;
-      //   state.firstName = action.payload;
-      //   state.secondName = action.payload;
-      //   console.log(action.payload);
-      // })
-      // .addCase(curpCalculation.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.isError = true;
-      //   state.message = action.payload;
-      //   state.user = null;
-      //   toast.error(action.payload);
-      // })
-      //logout
+        // Get User
+        .addCase(getUser.pending, (state) => {
+          state.isLoading = true;
+        })
+        .addCase(getUser.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.isSuccess = true;
+          state.isLoggedIn = true;
+          state.authDetails = action.payload;
+        })
+        .addCase(getUser.rejected, (state, action) => {
+          state.isLoading = false;
+          state.isError = true;
+          state.message = action.payload;
+          toast.error(action.payload);
+        })
+        //logout
       .addCase(logout.fulfilled, (state, action) => {
         state.user = null;
       });

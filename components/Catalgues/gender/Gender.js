@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form";
 import useGetGender from "../../../hooks/useGetGender";
 import Select from "../../common/select";
 
-const Gender = () => {
+const Gender = ({ onBlurData }) => {
   const valuesGender = useGetGender();
 
   const {
@@ -28,6 +28,7 @@ const Gender = () => {
         name="genderId"
         options={valuesGender?.data}
         emptyOptions="Sexo"
+        onBlur={onBlurData}
         error={errors?.genderId?.message}
       />
     </div>
