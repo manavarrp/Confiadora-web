@@ -1,49 +1,59 @@
-import ppFormServices from "./ppFormServices";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import { createSlice, createAction } from "@reduxjs/toolkit";
 
 const initialState = {
-  personalInformation: [],
-  addressInfotmation: [],
-  workingInformation: [],
-  bankInformarion: [],
-  additionalInformation: [],
-  isLoading: false,
-  isError: false,
-  message: "",
-  isSuccess: false,
+  personalInformation: null,
+  addressInfotmation: null,
+  workingInformation: null,
+  bankInformartion: null,
+  additionalInformation: null,
+  personalReference: null,
+
+  // state: 'open'
 };
 
-export const personForm = createAsyncThunk(
-  "physicalPersonForm/personForm",
-  async (userData, thunkAPI) => {
-    try {
-      return await ppFormServices.physicalPerson(userData);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
+export const setAllPersonPhysicalForm = createAction(
+  "setAllPersonPhysicalForm/setAll"
 );
+export const setPersonPhysicalForm = createAction("setPersonPhysicalForm/set");
 
 export const ppFormSlice = createSlice({
   name: "personForm",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(personForm.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(personForm.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.personalInformation = action.payload;
-        toast.success("Información registrada con exito!");
-      });
+    builder.addCase(setAllPersonPhysicalForm, (state, action) => {
+      //console.log(action.payload, "actio payload");
+      state.personalInformation = action.payload.personalInformation;
+      state.addressInfotmation = action.payload.addressInfotmation;
+      state.workingInformation = action.payload.workingInformation;
+      state.bankInformartion = action.payload.bankInformartion;
+      state.additionalInformation = action.payload.additionalInformation;
+      state.personalReference = action.payload.personalReference;
+      //state = action.payload;
+
+      //state[key] = data;
+      // state.addressInfotmation = action.payload;
+    });
+    /*    .addCase(setPersonPhysicalForm, (state, action) => {
+        const { key, data } = action.payload;
+        //console.log("aloha");
+        //state.personalInformation = action.payload;
+        //state.addressInfotmation = action.payload;
+        //state = { ...state, ...action.payload };
+        state[key] = data;
+
+        // state.addressInfotmation = action.payload;
+      }); */
   },
 });
+
+export const {
+  personalInformation,
+  addressInfotmation,
+  workingInformation,
+  bankInformartion,
+  additionalInformation,
+  personalReference,
+} = ppFormSlice.actions;
+
+export default ppFormSlice.reducer;

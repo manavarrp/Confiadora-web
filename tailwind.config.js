@@ -1,10 +1,10 @@
-/**@type {type('tailwindcss').Config} */
+/** @type {type('tailwindcss').Config} */
 module.exports = {
   content: ["./pages/**/*.{html,js}", "./components/**/*.{html,js}"],
   theme: {
     colors: {
       blue: "#1fb6ff",
-      darkBlue: "#3168df ",
+      darkBlue: "#477EFA ",
       white: "#fff",
       purple: "#7e5bef",
       pink: "#ff49db",

@@ -1,25 +1,47 @@
-import globalAxios from "../../axios/index";
+import globalAxios from '../../axios/index'
 
 const login = async (userData) => {
-  const response = await globalAxios.post("auth/login/", userData);
+  const response = await globalAxios.post('auth/login/', userData)
 
   if (response.data) {
-    localStorage.setItem("authDetails", JSON.stringify(response.data));
+    localStorage.setItem('authDetails', JSON.stringify(response.data))
   }
-  return response.data;
-};
+  return response.data
+}
+
+const firstLogin = async (payload) => {
+  const response = await globalAxios.post('password/change/', payload)
+
+  if (response.data) {
+    localStorage.setItem('authDetails', JSON.stringify(response.data))
+  }
+  return response.data
+}
 
 // Register User
 const registerUser = async (userData) => {
-  const response = await globalAxios.post("customers", userData);
-  return response.data;
-};
+  const response = await globalAxios.post('customers', userData)
+  return response.data
+}
 
-const getUser = async () => {
-  const response = await globalAxios.get(`customers/${uid}`);
-  return response.data;
-};
+// Send Login Code
+const sendLoginCode = async (email) => {
+  const response = await globalAxios.post(`sendLoginCode/${email}`)
 
+  return response.data.message
+}
+
+// Login With Code
+const loginWithCode = async (code, email) => {
+  const response = await globalAxios.post(`loginWithCode/${email}`, code)
+
+  return response.data
+}
+/* const getUser = async () => {
+  const response = await globalAxios.get(`customers/${uid}`)
+  return response.data
+}
+ */
 /* const curpCalculation = async (userData, callback) => {
   const response = await globalAxios.post(
     "identification-types/calculate-curp",
@@ -34,103 +56,85 @@ const getUser = async () => {
  */
 const verifyToken = async (token) => {
   try {
-    const response = await globalAxios.post("auth/token/verify/", { token });
+    const response = await globalAxios.post('auth/token/verify/', { token })
     if (response.status === 200) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   } catch (error) {
-    return false;
+    return false
   }
-};
+}
 
 const logout = () => {
-  localStorage.removeItem("authDetails");
-  localStorage.removeItem("currentPageUri");
-};
+  localStorage.removeItem('authDetails')
+  localStorage.removeItem('currentPageUri')
+}
 
 const updateUser = async (accessToken, userData) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  };
-  try {
-    const response = await globalAxios.patch(`auth/user/`, userData, config);
-
-    return { data: response.data };
-  } catch (error) {
-    return { error };
+      Authorization: `Bearer ${accessToken}`
+    }
   }
-};
+  try {
+    const response = await globalAxios.patch('auth/user/', userData, config)
+
+    return { data: response.data }
+  } catch (error) {
+    return { error }
+  }
+}
 
 const updatePassword = async (accessToken, newPassword) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  };
+      Authorization: `Bearer ${accessToken}`
+    }
+  }
   try {
     const response = await globalAxios.post(
-      "auth/password/change/",
+      'auth/password/change/',
       newPassword,
       config
-    );
+    )
 
-    return { data: response.data };
+    return { data: response.data }
   } catch (error) {
-    return { error };
+    return { error }
   }
-};
+}
 
 const forgotPasswordRequest = async (payload) => {
   try {
-    const response = await globalAxios.post("password/reset-token", payload);
-    return response.data;
+    const response = await globalAxios.post('password/reset-token', payload)
+    return response.data
   } catch (error) {
-    return { error };
+    return { error }
   }
-};
+}
 
 const passwordResetConfirm = async (payload) => {
-  console.log(payload);
+  console.log(payload)
   try {
-    const response = await globalAxios.post("/password/reset/", payload);
-    return { data: response.data };
+    const response = await globalAxios.post('/password/reset/', payload)
+    return { data: response.data }
   } catch (error) {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-};
+}
 
 const activateEmail = async (payload) => {
-  //console.log(payload);
+  // console.log(payload);
   try {
-    const response = await globalAxios.post("/auth/confirm-email/", payload);
+    const response = await globalAxios.post('/auth/confirm-email/', payload)
 
-    return { data: response.data };
+    return { data: response.data }
   } catch (error) {
-    return error;
+    return Promise.reject(error)
   }
-};
-
-const sendLoginCode = async (email) => {
-  try {
-    const response = await globalAxios.post("/auth/sendLoginCode/", { email });
-    return { data: response.data };
-  } catch (error) {
-    return Promise.reject(error);
-  }
-};
-
-const loginWithCode = async (payload) => {
-  try {
-    const response = await globalAxios.post("/auth/loginWithCode/", payload);
-    return { data: response.data };
-  } catch (error) {
-    return Promise.reject(error);
-  }
-};
+}
 
 const authService = {
   login,
@@ -144,7 +148,8 @@ const authService = {
   activateEmail,
   sendLoginCode,
   loginWithCode,
-  getUser,
-};
+  // getUser,
+  firstLogin
+}
 
-export default authService;
+export default authService

@@ -1,57 +1,59 @@
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
-import Footer from "../footer/Footer";
-import Logo from "../common/logo";
-import authService from "../../features/auth/authServices";
+import styles from '../../styles/Username.module.css'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import Footer from '../footer/Footer'
+import Logo from '../../common/logo'
+import { useSelector } from 'react-redux'
+import authService from '../../featuress/auth/authServices'
 
 const Activate = () => {
-  const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  const [errors, setErrors] = useState();
+  const { isLoading } = useSelector((state) => state.auth)
+  const [activated, setActivated] = useState(false)
+  const router = useRouter()
 
-  const activate_account = useCallback(async () => {
-    if (!router.query.uid && !router.query.token) {
-      return;
-    }
+  const activate_account = async (e) => {
     const payload = {
       uid: router.query.uid,
-      token: router.query.token,
-    };
-    try {
-      await authService.activateEmail(payload);
-      setTimeout(() => {
-        router.push("/login");
-      }, 5000);
-    } catch (e) {
-      setErrors("Error al cargar");
-    } finally {
-      setLoading(false);
+      token: router.query.token
     }
-  }, [router.query.uid, router.query.token]);
+
+    await authService.activateEmail(payload)
+    setActivated(true)
+  }
 
   useEffect(() => {
-    activate_account();
-  }, [activate_account]);
+    if (activated) {
+      router.push('/login')
+    }
+  }, [router, activated])
 
   return (
     <>
-      <div className="md:w-[500px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
-        <div className="title flex flex-col items-center">
-          <Logo />
-        </div>
-        {loading && <p>Cargando ....</p>}
-        {errors && <p>{errors}</p>}
-        {!loading && !errors && (
-          <p>
-            Cuenta registrada con exito, en un momento podrá acceder desde
-            nuestro portal.
-          </p>
-        )}
-      </div>
+      <div className='container mx-auto pb-2'>
+        <div className='flex justify-center items-center h-screen py-1'>
+          <div className={styles.glass}>
+            <div className='title flex flex-col items-center'>
+              <Logo />
+              <span className='py-4 text-xl w-2/3 text-center text-gray'>
+                Activar correo
+              </span>
+            </div>
 
+            <div className='max-w-3xl ml-14'>
+              <button
+                onClick={activate_account}
+                className={styles.btn}
+                disabled={isLoading}
+              >
+                {isLoading ? 'cargando' : 'Confirmar'}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Activate;
+export default Activate

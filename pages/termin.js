@@ -1,31 +1,31 @@
-import Link from "next/link";
-import React from "react";
-import Logo from "../components/common/logo";
-import Footer from "../components/footer/Footer"
+import Link from 'next/link'
+import React from 'react'
+import Logo from '../components/common/Logo'
+import Footer from '../components/Footer'
 
 const termin = () => {
   return (
     <>
-      <div className="fixed w-full h-16 flex justify-between items-center bg-white ">
-        <div className="pl-4 md:pl-16">
-          <Link href="/login">
+      <div className='fixed w-full h-16 flex justify-between items-center bg-white '>
+        <div className='pl-4 md:pl-16'>
+          <Link href='/login'>
             <Logo />
           </Link>
         </div>
       </div>
-      <div className="grid lg:grid-cols-1 gap-5 mb-16 items-center">
-        <div className="bg-white rounded h-20 shadow-sm "></div>
+      <div className='grid lg:grid-cols-1 gap-5 mb-16 items-center'>
+        <div className='bg-white rounded h-20 shadow-sm ' />
       </div>
-      <div className="flex justify-center">
-        <div className="bg-white rounded h-auto shadow-sm w-3/4 ">
-          <div className="flex justify-center mb-10 mt-5">
-            <h1 className="font-bold text-3xl items-center">
+      <div className='flex justify-center'>
+        <div className='bg-white rounded h-auto shadow-sm w-3/4 '>
+          <div className='flex justify-center mb-10 mt-5'>
+            <h1 className='font-bold text-3xl items-center'>
               Terminos y Condiciones
             </h1>
           </div>
-          <div className="mx-20">
-            <span className="text-justify">
-              {" "}
+          <div className='mx-20'>
+            <span className='text-justify'>
+              {' '}
               Tigriada, S.A.P.I. de C.V., SOFOM, E.N.R. (“Confiadora”) con
               domicilio en Watteau 54, interior 102 y 103, colonia santa María
               Nonoalco, Benito Juárez, ciudad de México, 03700. (el
@@ -43,10 +43,10 @@ const termin = () => {
                   el Domicilio de Confiadora. La solicitud debe contener:
                   <br />
                   <ol>
-                    <li>  (i) el nombre y correo electrónico del titular,</li>{" "}
+                    <li>  (i) el nombre y correo electrónico del titular,</li>{' '}
                     <li>(ii) copia de una identificación oficial del titular o de su
-                    representante legal y, en su caso, de los documentos con los
-                    que éste acredite su carácter,
+                      representante legal y, en su caso, de los documentos con los
+                      que éste acredite su carácter,
                     </li>
                     <li>
                       (iii) la descripción clara y precisa del alcance de su
@@ -66,7 +66,7 @@ const termin = () => {
                 </li>
                 <br />
                 <li>
-                  {" "}
+                  {' '}
                   2. Datos personales recabados. Confiadora recabará del
                   titular, directa o indirectamente, a través de cualquier medio
                   permitido por la Ley, su reglamento y demás disposiciones que
@@ -86,7 +86,7 @@ const termin = () => {
                 </li>
                 <br />
                 <li>
-                  {" "}
+                  {' '}
                   3. Finalidades del tratamiento. Confiadora tratará los datos
                   personales recabados, en la medida que resulte necesario,
                   adecuado y relevante para el cumplimiento de los siguientes
@@ -109,7 +109,7 @@ const termin = () => {
                 </li>
                 <br />
                 <li>
-                  {" "}
+                  {' '}
                   4. Ejercicio de los derechos ARCO. El titular tiene derecho de
                   acceso, actualización, rectificación, cancelación y oposición
                   al tratamiento de sus datos personales en términos de la Ley,
@@ -132,7 +132,7 @@ const termin = () => {
                 </li>
                 <br />
                 <li>
-                  {" "}
+                  {' '}
                   5. Transferencia de datos personales. Confiadora se obliga a
                   no transferir ni divulgar, total o parcialmente, los datos
                   personales del titular, salvo cuando resulte necesario,
@@ -154,7 +154,7 @@ const termin = () => {
                 </li>
                 <br />
                 <li>
-                  {" "}
+                  {' '}
                   6. Conservación de datos personales. Confiadora conservará los
                   datos personales del titular durante un plazo de 10 años y
                   mientras no hayan prescrito las acciones que tenga o pudiera
@@ -165,7 +165,7 @@ const termin = () => {
                 </li>
                 <br />
                 <li>
-                  {" "}
+                  {' '}
                   7. Dudas y quejas. Para la atención de cualquier duda o queja
                   relativa al aviso de privacidad, Confiadora pone a su
                   disposición el correo electrónico: contacto@confiadora.mx. La
@@ -176,13 +176,13 @@ const termin = () => {
                 </li>
                 <br />
                 <li>
-                  {" "}
+                  {' '}
                   8. Cambios al aviso de privacidad. Confiadora se reserva el
                   derecho de modificar el presente aviso de privacidad, el cual
                   podrá ser ejercido en cualquier tiempo, previo aviso con al
                   menos 30 días hábiles de anticipación a través de nuestra
                   página de internet www.confiadora.mx. Fecha de última
-                  modificación: 14 de mayo del 2021.{" "}
+                  modificación: 14 de mayo del 2021.{' '}
                 </li>
               </ul>
             </span>
@@ -191,11 +191,11 @@ const termin = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default termin;
+export default termin
 
-termin.getLayout = function PageLayout(page) {
-  return <>{page}</>;
-};
+termin.getLayout = function PageLayout (page) {
+  return <>{page}</>
+}

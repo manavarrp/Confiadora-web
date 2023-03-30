@@ -1,13 +1,13 @@
 import Image from "next/image";
 import confiadora from "../../public/confiadora.png";
 
-function logo() {
+function Logo() {
   return (
-    <div className="flex justify-center pb-2 gap-1">
+    <div className="flex justify-center py-4 gap-3">
       <picture>
         <Image width={30} height={30} src={confiadora} alt="confiadora" />
       </picture>
-      <span className="text-darkBlue text-3xl font-bold text-center">
+      <span className="text-darkBlue text-3xl font-bold w-2/3 text-center">
         {" "}
         confiadora
       </span>
@@ -15,4 +15,4 @@ function logo() {
   );
 }
 
-export default logo;
+export default Logo;

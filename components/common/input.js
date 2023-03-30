@@ -1,15 +1,15 @@
-function Input({
-  type = "text",
-  placeholder = "",
+const Input = ({
+  type = 'text',
+  placeholder = '',
   className,
   register,
   name,
   error,
   fullwidth = true,
   ...props
-}) {
+}) => {
   return (
-    <div className={`flex flex-col ${fullwidth ? "w-full" : ""}`}>
+    <div className={`flex flex-col ${fullwidth ? 'w-full' : ''}`}>
       <input
         type={type}
         placeholder={placeholder}
@@ -17,9 +17,9 @@ function Input({
         {...register(name)}
         {...props}
       />
-      {Boolean(error) && <span className="text-red">{error}</span>}
+      {Boolean(error) && <span className='text-red'>{error}</span>}
     </div>
-  );
+  )
 }
 
-export default Input;
+export default Input
