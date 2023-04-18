@@ -7,8 +7,8 @@ const useGetCurpCalculation = () => {
     try {
       const response = await curpCalculation(userData)
       return response?.data?.data
-    } catch (e) {
-      toast.info('Valida por favor los campos necesarios para el obtener el CURP')
+    } catch (error) {
+      toast.info(error.response.data.message)
     }
   }, [])
 

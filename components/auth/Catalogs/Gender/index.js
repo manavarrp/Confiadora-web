@@ -1,7 +1,7 @@
 import styles from '../../../../styles/Username.module.css'
 import { useFormContext } from 'react-hook-form'
 import useGetGender from '../../../../hooks/useGetGender'
-import Select from '../../../common/Select'
+import SelectList from '../../../common/SelectList'
 
 const Gender = ({ onBlurData }) => {
   const valuesGender = useGetGender()
@@ -14,13 +14,13 @@ const Gender = ({ onBlurData }) => {
 
   const handleGenders = (event) => {
     const getId = event.target.value
-    // console.log(getId);
+    // //console.log(getId);
     getValues(getId)
   }
 
   return (
     <div>
-      <Select
+      <SelectList
         className={styles.textbox}
         onChange={handleGenders}
         register={register}

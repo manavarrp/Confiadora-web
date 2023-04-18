@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import { AXIOS_COOKIE } from '../config'
 
 const loginWithCode = (payload) => {
-  return globalAxios.post('auth/twofactor-authentication', payload)
+  return globalAxios().post('auth/twofactor-authentication', payload)
 }
 
 const useLogin = () => {
@@ -23,7 +23,7 @@ const useLogin = () => {
         const { data } = await loginWithCode(payload)
 
         const { token, isFirstLogin } = data?.data
-        if (!token) return console.log('error')
+        if (!token) return //console.log('error')
 
         if (isFirstLogin) return router.replace(`/auth/change-first-password?t=${token}`)
 
@@ -31,11 +31,11 @@ const useLogin = () => {
         const response = await auth({ token, ...userInformation })
         if (response.status === 200) {
           Cookies.set(AXIOS_COOKIE, token)
-          return router.replace('/admin/dashboard')
+          return router.replace('/customer/personal-form/personal-data')
         }
       } catch (error) {
-        console.log(error)
-        toast.error('Error al loguear')
+        //console.log(error)
+        toast.error('error con el codigo')
       } finally {
         setIsLoading(false)
       }

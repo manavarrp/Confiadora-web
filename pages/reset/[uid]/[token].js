@@ -1,16 +1,18 @@
 import React from 'react'
-import Recovery from '../../../components/recovery/Recovery'
+import Recovery from '../../../components/auth/Recovery'
+import Footer from '../../../components/Footer'
 
-const confirma_password = () => {
+const confirmaPassword = () => {
   return (
     <>
       <Recovery />
+      <Footer />
     </>
   )
 }
 
-export default confirma_password
+export default confirmaPassword
 
-confirma_password.getLayout = function PageLayout (page) {
+confirmaPassword.getLayout = function PageLayout (page) {
   return <>{page}</>
 }

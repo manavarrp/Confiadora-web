@@ -5,9 +5,10 @@ import Input from '../../common/Input'
 import { firstLoginSchema } from '../../../utils/formSchema/firstLoginSchema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { decodeToken } from '../../../utils/decodeToken'
-import { changePasswordFirstLogin } from '../../../services/api'
+import { changePassword } from '../../../services/api'
 import { useRouter } from 'next/router'
 import { auth } from '../../../utils/auth'
+import { toast } from 'react-toastify'
 
 const FirstLogin = () => {
   const {
@@ -34,14 +35,15 @@ const FirstLogin = () => {
       email: userInformation?.email
     }
     try {
-      await changePasswordFirstLogin(payload)
+      await changePassword(payload)
       const response = await auth({ token, ...userInformation })
       if (response.status === 200) {
-        return router.replace('/admin')
+        toast.success('Cambio realizadó con exito, ya puedes ingresar con tu nueva contraseña.')
+        return router.replace('/auth/login')
       }
-      console.log('error')
+      // console.log('error')
     } catch (e) {
-      console.log('error')
+      // console.log('error')
     }
   }
 
@@ -51,9 +53,10 @@ const FirstLogin = () => {
         <div className='flex justify-center items-center h-screen'>
           <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
             <Logo />
+
             <div className='title flex flex-col items-center'>
-              <span className=' text-xl w-2/3 text-center text-gray'>
-                Cambia tu contraseña
+              <span className=' text-sm w-2/3 text-center text-gray mb-5'>
+                Por favor ingresa la contraseña que se envió a tu correo y cambiala por una personal.
               </span>
             </div>
             <form onSubmit={handleSubmit(firstLoginSubmit)}>
@@ -81,7 +84,7 @@ const FirstLogin = () => {
                   className={styles.btn}
                   // disabled={isLoading}
                 >
-                  Entrar
+                  Cambiar
                 </button>
               </div>
             </form>

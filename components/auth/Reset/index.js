@@ -10,6 +10,8 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { resetSchema } from '../../../utils/formSchema/resetSchema'
 import Footer from '../../Footer'
+import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
 const Reset = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -18,7 +20,7 @@ const Reset = () => {
       email: ''
     }
   })
-
+  const { data } = useSession()
   const router = useRouter()
 
   const { isLoading, isSuccess, isError } = useSelector((state) => state.auth)
@@ -27,7 +29,7 @@ const Reset = () => {
     const payload = {
       email: data.email
     }
-    console.log(payload)
+    //console.log(payload)
     await authService.forgotPasswordRequest(payload)
     if (isError) {
       toast.error('Ocurrió un error')
@@ -72,6 +74,15 @@ const Reset = () => {
             >
               {isLoading ? 'Cargando' : 'Enviar'}
             </button>
+          </div>
+          <div className='text-center text-gray mt-2'>
+            <span>
+              ¿ Tienes tus datos ?
+              <Link className='text-darkBlue' href='/auth/login'>
+                {' '}
+                Ingresar
+              </Link>
+            </span>
           </div>
         </form>
       </div>

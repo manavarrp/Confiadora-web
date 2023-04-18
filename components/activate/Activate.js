@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 import Footer from '../footer/Footer'
 import Logo from '../../common/logo'
 import { useSelector } from 'react-redux'
-import authService from '../../featuress/auth/authServices'
+import authService from '../../features/auth/authServices'
 
 const Activate = () => {
   const { isLoading } = useSelector((state) => state.auth)
   const [activated, setActivated] = useState(false)
   const router = useRouter()
 
-  const activate_account = async (e) => {
+  const activateAccount = async (e) => {
     const payload = {
       uid: router.query.uid,
       token: router.query.token
@@ -41,7 +41,7 @@ const Activate = () => {
 
             <div className='max-w-3xl ml-14'>
               <button
-                onClick={activate_account}
+                onClick={activateAccount}
                 className={styles.btn}
                 disabled={isLoading}
               >

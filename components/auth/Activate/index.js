@@ -1,47 +1,47 @@
-
-import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
-import Footer from '../../footer/Footer'
-import Logo from '../../common/Logo'
-import authService from '../../../features/auth/authServices'
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import Footer from "../../footer/Footer";
+import Logo from "../../common/Logo";
+import authService from "../../../features/auth/authServices";
+import Loading from "../../common/Loading";
 
 const Activate = () => {
-  const router = useRouter()
-  const [loading, setLoading] = useState(true)
-  const [errors, setErrors] = useState()
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState();
 
   const activateAccount = useCallback(async () => {
     if (!router.query.uid && !router.query.token) {
-      return
+      return;
     }
     const payload = {
       uid: router.query.uid,
-      token: router.query.token
-    }
+      token: router.query.token,
+    };
     try {
-      await authService.activateEmail(payload)
+      await authService.activateEmail(payload);
       setTimeout(() => {
-        router.push('/login')
-      }, 5000)
+        router.push("/auth/login");
+      }, 5000);
     } catch (e) {
-      setErrors('Error al cargar')
+      setErrors("Error al cargar");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [router.query.uid, router.query.token])
+  }, [router]);
 
   useEffect(() => {
-    activateAccount()
-  }, [activateAccount])
+    activateAccount();
+  }, [activateAccount]);
+
+  if (loading) return <Loading />;
 
   return (
     <>
-
-      <div className='md:w-[600px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
-        <div className='title flex flex-col items-center'>
+      <div className="md:w-[600px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
+        <div className="title flex flex-col items-center">
           <Logo />
         </div>
-        {loading && <p>Cargando ....</p>}
         {errors && <p>{errors}</p>}
         {!loading && !errors && (
           <p>
@@ -53,7 +53,7 @@ const Activate = () => {
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Activate
+export default Activate;

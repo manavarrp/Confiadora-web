@@ -1,18 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
-import { GetList } from "../services/api";
+import { useCallback, useEffect, useState } from 'react'
+import { GetList } from '../services/api'
+import { useSelector } from 'react-redux'
 
 const useGetEconomicActivities = () => {
-  const [valuesEconomicActivities, setValuesEconomicActivities] = useState([]);
+  const state = useSelector((state) => state.physicalPersonForm)
+  const [valuesEconomicActivities, setValuesEconomicActivities] = useState(() => state.economicActivities)
 
   const GetData = useCallback(async () => {
-    const result = await GetList("colonys");
-    setValuesEconomicActivities(result?.data);
-  }, []);
+    const result = await GetList('economic-activities')
+    setValuesEconomicActivities(result?.data?.data)
+  }, [])
 
   useEffect(() => {
-    GetData();
-  }, [GetData]);
-  return valuesEconomicActivities;
-};
+    if (!state.economicActivities) { GetData() }
+  }, [GetData, state.economicActivities])
+  return valuesEconomicActivities
+}
 
-export default useGetEconomicActivities;
+export default useGetEconomicActivities

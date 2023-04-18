@@ -10,10 +10,14 @@ import {
 import Link from 'next/link'
 
 import React, { Fragment } from 'react'
-
+import useGetProfile from '../../../hooks/useGetProfile'
 import { onLogout } from '../../../utils/auth'
+import Loading from '../../common/Loading'
 
 function Navbar ({ showNav, setShowNav }) {
+  const { loading, profile } = useGetProfile()
+
+  if (loading) return <Loading />
   return (
     <div
       className={`fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] bg-white 
@@ -21,7 +25,7 @@ function Navbar ({ showNav, setShowNav }) {
     >
       <div className='pl-4 md:pl-16'>
         <Bars3CenterLeftIcon
-          className='h-8 w-8 text-gray-dark cursor-pointer'
+          className='h-3 w-3 text-darkBlue cursor-pointer'
           onClick={() => setShowNav(!showNav)}
         />
       </div>
@@ -111,7 +115,8 @@ function Navbar ({ showNav, setShowNav }) {
         </Popover>
         <Menu as='div' className='relative inline-block text-left'>
           <div>
-            <Menu.Button className='inline-flex w-full justify-center items-center'>
+            <Menu.Button className='inline-flex w-full justify-center items-center gap-1'>
+              <p>Hola, {profile?.firstName}</p>
               <picture>
                 <img
                   src='/profile.png'
@@ -136,17 +141,17 @@ function Navbar ({ showNav, setShowNav }) {
               <div className='p-1'>
                 <Menu.Item>
                   <Link
-                    href='/profile'
-                    className='flex hover:bg-orange hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center'
+                    href='/customer/profile'
+                    className='flex hover:bg-darkBlue hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center'
                   >
                     <PencilIcon className='w-4 h-4 mr-2' />
-                    Peril
+                    Perfil
                   </Link>
                 </Menu.Item>
                 <Menu.Item>
                   <Link
                     href='/login'
-                    className='flex hover:bg-orange hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center'
+                    className='flex hover:bg-red hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center'
                     onClick={onLogout}
                   >
                     <Cog8ToothIcon className='w-4 h-4 mr-2' />

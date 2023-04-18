@@ -18,10 +18,10 @@
 }
 
 .btn {
-  @apply border bg-blue w-3/4  h-12 rounded-lg text-white text-lg shadow-sm text-center p-1;
+  @apply border bg-darkBlue w-3/4  h-12 rounded-lg text-white text-lg shadow-sm text-center p-1;
   
 }
 
 .btn:hover {
-  background-color: #477EFA;
+  background-color: #1fb6ff;
 }

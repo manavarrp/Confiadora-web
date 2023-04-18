@@ -7,7 +7,7 @@ const Select = ({ className, onChange, options = [], emptyOptions, name, registe
         {...register(name)}
       >
         <option value=''>{emptyOptions}</option>
-        {options.map((item) => (
+        {options && options.map((item) => (
           <option key={item.id} value={item.id}>
             {item.name}
           </option>

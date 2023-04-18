@@ -1,13 +1,14 @@
-import PersonPhysicalForm from "../../../components/PersonPhysicalForm";
-import CompleteForm from "../../../components/PersonPhysicalForm/CompleteForm";
-import Header from "../../../components/PersonPhysicalForm/Header";
+import { NewspaperIcon } from '@heroicons/react/24/solid'
+import PersonPhysicalForm from '../../../components/PersonPhysicalForm'
+import CompleteForm from '../../../components/PersonPhysicalForm/CompleteForm'
+import Header from '../../../components/PersonPhysicalForm/Header'
 
 const CompletesForm = () => {
   return (
     <>
-      <Header />
-      <div className="grid lg:grid-cols-1 gap-5 mt-16 ">
-        <div className="bg-white rounded h-16 shadow-sm ">
+      <Header icon={<NewspaperIcon className='h-10 w-10' color='#477EFA' />} title=' Formulario Persona Física' />
+      <div className='grid lg:grid-cols-1 gap-5 mt-16 '>
+        <div className='bg-white rounded h-16 shadow-sm '>
           <PersonPhysicalForm activeStep={6} />
         </div>
         <div>
@@ -15,7 +16,7 @@ const CompletesForm = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CompletesForm;
+export default CompletesForm

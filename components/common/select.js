@@ -12,12 +12,12 @@ const Select = ({
     <div className='flex flex-col w-full'>
       <select
         className={className}
-        onChange={onChange}
         {...register(name)}
         {...props}
+        onChange={onChange}
       >
         <option value=''>{emptyOptions}</option>
-        {options.map((item) => (
+        {options && options.map((item) => (
           <option key={item.id} value={item.id}>
             {item.name}
           </option>
