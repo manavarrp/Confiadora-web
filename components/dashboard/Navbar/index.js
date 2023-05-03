@@ -20,8 +20,8 @@ function Navbar ({ showNav, setShowNav }) {
   if (loading) return <Loading />
   return (
     <div
-      className={`fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] bg-white 
-       ${showNav ? 'pl-56' : ''}`}
+      className={`fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] bg-white z-50
+       ${showNav ? 'pl-52' : ''}`}
     >
       <div className='pl-4 md:pl-16'>
         <Bars3CenterLeftIcon
@@ -141,7 +141,7 @@ function Navbar ({ showNav, setShowNav }) {
               <div className='p-1'>
                 <Menu.Item>
                   <Link
-                    href='/customer/profile'
+                    href='/profile'
                     className='flex hover:bg-darkBlue hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center'
                   >
                     <PencilIcon className='w-4 h-4 mr-2' />

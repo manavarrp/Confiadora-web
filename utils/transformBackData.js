@@ -36,6 +36,14 @@ export const transformDataProfileFullName = (payload) => {
   }
 }
 
+export const transformDataListCustomerFullName = (payload) => {
+  return {
+    fullName: getFullName(payload),
+    ...payload
+
+  }
+}
+
 export const transformAddress = ({ addressInformation, ...restOfUser }) => {
   const {
     residenceCountryName,

@@ -15,7 +15,7 @@ const ConsultantLinks = () => {
     <div className='flex flex-col'>
       <Link href='/'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/'
                 ? 'bg-darkBlue  text-white'
@@ -33,7 +33,7 @@ const ConsultantLinks = () => {
 
       <Link href='/customer/personal-form/personal-data'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/customer/personal-form/personal-data'
                 ? 'bg-darkBlue text-white'
@@ -51,7 +51,7 @@ const ConsultantLinks = () => {
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'
@@ -69,7 +69,7 @@ const ConsultantLinks = () => {
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'
@@ -80,14 +80,14 @@ const ConsultantLinks = () => {
             <CircleStackIcon className='h-5 w-5' />
           </div>
           <div>
-            <p>Desmbolso</p>
+            <p>Desembolso</p>
           </div>
         </div>
       </Link>
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'

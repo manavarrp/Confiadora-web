@@ -1,40 +1,42 @@
-import { useRouter } from 'next/router'
-import { FormProvider, useForm } from 'react-hook-form'
-import usePostPersonPhysical from '../../../hooks/usePostPersonPhysical'
-import styles from '../../../styles/Username.module.css'
-import Input from '../../common/Input'
-import { useSession } from 'next-auth/react'
-import { useSelector } from 'react-redux'
-import { useState } from 'react'
-import Countrys from '../../Catalogs/Countrys'
-import Nacionality from '../../Catalogs/Nacionality'
-import useGetCountry from '../../../hooks/useGetCountry'
-import Country from '../../Catalogs/Country'
+import { useRouter } from "next/router";
+import { FormProvider, useForm } from "react-hook-form";
+import usePostPersonPhysical from "../../../hooks/usePostPersonPhysical";
+import styles from "../../../styles/Username.module.css";
+import Input from "../../common/Input";
+import { useSession } from "next-auth/react";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import Countrys from "../../Catalogs/Countrys";
+import useGetNacionalityByID from "../../../hooks/useGetNacionalityByID";
+import useGetCountry from "../../../hooks/useGetCountry";
+import Country from "../../Catalogs/Country";
 
 const DEFAULT_VALUES = {
-  fullName: '',
-  genderName: '',
-  birthDate: '',
-  phoneNumber: '',
-  identificationNumber: '',
-  identificationTypeName: '',
-  email: '',
-  birthCountryId: '',
-  secondaryPhoneNumber: '',
-  birthCountryName: '',
-  birthStateName: '',
-  fiel: ''
+  fullName: "",
+  genderName: "",
+  birthDate: "",
+  phoneNumber: "",
+  identificationNumber: "",
+  identificationTypeName: "",
+  email: "",
+  birthCountryId: "",
+  secondaryPhoneNumber: "",
+  birthCountryName: "",
+  birthStateName: "",
+  fiel: "",
+  nationality: "",
+};
 
-}
+function RegisterForms({ initialValues }) {
+  //console.log({ initialValues });
+  const router = useRouter();
 
-function RegisterForms ({ initialValues }) {
-  console.log({ initialValues })
-  const router = useRouter()
+  const { customerId } = useSelector((state) => state.physicalPersonForm);
 
-  const { customerId } = useSelector((state) => state.physicalPersonForm)
+  const valuesStates = useGetCountry(initialValues?.countries);
+  const { GetDataNaiconality, optionsNacionality } = useGetNacionalityByID();
 
-  const valuesStates = useGetCountry(initialValues?.countries)
-
+  //const nacio = optionsNacionality.nacionality;
   // const [localDirtyData, setLocalDirtyData] = useState({})
 
   // const [isDirty, setIsDirty] = useState(false)
@@ -43,26 +45,29 @@ function RegisterForms ({ initialValues }) {
   const methods = useForm({
     // resolver: yupResolver(loginSchema),
 
-    defaultValues: initialValues || DEFAULT_VALUES
-  })
-  const idTypes = useGetCountry()
+    defaultValues: initialValues || DEFAULT_VALUES,
+  });
+  const idTypes = useGetCountry();
 
   const {
     register,
     handleSubmit,
-    setValue
-
+    setValue,
+    // getValues,
     // formState: { errors }
-  } = methods
+  } = methods;
 
   const handleGetNacionality = (event) => {
-    setValue('birthCountryId', event.target.value)
-    GetDataMunicipality(event.target.value)
+    const e = event.target.value;
+    setValue("id", event.target.value);
+    GetDataNaiconality(event.target.value);
 
-    // //console.log(event, 'handle mucni')
-  }
+    //console.log({ e });
+  };
 
-  const { loading, postPersonPhysicalData } = usePostPersonPhysical()
+  const { loading, postPersonPhysicalData } = usePostPersonPhysical();
+
+  // const values = getValues();
 
   /*  const onBlurData = (event) => {
     //console.log(event.target.name)
@@ -74,7 +79,7 @@ function RegisterForms ({ initialValues }) {
       alert('Has realizado cambios en el formulario, deseas salir sin guardar')
     }
   } */
-  const [getIdIden, setGetId] = useState('')
+  const [getIdIden, setGetId] = useState("");
 
   /*   const identiTypes = idTypes.data
   const handleCountry = (event) => {
@@ -86,7 +91,9 @@ function RegisterForms ({ initialValues }) {
     // getValues(getId);
   } */
 
-  const { data } = useSession()
+  const { data } = useSession();
+  // const userId = data.user.sub;
+  // console.log({ userId });
   // console.log(data)
 
   const onSubmitPersonForm = (data) => {
@@ -94,15 +101,14 @@ function RegisterForms ({ initialValues }) {
       birthCountryId: data.birthCountryId,
       secondaryPhoneNumber: data.secondaryPhoneNumber,
       fiel: data.fiel,
-      customerId
-
-    }
-    postPersonPhysicalData(payload, '/natural-person/personal-data')
+      customerId,
+    };
+    postPersonPhysicalData(payload, "/natural-person/personal-data");
 
     // setIsDirty(false)
     // setDidSubmit(true)
     // console.log(payload, 'dara')
-  }
+  };
 
   /*    useEffect(() => {
     if (!isDirty) setIsDirty(true)
@@ -111,138 +117,146 @@ function RegisterForms ({ initialValues }) {
 
   const onClickNext = () => {
     // if (isDirty) return <Modal closeModal={closeModal} />
-    router.push('/customer/personal-form/address-data')
-  }
+    router.push("/customer/personal-form/address-data");
+    //console.log({ values });
+  };
 
   return (
-    <div className=''>
+    <div className="">
       <FormProvider {...methods}>
-        <form className='mx-auto max-w-screen-md'>
-          <div className='w-full mb-3'>
-            <label className='text-sm text-darkBlue'>Nombre Completo</label>
+        <form className="mx-auto max-w-screen-md">
+          <div className="w-full mb-3">
+            <label className="text-sm text-darkBlue">Nombre Completo</label>
             <Input
-              type='text'
-              placeholder='Nombres Completos'
+              type="text"
+              placeholder="Nombres Completos"
               className={styles.textbox}
-              name='fullName'
+              name="fullName"
               register={register}
-            // onBlurData={onBlurData}
+              // onBlurData={onBlurData}
               readOnly
             />
           </div>
-          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
-            <div className='flex flex-col w-1/2'>
-              <label className='text-sm text-darkBlue'>Teléfono</label>
+          <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
+            <div className="flex flex-col w-1/2">
+              <label className="text-sm text-darkBlue">Teléfono</label>
               <Input
-                type='text'
-                placeholder='Teléfono'
+                type="text"
+                placeholder="Teléfono"
                 className={styles.textbox}
-                name='phoneNumber'
+                name="phoneNumber"
                 register={register}
                 readOnly
               />
             </div>
-            <div className='flex flex-col w-1/2'>
-              <label className='text-sm text-darkBlue'>Correo Electronico</label>
+            <div className="flex flex-col w-1/2">
+              <label className="text-sm text-darkBlue">
+                Correo Electronico
+              </label>
               <Input
-                type='text'
-                placeholder='Correo Electronico'
+                type="text"
+                placeholder="Correo Electronico"
                 className={styles.textbox}
-                name='email'
-                register={register}
-                readOnly
-              />
-            </div>
-          </div>
-          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
-            <div className='flex flex-col w-1/2'>
-              <label className='text-sm text-darkBlue'>Fecha de nacimiento</label>
-              <Input
-                type='text'
-                placeholder='Fecha de nacimiento'
-                className={styles.textbox}
-                name='birthDate'
-                register={register}
-                readOnly
-              />
-            </div>
-            <div className='flex flex-col w-1/2'>
-              <label className='text-sm text-darkBlue'>Estado de Nacimiento</label>
-              <Input
-                type='text'
-                placeholder='Estado de Nacimiento'
-                className={styles.textbox}
-                name='birthStateName'
+                name="email"
                 register={register}
                 readOnly
               />
             </div>
           </div>
-          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
-            <div className='flex flex-col w-1/2'>
-              <label className='text-sm text-darkBlue'>Tipo de Documento</label>
+          <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
+            <div className="flex flex-col w-1/2">
+              <label className="text-sm text-darkBlue">
+                Fecha de nacimiento
+              </label>
               <Input
-                type='text'
-                placeholder='CURP'
+                type="text"
+                placeholder="Fecha de nacimiento"
                 className={styles.textbox}
-                name='identificationTypeName'
+                name="birthDate"
                 register={register}
-             // error={errors?.phoneNumber?.message}
                 readOnly
               />
             </div>
-            <div className='flex flex-col w-1/2'>
-              <label className='text-sm text-darkBlue'>Número de documento</label>
+            <div className="flex flex-col w-1/2">
+              <label className="text-sm text-darkBlue">
+                Estado de Nacimiento
+              </label>
               <Input
-                type='text'
-                placeholder='RFC'
+                type="text"
+                placeholder="Estado de Nacimiento"
                 className={styles.textbox}
-                name='identificationNumber'
+                name="birthStateName"
                 register={register}
                 readOnly
               />
             </div>
           </div>
-          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
-            <div className='flex flex-col w-1/3'>
-              <label className='text-sm text-darkBlue'>Sexo</label>
+          <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
+            <div className="flex flex-col w-1/2">
+              <label className="text-sm text-darkBlue">Tipo de Documento</label>
               <Input
-                type='text'
-                placeholder='Genero'
+                type="text"
+                placeholder="CURP"
                 className={styles.textbox}
-                name='genderName'
+                name="identificationTypeName"
                 register={register}
-              // error={errors?.phoneNumber?.message}
+                // error={errors?.phoneNumber?.message}
                 readOnly
               />
             </div>
-            <div className='flex flex-col w-1/3'>
-              <label className='text-sm text-darkBlue'>Teléfono Secundario</label>
+            <div className="flex flex-col w-1/2">
+              <label className="text-sm text-darkBlue">
+                Número de documento
+              </label>
               <Input
-                type='text'
-                placeholder='Teléfono Secundario'
+                type="text"
+                placeholder="RFC"
                 className={styles.textbox}
-                name='secondaryPhoneNumber'
+                name="identificationNumber"
+                register={register}
+                readOnly
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
+            <div className="flex flex-col w-1/3">
+              <label className="text-sm text-darkBlue">Sexo</label>
+              <Input
+                type="text"
+                placeholder="Genero"
+                className={styles.textbox}
+                name="genderName"
+                register={register}
+                // error={errors?.phoneNumber?.message}
+                readOnly
+              />
+            </div>
+            <div className="flex flex-col w-1/3">
+              <label className="text-sm text-darkBlue">
+                Teléfono Secundario
+              </label>
+              <Input
+                type="text"
+                placeholder="Teléfono Secundario"
+                className={styles.textbox}
+                name="secondaryPhoneNumber"
                 register={register}
               />
             </div>
-            <div className='flex flex-col w-1/3'>
-              <label className='text-sm text-darkBlue ml-1'>FIEL</label>
+            <div className="flex flex-col w-1/3">
+              <label className="text-sm text-darkBlue ml-1">FIEL</label>
               <Input
-                type='text'
-                placeholder='fiel'
+                type="text"
+                placeholder="fiel"
                 className={styles.textbox}
-                name='fiel'
+                name="fiel"
                 register={register}
               />
             </div>
           </div>
 
-          <div className='flex flex-col  mb-3 gap-3 sm:flex-row'>
-
-            <div className='flex flex-col w-1/2'>
-
-              {/*      <Countrys
+          <div className="flex flex-col  mb-3 gap-3 sm:flex-row">
+            {/*      <Countrys
                 onChange={handleGetNacionality}
                 register={register}
                 name='domicileStateId'
@@ -252,34 +266,46 @@ function RegisterForms ({ initialValues }) {
               />
             </div> */}
 
-              <div className='flex flex-col w-full'>
-                <label className='text-sm text-darkBlue ml-1'>País de Nacimiento</label>
-                <Country />
-
-                {/*               <Nacionality
-                options={optionsNacionality}
-                onChange={handleGetCities}
-                register={register}
-                name='nationality'
-// options={valuesStates?.data}
-                emptyOptions='Nacionalidad'
-                className={styles.textbox}
-              />
-
-<Neighborhood
-                options={optionsNeighborhood}
-            // onChange={handleGetNeighborhood}
-                register={register}
-                name='domicileNeighborhoodId'
-           // options={valuesStates?.data}
-                emptyOptions='Colonia'
-                className={styles.textbox}
-              //  value='domicileNeighborhoodName'
-
-              /> */}
-              </div>
-
+            <div className="flex flex-col w-full">
+              <label className="text-sm text-darkBlue ml-1">
+                País de Nacimiento
+              </label>
+              <Country />
             </div>
+
+            {/*    <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
+                <label className="text-sm text-darkBlue ml-1">
+                  País de Nacimiento *
+                </label>
+                <Countrys
+                  onChange={handleGetNacionality}
+                  register={register}
+                  name="birthCountryId"
+                  options={valuesStates}
+                  emptyOptions="País de Nacimiento"
+                  className={styles.textbox}
+                />
+              </div>
+              <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
+                <label className="text-sm text-darkBlue ml-1">
+                  Nacionalidad 12312
+                </label>
+                {optionsNacionality &&
+                  optionsNacionality.map((data) => (
+                    <Input
+                      setValue={data}
+                      name="nationality"
+                      // options={valuesStates?.data}
+
+                      className={styles.textbox}
+                      //  value='domicileMunicipalityName'
+
+                      type="text"
+                      placeholder="Nacionalidad"
+                      register={register}
+                    />
+                  ))}
+              </div> */}
 
             {/*      <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
 
@@ -288,58 +314,44 @@ function RegisterForms ({ initialValues }) {
               <Country />
 
             </div> */}
-            {getIdIden === '08db3513-2105-4417-86dc-012d11d06da1' && (
-              <div className='flex flex-col justify-center w-full mb-3'>
-                <div className='flex flex-col w-full'>
-                  <label className='text-sm text-darkBlue'>Nacionalidad</label>
-                  <input
-                    className={styles.textbox}
-                    value='MEXICANA'
-                    readOnly
-                  />
-
-                </div>
-              </div>
-            )}
-
           </div>
 
-          <div className='w-full mb-3 bg-white'>
-            <label className='text-darkBlue'>
+          <div className="w-full mb-3 bg-white">
+            <label className="text-darkBlue">
               Adjuntar foto INE por ambos lados.
             </label>
             <Input
-              type='file'
+              type="file"
               className={styles.textbox}
-              name='ine'
+              name="ine"
               register={register}
             />
             <p
-              className='ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300'
-              id='file_input_help'
+              className="ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300"
+              id="file_input_help"
             >
               PNG, JPG ó PDF (MAX. 800x400px).
             </p>
           </div>
           <p
-            className='ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300'
-            id='file_input_help'
+            className="ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300"
+            id="file_input_help"
           >
             * Campos obligatorios
           </p>
-          <div className='flex justify-around mt-5'>
+          <div className="flex justify-around mt-5">
             <button
               onClick={handleSubmit(onSubmitPersonForm)}
               disabled={loading}
-              type='submit'
-              className=' border bg-darkBlue w-1/4 h-12 rounded-lg text-white text-xl shadow-sm text-center'
+              type="submit"
+              className=" border bg-darkBlue w-1/4 h-12 rounded-lg text-white text-xl shadow-sm text-center"
             >
-              {loading ? 'cargando' : 'Guardar'}
+              {loading ? "cargando" : "Guardar"}
             </button>
             <button
               onClick={handleSubmit(onClickNext)}
-              type='submit'
-              className=' border bg-darkBlue w-full h-12 rounded-lg text-white text-xl shadow-sm text-center sm:w-1/4'
+              type="submit"
+              className=" border bg-darkBlue w-full h-12 rounded-lg text-white text-xl shadow-sm text-center sm:w-1/4"
             >
               Siguiente
             </button>
@@ -347,7 +359,7 @@ function RegisterForms ({ initialValues }) {
         </form>
       </FormProvider>
     </div>
-  )
+  );
 }
 
-export default RegisterForms
+export default RegisterForms;

@@ -7,11 +7,11 @@ import Logo from '../../common/Logo'
 
 const CustomerSidebar = forwardRef(({ showNav, role }, ref) => {
   return (
-    <div ref={ref} className='fixed w-56 h-full bg-white shadow-sm z-50'>
+    <div ref={ref} className='fixed w-60 h-full bg-white shadow-sm '>
       <div className='flex justify-center mt-12 mb-14 mr-4'>
         <Logo />
       </div>
-      {role === 'Admin' && <Admin showNav={showNav} />}
+      {role === 'Super Administrator' && <Admin showNav={showNav} />}
       {role === 'Customer' && <Customer showNav={showNav} />}
       {role === 'Consultant' && <Consultant showNav={showNav} />}
 

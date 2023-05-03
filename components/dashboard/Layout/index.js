@@ -15,10 +15,10 @@ function Layout ({ children }) {
     return data?.user[KEY_ROLES]
   }, [data?.user])
 
-  console.log({ role })
+  // console.log({ role })
 
   const user = data?.user
-  console.log({ user })
+  // console.log({ user })
   function handleResize () {
     if (innerWidth <= 640) {
       setShowNav(false)

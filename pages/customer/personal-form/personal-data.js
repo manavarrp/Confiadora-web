@@ -1,11 +1,9 @@
-import Header from '../../../components/PersonPhysicalForm/Header'
+import HeaderPagesDashboard from '../../../components/common/HeaderPagesDashboard'
 import PersonForm from '../../../components/PersonPhysicalForm/PersonForm'
 import useGetPersonPhysical from '../../../hooks/useGetPersonPhysical'
 import PersonPhysicalForm from '../../../components/PersonPhysicalForm'
 import Loading from '../../../components/common/Loading'
 import { NewspaperIcon } from '@heroicons/react/24/solid'
-import confiadora from '../../../public/confiadora.png'
-import Image from 'next/image'
 
 const PersonData = () => {
   const { loading, personalData } = useGetPersonPhysical()
@@ -13,7 +11,7 @@ const PersonData = () => {
   return (
     <>
       <div className='flex justify-between '>
-        <Header icon={<NewspaperIcon className='h-10 w-10' color='#477EFA' />} title=' Formulario Persona Física' />
+        <HeaderPagesDashboard icon={<NewspaperIcon className='h-10 w-10' color='#477EFA' />} title=' Formulario Persona Física' />
         {/* //<Image width={35} src={confiadora} alt='confiadora' /> */}
       </div>
       <div className='grid lg:grid-cols-1 gap-5 mt-10 '>

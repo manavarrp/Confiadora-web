@@ -1,6 +1,7 @@
 import globalAxios from "../../axios";
 import {
   transformBackData,
+  transformDataListCustomerFullName,
   transformDataProfileFullName,
 } from "../../utils/transformBackData";
 
@@ -126,6 +127,10 @@ export const GetMunicipalityById = (id) => {
   return globalAxios().get(`states/${id}/municipalities`);
 };
 
+export const GetNationalityById = (id) => {
+  return globalAxios().get("/countries");
+};
+
 export const GetCitiesById = (id) => {
   return globalAxios().get(`municipalities/${id}/cities`);
 };
@@ -178,6 +183,21 @@ export const physicalPersonPut = async (payload, path) => {
   return response.data;
 };
 
+export const customerDataPut = async (payload) => {
+  const response = await globalAxios().put("/receivedata", payload);
+  return response.data;
+};
+
+export const createConsultantPost = async (payload) => {
+  const response = await globalAxios().post("/url", payload);
+  return response.data;
+};
+
+export const consultantDataPut = async (payload) => {
+  const response = await globalAxios().put("/receivedata", payload);
+  return response.data;
+};
+
 export const physicalPersonGet = async (userId) => {
   // //console.log(userId, 'userId')
   await sleep(1000);
@@ -185,6 +205,14 @@ export const physicalPersonGet = async (userId) => {
   const response = await globalAxios().get(`/users/${userId}/natural-person`);
   // //console.log(response, 'response')
   return { data: transformBackData(response.data.data) };
+};
+
+export const listCustomerGet = async () => {
+  await sleep(1000);
+  const response = await globalAxios().get("/customers");
+  const result = response.data.data;
+  console.log({ result });
+  return response.data.data;
 };
 
 export const profileGet = async (userId) => {
@@ -195,6 +223,33 @@ export const profileGet = async (userId) => {
   // //console.log(response, 'result   personal profile')
 
   return transformDataProfileFullName(response.data.data);
+};
+
+/* export const sendChargedDataMassivePost = async (data) => {
+  await sleep(1000)
+  console.log({ data })
+  const _axios = globalAxios()
+
+  _axios.defaults.headers.common['Content-Type'] = 'multipart/form-data'
+
+  const response = await _axios.post('/customers/bulk-record', {
+    data
+  })
+
+  return response.data
+} */
+export const sendChargedDataMassivePost = async (data) => {
+  await sleep(1000);
+  const _axios = globalAxios();
+  _axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+  const response = await _axios({
+    method: "POST",
+    url: "/customers/bulk-record",
+    data,
+  });
+  const result = response?.errors;
+  console.log({ result });
+  return response.data;
 };
 
 /* export const physicalPersonGet = async () => {s

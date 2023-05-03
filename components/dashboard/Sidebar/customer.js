@@ -13,11 +13,11 @@ const CustomerLinks = () => {
   return (
 
     <div className='flex flex-col'>
-      <Link href='/'>
+      <Link href='/customer'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname === '/'
+              router.pathname === '/customer'
                 ? 'bg-darkBlue  text-white'
                 : 'text-gray-dark hover:bg-gray-light hover:text-gray'
             }`}
@@ -26,14 +26,14 @@ const CustomerLinks = () => {
             <HomeIcon className='h-5 w-5' />
           </div>
           <div>
-            <p>Customer</p>
+            <p>Home</p>
           </div>
         </div>
       </Link>
 
       <Link href='/customer/personal-form/personal-data'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/customer/personal-form/personal-data'
                 ? 'bg-darkBlue text-white'
@@ -51,7 +51,7 @@ const CustomerLinks = () => {
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'
@@ -69,7 +69,7 @@ const CustomerLinks = () => {
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'
@@ -80,14 +80,14 @@ const CustomerLinks = () => {
             <CircleStackIcon className='h-5 w-5' />
           </div>
           <div>
-            <p>Desmbolso</p>
+            <p>Pre-Aprobados</p>
           </div>
         </div>
       </Link>
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'

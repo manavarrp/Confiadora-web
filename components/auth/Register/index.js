@@ -72,7 +72,7 @@ const Register = () => {
   const GetCurpCalculation = useGetCurpCalculation();
   // //console.log(formData);
   const values = getValues();
-  //console.log(errors)
+  // console.log(errors)
   // //console.log(values.canRegister);
   // //console.log(values.canRegister);
   watch(["hasAgreementCode"]);

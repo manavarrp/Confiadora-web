@@ -5,19 +5,38 @@ import {
   HomeIcon,
   UserIcon,
   CircleStackIcon,
-  ClipboardDocumentCheckIcon
+  ClipboardDocumentCheckIcon,
+  UsersIcon,
+  CloudArrowDownIcon,
+  UserPlusIcon,
+  ClipboardDocumentIcon
 } from '@heroicons/react/24/solid'
+
+const AdminMenu = [{
+  icon: <HomeIcon className='h-5 w-5' />,
+  name: 'Home'
+},
+{
+  icon: <UserIcon className='h-5 w-5' />,
+  name: 'Usuarios'
+}, {
+  icon: <CreditCardIcon className='h-5 w-5' />,
+  name: 'Informes'
+}, {
+  icon: <CircleStackIcon className='h-5 w-5' />,
+  name: 'Home'
+}]
 
 const AdminLinks = () => {
   const router = useRouter()
   return (
 
     <div className='flex flex-col'>
-      <Link href='/'>
+      <Link href='/admin'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname === '/'
+              router.pathname === '/admin'
                 ? 'bg-darkBlue  text-white'
                 : 'text-gray-dark hover:bg-gray-light hover:text-gray'
             }`}
@@ -26,40 +45,74 @@ const AdminLinks = () => {
             <HomeIcon className='h-5 w-5' />
           </div>
           <div>
-            <p>Admin</p>
+            <p>Home</p>
           </div>
         </div>
       </Link>
 
-      <Link href='/customer/personal-form/personal-data'>
+      <Link href='/admin/charge-data-users'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname === '/customer/personal-form/personal-data'
+              router.pathname === '/admin/charge-data-users'
                 ? 'bg-darkBlue text-white'
                 : 'text-gray-dark hover:bg-gray-light hover:text-gray'
             }`}
         >
           <div className='mr-2'>
-            <UserIcon className='h-5 w-5' />
+            <CloudArrowDownIcon className='h-5 w-5' />
+          </div>
+          <div className='flex flex-row'>
+            <p>Cargar Prospectos</p>
+          </div>
+        </div>
+      </Link>
+      <Link href='/admin/users'>
+        <div
+          className={`pl-5 py-3 mx-3  rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+            ${
+              router.pathname === '/admin/users'
+                ? 'bg-darkBlue text-white'
+                : 'text-gray-dark hover:bg-gray-light hover:text-gray'
+            }`}
+        >
+          <div className='mr-2'>
+            <UsersIcon className='h-5 w-5' />
           </div>
           <div>
-            <p>Formulario</p>
+            <p>Prospectos</p>
           </div>
         </div>
       </Link>
-
-      <Link href='/billing'>
+      <Link href='/admin/consultant'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3  rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
-              router.pathname === '/billing'
+              router.pathname === '/admin/consultant'
                 ? 'bg-darkBlue text-white'
                 : 'text-gray-dark hover:bg-gray-light hover:text-gray'
             }`}
         >
           <div className='mr-2'>
-            <CreditCardIcon className='h-5 w-5' />
+            <UserPlusIcon className='h-5 w-5' />
+          </div>
+          <div>
+            <p>Asesores</p>
+          </div>
+        </div>
+      </Link>
+
+      <Link href='/admin/validate-customer'>
+        <div
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+            ${
+              router.pathname === '/admin/validate-customer'
+                ? 'bg-darkBlue text-white'
+                : 'text-gray-dark hover:bg-gray-light hover:text-gray'
+            }`}
+        >
+          <div className='mr-2'>
+            <ClipboardDocumentCheckIcon className='h-5 w-5' />
           </div>
           <div>
             <p>Solicitudes</p>
@@ -69,7 +122,7 @@ const AdminLinks = () => {
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3  rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'
@@ -80,14 +133,14 @@ const AdminLinks = () => {
             <CircleStackIcon className='h-5 w-5' />
           </div>
           <div>
-            <p>Desmbolso</p>
+            <p>Desembolso</p>
           </div>
         </div>
       </Link>
 
       <Link href='/billing'>
         <div
-          className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
+          className={`pl-5 py-3 mx-3 rounded text-center cursor-pointer mb-3 flex items-center transition-colors
             ${
               router.pathname === '/billing'
                 ? 'bg-darkBlue text-white'
@@ -95,7 +148,7 @@ const AdminLinks = () => {
             }`}
         >
           <div className='mr-2'>
-            <ClipboardDocumentCheckIcon className='h-5 w-5' />
+            <ClipboardDocumentIcon className='h-5 w-5' />
           </div>
           <div>
             <p>Reportes</p>

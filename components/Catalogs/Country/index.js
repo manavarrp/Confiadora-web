@@ -1,36 +1,36 @@
-import styles from '../../../styles/Username.module.css'
-import { useFormContext } from 'react-hook-form'
-import Select from '../../../components/common/Select'
-import useGetCountry from '../../../hooks/useGetCountry'
+import styles from "../../../styles/Username.module.css";
+import { useFormContext } from "react-hook-form";
+import Selects from "../../../components/common/Selects";
+import useGetCountry from "../../../hooks/useGetCountry";
 
 const Country = () => {
-  const valuesCity = useGetCountry()
+  const valuesCity = useGetCountry();
 
   const {
     register,
-    getValues
+    getValues,
     // formState: { errors }
-  } = useFormContext()
+  } = useFormContext();
 
   const handleCountry = (event) => {
-    const getId = event.target.value
+    const getId = event.target.value;
     // //console.log(getId);
-    getValues(getId)
-  }
+    getValues(getId);
+  };
 
   return (
     <div>
-      <Select
+      <Selects
         className={styles.textbox}
         onChange={handleCountry}
         register={register}
-        name='birthCountryId'
+        name="birthCountryId"
         options={valuesCity}
-        emptyOptions='País de Nacimiento'
-       // error={errors?.genderId?.message}
+        emptyOptions="País de Nacimiento"
+        // error={errors?.genderId?.message}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Country
+export default Country;

@@ -6,8 +6,6 @@ import Input from '../../common/Input'
 import { useSelector } from 'react-redux'
 import { useSession } from 'next-auth/react'
 import { useState, useCallback } from 'react'
-import DropBox from '../../common/DropBox'
-import ShowImage from '../../common/ShowImage'
 
 const DEFAULT_VALUES = {
   accountNumberClabe: '',
@@ -17,7 +15,6 @@ const DEFAULT_VALUES = {
 function RegisterForms ({ initialValues }) {
   const router = useRouter()
 
-  const [images, setImages] = useState([])
   const { customerId } = useSelector((state) => state.physicalPersonForm)
   const { loading, postPersonPhysicalData } = usePostPersonPhysical()
   // const { putPersonPhysicalData } = usePutPersonPhysical()
@@ -42,22 +39,6 @@ function RegisterForms ({ initialValues }) {
     // console.log(payload)
     setId(data.id)
   } */
-
-  const onDrop = useCallback((acceptedFiles) => {
-    acceptedFiles.map((file, index) => {
-      const reader = new FileReader()
-
-      reader.onload = function (e) {
-        setImages((prevState) => [
-          ...prevState,
-          { id: index, src: e.target.result }
-        ])
-      }
-
-      reader.readAsDataURL(file)
-      return file
-    })
-  }, [])
 
   const onSubmitBankFormUpdate = (data) => {
     const payload = {
@@ -106,8 +87,7 @@ function RegisterForms ({ initialValues }) {
           <label className='text-darkBlue'>
             Adjuntar certificados bancarios (referencia del banco /estado de cuenta con cuenta clabe).
           </label>
-          <DropBox onDrop={onDrop} />
-          <ShowImage images={images} />
+
           <p
             className='ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300'
             id='file_input_help'

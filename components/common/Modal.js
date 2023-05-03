@@ -8,11 +8,11 @@ export default function Modal ({ open, setOpen, children }) {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as='div'
-        className='fixed z-10 inset-0 overflow-y-auto'
+        className='fixed z-10 inset-0 overflow-y-auto items-center mt-24'
         initialFocus={cancelButtonRef}
         onClose={setOpen}
       >
-        <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+        <div className='flex items-end justify-center min-h-screen text-center sm:block sm:p-0'>
           <Transition.Child
             as={Fragment}
             enter='ease-out duration-300'
@@ -38,11 +38,12 @@ export default function Modal ({ open, setOpen, children }) {
                 <XCircleIcon
                   className='flex-shrink-0 h-6 w-6 text-gray-400 cursor-pointer'
                   aria-hidden='true'
-                  onClick={() => setOpen(false)}
+                  onClick={setOpen}
                   ref={cancelButtonRef}
+                  color='#ff0000'
                 />
               </div>
-              <div className='bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4'>
+              <div className='bg-white sm:p-6 sm:pb-4'>
                 <div className='sm:flex sm:items-start'>{children}</div>
               </div>
             </div>

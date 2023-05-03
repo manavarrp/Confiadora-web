@@ -43,8 +43,6 @@ function ChangePassword () {
                 register={register}
               />
             </div>
-          </div>
-          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
             <div className='flex flex-col w-full'>
               <label className='text-sm text-darkBlue'>Nueva contraseña</label>
               <Input
@@ -56,7 +54,8 @@ function ChangePassword () {
               />
             </div>
           </div>
-          <div className='flex justify-center mt-5'>
+
+          <div className=' mt-5 w-[20%]'>
             <button type='submit' className={styles.btn}>
               Cambiar
             </button>

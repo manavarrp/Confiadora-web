@@ -1,6 +1,6 @@
 import styles from '../../../styles/Username.module.css'
 import { useFormContext } from 'react-hook-form'
-import Select from '../../../common/Select'
+import Selects from '../../common/Selects'
 import useGetCountry from '../../../hooks/useGetCountry'
 
 const Country = () => {
@@ -20,7 +20,7 @@ const Country = () => {
 
   return (
     <div>
-      <Select
+      <Selects
         className={styles.textbox}
         onChange={handleCountry}
         register={register}

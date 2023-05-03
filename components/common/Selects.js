@@ -1,4 +1,4 @@
-const Select = ({ className, onChange, options = [], emptyOptions, name, register }) => {
+const Selects = ({ className, onChange, options = [], emptyOptions, name, register }) => {
   return (
     <div>
       <select
@@ -17,4 +17,4 @@ const Select = ({ className, onChange, options = [], emptyOptions, name, registe
   )
 }
 
-export default Select
+export default Selects
