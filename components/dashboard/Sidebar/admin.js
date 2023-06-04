@@ -2,9 +2,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   CreditCardIcon,
   HomeIcon,
   UserIcon,
+=======
+  HomeIcon,
+>>>>>>> Stashed changes
 =======
   HomeIcon,
 >>>>>>> Stashed changes
@@ -16,6 +20,7 @@ import {
   ClipboardDocumentIcon
 } from '@heroicons/react/24/solid'
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 const AdminMenu = [{
   icon: <HomeIcon className='h-5 w-5' />,
@@ -32,6 +37,8 @@ const AdminMenu = [{
   name: 'Home'
 }]
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 const AdminLinks = () => {

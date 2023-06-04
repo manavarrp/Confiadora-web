@@ -29,7 +29,11 @@ const Login = () => {
   // const router = useRouter();
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   //console.log({ data })
+=======
+  // console.log({ data })
+>>>>>>> Stashed changes
 =======
   // console.log({ data })
 >>>>>>> Stashed changes

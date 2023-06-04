@@ -117,7 +117,11 @@ const forgotPasswordRequest = async (payload) => {
 
 const passwordResetConfirm = async (payload) => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   //console.log(payload)
+=======
+  // console.log(payload)
+>>>>>>> Stashed changes
 =======
   // console.log(payload)
 >>>>>>> Stashed changes

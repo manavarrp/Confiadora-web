@@ -60,7 +60,11 @@ const Register = () => {
     // //console.log(event.target.name);
     // //console.log(event.target.value);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const { name, value } = event.target;
+=======
+    const { name, value } = event.target
+>>>>>>> Stashed changes
 =======
     const { name, value } = event.target
 >>>>>>> Stashed changes
@@ -101,7 +105,11 @@ const Register = () => {
     resetField("identificationNumber");
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     setValue("canRegister", getId === "08db3d0b-68af-455c-8739-fecbdd4a0186");
+=======
+    setValue('canRegister', getId === '08db4684-6396-4464-85e1-42fbff98e0e4')
+>>>>>>> Stashed changes
 =======
     setValue('canRegister', getId === '08db4684-6396-4464-85e1-42fbff98e0e4')
 >>>>>>> Stashed changes
@@ -144,7 +152,11 @@ const Register = () => {
   useEffect(() => {
     if (isSuccess) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       router.push("/auth/login");
+=======
+      router.push('/auth/login')
+>>>>>>> Stashed changes
 =======
       router.push('/auth/login')
 >>>>>>> Stashed changes
@@ -153,9 +165,12 @@ const Register = () => {
   return (
     <>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <div className="md:w-[500px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
         <div className="title flex flex-col items-center">
 =======
+=======
+>>>>>>> Stashed changes
       <div className='md:w-[500px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
         <div className='title flex flex-col items-center'>
 >>>>>>> Stashed changes
@@ -200,10 +215,13 @@ const Register = () => {
                 )}
               </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               {getIdIden === "08db3d0b-68a4-4e71-84bc-b1c7370be308" && (
                 <div className="flex flex-col justify-center w-full gap-6 ">
                   <div className="flex justify-center">
 =======
+=======
+>>>>>>> Stashed changes
               {getIdIden === '08db4684-6390-4a56-80e2-cad9fe442805' && (
                 <div className='flex flex-col justify-center w-full gap-6 '>
                   <div className='flex justify-center'>
@@ -238,10 +256,13 @@ const Register = () => {
                 </div>
               )}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               {getIdIden === "08db3d0b-68af-455c-8739-fecbdd4a0186" && (
                 <div className=" flex flex-col items-center gap-6 ">
                   <label className="w-full flex justify-center mt-2">
 =======
+=======
+>>>>>>> Stashed changes
               {getIdIden === '08db4684-6396-4464-85e1-42fbff98e0e4' && (
                 <div className=' flex flex-col items-center gap-6 '>
                   <label className='w-full flex justify-center mt-2'>

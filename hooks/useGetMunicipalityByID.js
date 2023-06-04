@@ -10,7 +10,11 @@ const useGetMunicipalityByID = () => {
     const result = await GetMunicipalityById(id)
     setOptions(result?.data.data)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     //console.log(result, 'result')
+=======
+    // console.log(result, 'result')
+>>>>>>> Stashed changes
 =======
     // console.log(result, 'result')
 >>>>>>> Stashed changes

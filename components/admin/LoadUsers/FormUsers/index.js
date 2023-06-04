@@ -4,6 +4,10 @@ import Input from '../../../common/Input'
 import { useEffect } from 'react'
 import usePutDataCustomer from '../../../../hooks/usePutDataCustomer'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import { Loading } from '../../../common/Loading'
+>>>>>>> Stashed changes
 =======
 import { Loading } from '../../../common/Loading'
 >>>>>>> Stashed changes
@@ -47,6 +51,10 @@ function RegisterForms ({ users, close }) {
     })
   }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  if (loading) return <Loading />
+>>>>>>> Stashed changes
 =======
   if (loading) return <Loading />
 >>>>>>> Stashed changes
@@ -65,7 +73,11 @@ function RegisterForms ({ users, close }) {
             placeholder='Primer nombre'
             className={styles.textbox}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             name='fullName'
+=======
+            name='firstName'
+>>>>>>> Stashed changes
 =======
             name='firstName'
 >>>>>>> Stashed changes

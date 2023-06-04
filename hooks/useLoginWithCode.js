@@ -24,7 +24,11 @@ const useLogin = () => {
 
         const { token, isFirstLogin } = data?.data
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if (!token) return //console.log('error')
+=======
+        if (!token) return // console.log('error')
+>>>>>>> Stashed changes
 =======
         if (!token) return // console.log('error')
 >>>>>>> Stashed changes
@@ -36,10 +40,17 @@ const useLogin = () => {
         if (response.status === 200) {
           Cookies.set(AXIOS_COOKIE, token)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           return router.replace('/customer/personal-form/personal-data')
         }
       } catch (error) {
         //console.log(error)
+=======
+          return router.replace('/customer')
+        }
+      } catch (error) {
+        // console.log(error)
+>>>>>>> Stashed changes
 =======
           return router.replace('/customer')
         }

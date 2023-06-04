@@ -3,15 +3,21 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import Logo from '../common/logo'
 import { useRouter } from 'next/router'
 import authService from '../../features/auth/authServices'
 import Input from '../common/input'
 =======
+=======
+>>>>>>> Stashed changes
 import Logo from '../common/Logo'
 import { useRouter } from 'next/router'
 import authService from '../../features/auth/authServices'
 import Input from '../common/Input'
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -39,7 +45,11 @@ const Reset = () => {
       email: data.email
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     //console.log(payload)
+=======
+    // console.log(payload)
+>>>>>>> Stashed changes
 =======
     // console.log(payload)
 >>>>>>> Stashed changes

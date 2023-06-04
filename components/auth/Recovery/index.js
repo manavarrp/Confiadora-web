@@ -40,11 +40,19 @@ const ResetPasswordConfirm = () => {
     try {
       const response = await authService.passwordResetConfirm(payload)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       //console.log(response)
       toast.success('Contraseña cambiada con exito')
       router.push('/login')
     } catch (e) {
       //console.log(e)
+=======
+      // console.log(response)
+      toast.success('Contraseña cambiada con exito')
+      router.push('/login')
+    } catch (e) {
+      // console.log(e)
+>>>>>>> Stashed changes
 =======
       // console.log(response)
       toast.success('Contraseña cambiada con exito')
@@ -65,8 +73,12 @@ const ResetPasswordConfirm = () => {
   return (
     <>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
       <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+=======
+      <div className='md:w-[400px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+>>>>>>> Stashed changes
 =======
       <div className='md:w-[400px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
 >>>>>>> Stashed changes
@@ -90,6 +102,9 @@ const ResetPasswordConfirm = () => {
               error={errors?.newPassword?.message}
             />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 
             <Input
               type='text'
@@ -100,6 +115,7 @@ const ResetPasswordConfirm = () => {
               error={errors?.confirmPassword?.message}
             />
 
+<<<<<<< Updated upstream
             <button
               type='submit'
               className={styles.btn}
@@ -122,6 +138,8 @@ const ResetPasswordConfirm = () => {
               error={errors?.confirmPassword?.message}
             />
 
+=======
+>>>>>>> Stashed changes
             <button type='submit' className={styles.btn} disabled={isLoading}>
               {isLoading ? 'cargando' : 'Cambiar'}
             </button>

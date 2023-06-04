@@ -9,6 +9,11 @@ const useGetCountry = () => {
   const GetData = useCallback(async () => {
     const result = await GetList('countries')
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    const res = result?.data?.data
+    console.log({ res })
+>>>>>>> Stashed changes
 =======
     const res = result?.data?.data
     console.log({ res })

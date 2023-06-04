@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Menu, Popover, Transition } from "@headlessui/react";
+=======
+import { Menu, Popover, Transition } from '@headlessui/react'
+>>>>>>> Stashed changes
 =======
 import { Menu, Popover, Transition } from '@headlessui/react'
 >>>>>>> Stashed changes
@@ -9,6 +13,7 @@ import {
   CheckIcon,
   ChevronUpDownIcon,
   Cog8ToothIcon,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   PencilIcon,
 } from "@heroicons/react/24/solid";
@@ -68,6 +73,8 @@ function Navbar({ showNav, setShowNav }) {
                       <p className="text-sm text-gray">
                         {" "}
 =======
+=======
+>>>>>>> Stashed changes
   PencilIcon
 } from '@heroicons/react/24/solid'
 import Link from 'next/link'
@@ -125,11 +132,15 @@ function Navbar ({ showNav, setShowNav }) {
                       </p>
                       <p className='text-sm text-gray'>
                         {' '}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         Prueba diseño texto Notificaciones
                       </p>
                     </div>
                   </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                   <div className="flex">
                     <div className="rounded-full shrink-0 bg-yellow h-8 w-8 flex items-center justify-center">
@@ -142,6 +153,8 @@ function Navbar ({ showNav, setShowNav }) {
                       <p className="text-sm text-gray">
                         {" "}
 =======
+=======
+>>>>>>> Stashed changes
                   <div className='flex'>
                     <div className='rounded-full shrink-0 bg-yellow h-8 w-8 flex items-center justify-center'>
                       <CheckIcon className='h-4 w-4 text-green' />
@@ -152,11 +165,15 @@ function Navbar ({ showNav, setShowNav }) {
                       </p>
                       <p className='text-sm text-gray'>
                         {' '}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         Prueba diseño texto Notificaciones
                       </p>
                     </div>
                   </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                   <div className="flex">
                     <div className="rounded-full shrink-0 bg-yellow h-8 w-8 flex items-center justify-center">
@@ -169,6 +186,8 @@ function Navbar ({ showNav, setShowNav }) {
                       <p className="text-sm text-gray">
                         {" "}
 =======
+=======
+>>>>>>> Stashed changes
                   <div className='flex'>
                     <div className='rounded-full shrink-0 bg-yellow h-8 w-8 flex items-center justify-center'>
                       <CheckIcon className='h-4 w-4 text-green' />
@@ -179,11 +198,15 @@ function Navbar ({ showNav, setShowNav }) {
                       </p>
                       <p className='text-sm text-gray'>
                         {' '}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         Prueba diseño texto Notificaciones
                       </p>
                     </div>
                   </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                   <div className="flex">
                     <div className="rounded-full shrink-0 bg-yellow h-8 w-8 flex items-center justify-center">
@@ -196,6 +219,8 @@ function Navbar ({ showNav, setShowNav }) {
                       <p className="text-sm text-gray">
                         {" "}
 =======
+=======
+>>>>>>> Stashed changes
                   <div className='flex'>
                     <div className='rounded-full shrink-0 bg-yellow h-8 w-8 flex items-center justify-center'>
                       <CheckIcon className='h-4 w-4 text-green' />
@@ -206,6 +231,9 @@ function Navbar ({ showNav, setShowNav }) {
                       </p>
                       <p className='text-sm text-gray'>
                         {' '}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         Prueba diseño texto Notificaciones
                       </p>
@@ -216,6 +244,7 @@ function Navbar ({ showNav, setShowNav }) {
             </Popover.Panel>
           </Transition>
         </Popover>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <Menu as="div" className="relative inline-block text-left">
           <div>
@@ -231,6 +260,8 @@ function Navbar ({ showNav, setShowNav }) {
 
               <ChevronUpDownIcon className="ml-2 h-4 w-4 text-gray-dark" />
 =======
+=======
+>>>>>>> Stashed changes
         <Menu as='div' className='relative inline-block text-left'>
           <div>
             <Menu.Button className='inline-flex w-full justify-center items-center gap-1'>
@@ -244,11 +275,15 @@ function Navbar ({ showNav, setShowNav }) {
               </picture>
 
               <ChevronUpDownIcon className='ml-2 h-4 w-4 text-gray-dark' />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             </Menu.Button>
           </div>
           <Transition
             as={Fragment}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             enter="transition ease-out duration-100"
             enterFrom="transform scale-95"
@@ -266,6 +301,8 @@ function Navbar ({ showNav, setShowNav }) {
                   >
                     <PencilIcon className="w-4 h-4 mr-2" />
 =======
+=======
+>>>>>>> Stashed changes
             enter='transition ease-out duration-100'
             enterFrom='transform scale-95'
             enterTo='transform scale-100'
@@ -281,6 +318,9 @@ function Navbar ({ showNav, setShowNav }) {
                     className='flex hover:bg-darkBlue hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center'
                   >
                     <PencilIcon className='w-4 h-4 mr-2' />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     Perfil
                   </Link>
@@ -288,17 +328,23 @@ function Navbar ({ showNav, setShowNav }) {
                 <Menu.Item>
                   <Link
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     href="/login"
                     className="flex hover:bg-red hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center"
                     onClick={onLogout}
                   >
                     <Cog8ToothIcon className="w-4 h-4 mr-2" />
 =======
+=======
+>>>>>>> Stashed changes
                     href='/login'
                     className='flex hover:bg-red hover:text-white text-gray-dark rounded p-2 text-sm group transition-colors items-center'
                     onClick={onLogout}
                   >
                     <Cog8ToothIcon className='w-4 h-4 mr-2' />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     Salir
                   </Link>
@@ -310,13 +356,19 @@ function Navbar ({ showNav, setShowNav }) {
       </div>
     </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   );
 }
 
 export default Navbar;
 =======
+=======
+>>>>>>> Stashed changes
   )
 }
 
 export default Navbar
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

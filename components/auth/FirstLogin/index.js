@@ -39,7 +39,13 @@ const FirstLogin = () => {
       const response = await auth({ token, ...userInformation })
       if (response.status === 200) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         toast.success('Cambio realizadó con exito, ya puedes ingresar con tu nueva contraseña.')
+=======
+        toast.success(
+          'Cambio realizadó con exito, ya puedes ingresar con tu nueva contraseña.'
+        )
+>>>>>>> Stashed changes
 =======
         toast.success(
           'Cambio realizadó con exito, ya puedes ingresar con tu nueva contraseña.'
@@ -63,7 +69,12 @@ const FirstLogin = () => {
             <div className='title flex flex-col items-center'>
               <span className=' text-sm w-2/3 text-center text-gray mb-5'>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 Por favor ingresa la contraseña que se envió a tu correo y cambiala por una personal.
+=======
+                Por favor ingresa la contraseña que se envió a tu correo y
+                cambiala por una personal.
+>>>>>>> Stashed changes
 =======
                 Por favor ingresa la contraseña que se envió a tu correo y
                 cambiala por una personal.

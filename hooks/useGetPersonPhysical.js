@@ -6,12 +6,16 @@ import { toast } from "react-toastify";
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import {
   physicalPersonGet,
   GetList,
   GetMunicipalityById,
   GetCitiesById,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   GetNeighborhoodsById,
 } from "../services/api";
@@ -67,6 +71,8 @@ const useGetPersonPhysical = () => {
         : DEFAULT_RESPONSE;
       //console.log(data, 'data')
 =======
+=======
+>>>>>>> Stashed changes
   GetNeighborhoodsById
 } from '../services/api'
 import { setAllPersonPhysicalForm } from '../features/physicalPersonForm/ppFormSlice'
@@ -120,6 +126,9 @@ const useGetPersonPhysical = () => {
         ? await GetNeighborhoodsById(domicileCityId)
         : DEFAULT_RESPONSE
       // console.log(data, 'data')
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       // console.log(countries, 'countries')
       dispatch(
@@ -130,6 +139,7 @@ const useGetPersonPhysical = () => {
           neighborhoods,
           states,
           countries,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           economicActivities,
         })
@@ -143,13 +153,24 @@ const useGetPersonPhysical = () => {
       )
     } catch (error) {
       // console.log(error, 'error')
+=======
+          economicActivities
+        })
+      )
+    } catch (error) {
+      // console.log(error, 'error')
+>>>>>>> Stashed changes
       return toast.error(error.response.data.message)
 >>>>>>> Stashed changes
     } finally {
       setLoading(false);
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   }, [dispatch, userId]);
+=======
+  }, [dispatch, userId])
+>>>>>>> Stashed changes
 =======
   }, [dispatch, userId])
 >>>>>>> Stashed changes

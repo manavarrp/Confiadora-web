@@ -44,6 +44,7 @@ const usePostChargeDataMassive = () => {
   const postPostChargeData = useCallback(async (payload) => {
     try {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       const formData = new FormData()
       formData.append('formFile', payload)
       setLoading(true)
@@ -51,12 +52,17 @@ const usePostChargeDataMassive = () => {
       // console.log({ payload })
       const result = await sendChargedDataMassivePost(formData)
 =======
+=======
+>>>>>>> Stashed changes
       // const formData = new FormData()
       // formData.append('formFile', payload)
       setLoading(true)
 
       // console.log({ payload })
       const result = await sendChargedDataMassivePost(payload)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       const res = result.data.errors
       //  if (result.data.errors) return setErrorForm(errors?.data?.errors)

@@ -19,7 +19,10 @@
     "axios": "^1.2.3",
     "dayjs": "^1.11.7",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "formik": "^2.2.9",
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     "js-cookie": "^3.0.1",
@@ -31,6 +34,10 @@
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    "react-emotion": "^10.0.0",
+>>>>>>> Stashed changes
 =======
     "react-emotion": "^10.0.0",
 >>>>>>> Stashed changes

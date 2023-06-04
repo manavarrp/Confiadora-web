@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { useCallback, useState } from "react";
 import { GetNationalityById } from "../services/api";
 
@@ -18,6 +19,8 @@ const useGetNacionalityByID = () => {
 
 export default useGetNacionalityByID;
 =======
+=======
+>>>>>>> Stashed changes
 import { useCallback, useState } from 'react'
 import { GetNationalityById } from '../services/api'
 
@@ -36,4 +39,7 @@ const useGetNacionalityByID = () => {
 }
 
 export default useGetNacionalityByID
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

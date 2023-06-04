@@ -12,7 +12,11 @@ const useGetListCustomer = () => {
     try {
       // await changePassword(payload)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       setLoading(false)
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -21,6 +25,10 @@ const useGetListCustomer = () => {
       setListCustomer(response)
       console.log({ listCustomer })
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+      setLoading(false)
+>>>>>>> Stashed changes
 =======
       setLoading(false)
 >>>>>>> Stashed changes

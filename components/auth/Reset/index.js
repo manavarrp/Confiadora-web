@@ -34,7 +34,11 @@ const Reset = () => {
       email: data.email
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     //console.log(payload)
+=======
+    // console.log(payload)
+>>>>>>> Stashed changes
 =======
     // console.log(payload)
 >>>>>>> Stashed changes

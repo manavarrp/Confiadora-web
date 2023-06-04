@@ -30,6 +30,7 @@ const LoginWithCode = () => {
   }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const resentCodeOtp = () => {
 
   }
@@ -37,6 +38,12 @@ const LoginWithCode = () => {
   return (
 
     <div className='md:w-[350px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center '>
+=======
+  const resentCodeOtp = () => {}
+
+  return (
+    <div className='md:w-[350px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center '>
+>>>>>>> Stashed changes
 =======
   const resentCodeOtp = () => {}
 
@@ -61,11 +68,15 @@ const LoginWithCode = () => {
           />
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <button
             type='submit'
             className={styles.btn}
             disabled={isLoading}
           >
+=======
+          <button type='submit' className={styles.btn} disabled={isLoading}>
+>>>>>>> Stashed changes
 =======
           <button type='submit' className={styles.btn} disabled={isLoading}>
 >>>>>>> Stashed changes

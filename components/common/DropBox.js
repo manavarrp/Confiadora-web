@@ -122,7 +122,11 @@ const Dropzone = () => {
     console.info({ file })
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const response = await postPostChargeData(file)
+=======
+    const response = await postPostChargeData(formData)
+>>>>>>> Stashed changes
 =======
     const response = await postPostChargeData(formData)
 >>>>>>> Stashed changes

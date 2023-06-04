@@ -8,7 +8,11 @@ const initialState = {
   additionalData: null,
   personalReferences: null,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   customerId: "",
+=======
+  customerId: '',
+>>>>>>> Stashed changes
 =======
   customerId: '',
 >>>>>>> Stashed changes
@@ -20,7 +24,11 @@ const initialState = {
   birthCountries: null,
   economicActivities: null,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   nationality: null,
+=======
+  nationality: null
+>>>>>>> Stashed changes
 =======
   nationality: null
 >>>>>>> Stashed changes
@@ -41,6 +49,7 @@ export const ppFormSlice = createSlice({
     builder
       .addCase(setAllPersonPhysicalForm, (state, action) => {
         // //console.log(action.payload, "actio payload");
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         state.personalData = action.payload.personalData;
         state.addressInformation = action.payload.addressInformation;
@@ -68,6 +77,16 @@ export const ppFormSlice = createSlice({
         state.personalReferences = action.payload.personalReferences
         // state.customerId = action.payload.personalData.customerId
 
+=======
+        state.personalData = action.payload.personalData
+        state.addressInformation = action.payload.addressInformation
+        state.employmentInformation = action.payload.employmentInformation
+        state.bankingInformation = action.payload.bankingInformation
+        state.additionalData = action.payload.additionalData
+        state.personalReferences = action.payload.personalReferences
+        // state.customerId = action.payload.personalData.customerId
+
+>>>>>>> Stashed changes
         state.states = action.payload.states
         state.municipalities = action.payload.municipalities
         state.cities = action.payload.cities
@@ -77,6 +96,9 @@ export const ppFormSlice = createSlice({
         state.birthCountries = action.payload.birthCountries
         state.customerId = action.payload.personalData.customerId
         state.nationality = action.payload.nationality
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
         // state = action.payload
@@ -87,7 +109,11 @@ export const ppFormSlice = createSlice({
       })
       .addCase(setPersonPhysicalForm, (state, action) => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         const { key, data } = action.payload;
+=======
+        const { key, data } = action.payload
+>>>>>>> Stashed changes
 =======
         const { key, data } = action.payload
 >>>>>>> Stashed changes
@@ -96,6 +122,7 @@ export const ppFormSlice = createSlice({
         // state.addressInformation = action.payload;
         // state = { ...state, ...action.payload };
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         state[key] = data;
         console.log(action, "action");
         // state.addressInformation = action.payload;
@@ -103,6 +130,8 @@ export const ppFormSlice = createSlice({
   },
 });
 =======
+=======
+>>>>>>> Stashed changes
         state[key] = data
         console.log(action, 'action')
         // state.addressInformation = action.payload;
@@ -118,9 +147,12 @@ export const {
   bankingInformation,
   additionalData,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   personalReferences,
 } = ppFormSlice.actions;
 =======
+=======
+>>>>>>> Stashed changes
   personalReferences
 } = ppFormSlice.actions
 >>>>>>> Stashed changes

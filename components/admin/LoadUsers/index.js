@@ -1,11 +1,15 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { useState } from 'react'
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import Modal from '../../common/Modal'
 import FormUsers from './FormUsers'
 import HeaderPagesDashboard from '../../common/HeaderPagesDashboard'
 import { UsersIcon } from '@heroicons/react/20/solid'
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 import useGetListCustomer from '../../../hooks/useGetListCustomer'
 import Loading from '../../common/Loading'
@@ -45,6 +49,8 @@ const LoadUser = () => {
 
   if (loading) return <Loading />
 =======
+=======
+>>>>>>> Stashed changes
 import { Table, Input } from 'antd'
 import { useEffect, useState } from 'react'
 import usePostListCustomCustomer from '../../../hooks/usePostListCustomCustomer'
@@ -152,12 +158,16 @@ const LoadUser = () => {
   </button>
 
   }))
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   return (
     <>
       <HeaderPagesDashboard icon={<UsersIcon className='h-10 w-10' color='#477EFA' />} title='Lista de Usuarios' />
       <div className='bg-white h-auto shadow-sm mt-4'>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <div className='overflow-x-auto md:col-span-3'>
           <h1 className='mb-4 text-xl'>Buscar</h1>
@@ -206,6 +216,8 @@ const LoadUser = () => {
           <FormUsers users={open} close={() => setOpen(null)} />
         </Modal>
 =======
+=======
+>>>>>>> Stashed changes
 
         <form>
 
@@ -226,13 +238,19 @@ const LoadUser = () => {
           <FormUsers users={open} close={() => setOpen(null)} />
         </Modal>
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </>
   )
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 export default LoadUser

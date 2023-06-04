@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React from 'react'
 
 const index = () => {
@@ -9,6 +10,8 @@ const index = () => {
 
 export default index
 =======
+=======
+>>>>>>> Stashed changes
 import React from "react";
 import CreditsApplications from "../../../components/customer/CreditsApplications";
 
@@ -17,4 +20,7 @@ const index = () => {
 };
 
 export default index;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

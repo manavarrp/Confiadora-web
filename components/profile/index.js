@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 import Input from '../common/Input'
 import styles from '../../styles/Username.module.css'
@@ -24,6 +25,19 @@ import { IdentificationIcon } from '@heroicons/react/24/solid'
 import HeaderPagesDashboard from '../common/HeaderPagesDashboard'
 
 >>>>>>> Stashed changes
+=======
+import Input from '../common/Input'
+import styles from '../../styles/Username.module.css'
+
+import useGetProfile from '../../hooks/useGetProfile'
+import Loading from '../common/Loading'
+import { Disclosure } from '@headlessui/react'
+import { ChevronUpIcon } from '@heroicons/react/20/solid'
+import ChangePasswordProfile from './ChangePasswordProfile'
+import { IdentificationIcon } from '@heroicons/react/24/solid'
+import HeaderPagesDashboard from '../common/HeaderPagesDashboard'
+
+>>>>>>> Stashed changes
 function RegisterForms () {
   // const router = useRouter()
 
@@ -33,6 +47,7 @@ function RegisterForms () {
 
   return (
     <>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <HeaderPagesDashboard icon={<IdentificationIcon className='h-10 w-10' color='#477EFA' />} title='Mi Perfil' />
       <div className='w-full  pt-16  '>
@@ -73,6 +88,27 @@ function RegisterForms () {
           </div>
 
 >>>>>>> Stashed changes
+=======
+      <HeaderPagesDashboard
+        icon={<IdentificationIcon className='h-10 w-10' color='#477EFA' />}
+        title='Mi Perfil'
+      />
+      <div className='w-full  pt-16'>
+        <div className='mx-auto w-3/4  rounded-2xl bg-white p-2 sm:w-full shadow-2xl'>
+          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row sm:w-full'>
+            <div className='flex flex-col w-full'>
+              <label className='text-sm text-darkBlue'>Nombre Completo</label>
+              <Input
+                type='text'
+                placeholder='Nombres Completos'
+                className={styles.textbox}
+                value={profile?.fullName}
+                readOnly
+              />
+            </div>
+          </div>
+
+>>>>>>> Stashed changes
           <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
             <div className='flex flex-col w-full'>
               <label className='text-sm text-darkBlue'>Correo</label>
@@ -86,7 +122,13 @@ function RegisterForms () {
             </div>
             <div className='flex flex-col w-full'>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <label className='text-sm text-darkBlue'>Número de telefono</label>
+=======
+              <label className='text-sm text-darkBlue'>
+                Número de telefono
+              </label>
+>>>>>>> Stashed changes
 =======
               <label className='text-sm text-darkBlue'>
                 Número de telefono
@@ -114,7 +156,13 @@ function RegisterForms () {
             </div>
             <div className='flex flex-col w-full'>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <label className='text-sm text-darkBlue'>Número de documento</label>
+=======
+              <label className='text-sm text-darkBlue'>
+                Número de documento
+              </label>
+>>>>>>> Stashed changes
 =======
               <label className='text-sm text-darkBlue'>
                 Número de documento
@@ -136,12 +184,15 @@ function RegisterForms () {
               <>
                 <Disclosure.Button className='flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75'>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                   <span className='text-darkBlue font-bold text-lg'>¿Deseas cambiar la contraseña?</span>
                   <ChevronUpIcon
                     className={`${
                     open ? 'rotate-180 transform' : ''
                   } h-5 w-5 text-purple-500`}
 =======
+=======
+>>>>>>> Stashed changes
                   <span className='text-darkBlue font-bold text-lg'>
                     ¿Deseas cambiar la contraseña?
                   </span>
@@ -149,6 +200,9 @@ function RegisterForms () {
                     className={`${
                       open ? 'rotate-180 transform' : ''
                     } h-5 w-5 text-purple-500`}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                   />
                 </Disclosure.Button>

@@ -11,6 +11,9 @@ import {
   transformBackData,
   transformDataProfileFullName
 } from '../../utils/transformBackData'
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 /* const mockData = {
@@ -129,6 +132,7 @@ import {
 
 export const GetList = (params) => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   return globalAxios().get(params);
 };
 
@@ -158,6 +162,8 @@ export const curpCalculation = async (params) => {
 };
 
 =======
+=======
+>>>>>>> Stashed changes
   return globalAxios().get(params)
 }
 
@@ -185,11 +191,15 @@ export const curpCalculation = async (params) => {
   return response
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 export const changePassword = async ({
   token,
   email,
   currentPassword,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   newPassword,
 }) => {
@@ -276,6 +286,8 @@ export const profileGet = async (userId) => {
   })
 
 =======
+=======
+>>>>>>> Stashed changes
   newPassword
 }) => {
   const _globalAxios = globalAxios()
@@ -298,6 +310,7 @@ export const loginWithCodeOTP = async ({ token, ...payload }) => {
 
 export const physicalPersonPost = async (payload, path) => {
   const response = await globalAxios().post(path, payload)
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
   return response.data
 } */
@@ -327,6 +340,21 @@ export const customerDataPut = async (payload) => {
   return response.data
 }
 
+=======
+  return response.data
+}
+
+export const physicalPersonPut = async (payload, path) => {
+  const response = await globalAxios().put(path, payload)
+  return response.data
+}
+
+export const customerDataPut = async (payload) => {
+  const response = await globalAxios().put('/receivedata', payload)
+  return response.data
+}
+
+>>>>>>> Stashed changes
 export const createConsultantPost = async (payload) => {
   const response = await globalAxios().post('/url', payload)
   return response.data
@@ -397,6 +425,9 @@ export const sendChargedDataMassivePost = async (data) => {
   return response.data
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 /* export const physicalPersonGet = async () => {s
   await sleep(2000)
@@ -405,9 +436,12 @@ export const sendChargedDataMassivePost = async (data) => {
 }
  */
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 =======
+=======
+>>>>>>> Stashed changes
 /* function sleep (ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 >>>>>>> Stashed changes
