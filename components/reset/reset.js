@@ -2,10 +2,17 @@ import styles from '../../styles/Username.module.css'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+<<<<<<< Updated upstream
 import Logo from '../common/logo'
 import { useRouter } from 'next/router'
 import authService from '../../features/auth/authServices'
 import Input from '../common/input'
+=======
+import Logo from '../common/Logo'
+import { useRouter } from 'next/router'
+import authService from '../../features/auth/authServices'
+import Input from '../common/Input'
+>>>>>>> Stashed changes
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { resetSchema } from '../../utils/formSchema/resetSchema'
@@ -31,7 +38,11 @@ const Reset = () => {
     const payload = {
       email: data.email
     }
+<<<<<<< Updated upstream
     //console.log(payload)
+=======
+    // console.log(payload)
+>>>>>>> Stashed changes
     await authService.forgotPasswordRequest(payload)
     if (isError) {
       toast.error('Ocurrió un error')

@@ -116,7 +116,11 @@ const forgotPasswordRequest = async (payload) => {
 }
 
 const passwordResetConfirm = async (payload) => {
+<<<<<<< Updated upstream
   //console.log(payload)
+=======
+  // console.log(payload)
+>>>>>>> Stashed changes
   try {
     const response = await globalAxios().post('/password/reset/', payload)
     return { data: response.data }

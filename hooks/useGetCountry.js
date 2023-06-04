@@ -8,6 +8,11 @@ const useGetCountry = () => {
 
   const GetData = useCallback(async () => {
     const result = await GetList('countries')
+<<<<<<< Updated upstream
+=======
+    const res = result?.data?.data
+    console.log({ res })
+>>>>>>> Stashed changes
     setValuesCountry(result?.data?.data)
   }, [])
 

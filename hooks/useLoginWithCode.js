@@ -23,7 +23,11 @@ const useLogin = () => {
         const { data } = await loginWithCode(payload)
 
         const { token, isFirstLogin } = data?.data
+<<<<<<< Updated upstream
         if (!token) return //console.log('error')
+=======
+        if (!token) return // console.log('error')
+>>>>>>> Stashed changes
 
         if (isFirstLogin) return router.replace(`/auth/change-first-password?t=${token}`)
 
@@ -31,10 +35,17 @@ const useLogin = () => {
         const response = await auth({ token, ...userInformation })
         if (response.status === 200) {
           Cookies.set(AXIOS_COOKIE, token)
+<<<<<<< Updated upstream
           return router.replace('/customer/personal-form/personal-data')
         }
       } catch (error) {
         //console.log(error)
+=======
+          return router.replace('/customer')
+        }
+      } catch (error) {
+        // console.log(error)
+>>>>>>> Stashed changes
         toast.error('error con el codigo')
       } finally {
         setIsLoading(false)

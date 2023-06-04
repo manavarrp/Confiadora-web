@@ -13,15 +13,19 @@
 }
 
 .textbox {
-  @apply border-0 px-5 h-10 rounded-xl shadow-sm text-lg;
+  @apply border-0 px-5 h-10 rounded-md shadow-lg text-lg;
   @apply focus:outline-none;
 }
 
 .btn {
-  @apply border bg-darkBlue w-3/4  h-12 rounded-lg text-white text-lg shadow-sm text-center p-1;
+  @apply border bg-darkBlue w-3/4  h-12 rounded-lg text-white text-lg shadow-xl text-center p-1;
   
 }
 
 .btn:hover {
   background-color: #1fb6ff;
+}
+
+.ant-table-thead .ant-table-cell {
+  background-color: green;
 }

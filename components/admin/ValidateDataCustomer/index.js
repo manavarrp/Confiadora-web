@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { useState } from 'react'
+=======
+/* import { useState } from 'react'
+>>>>>>> Stashed changes
 import Modal from '../../common/Modal'
 import FormDataCustomer from './FormDataCustomer'
 import HeaderPagesDashboard from '../../common/HeaderPagesDashboard'
@@ -87,3 +91,123 @@ const LoadUser = () => {
 }
 
 export default LoadUser
+<<<<<<< Updated upstream
+=======
+ */
+import { Table, Input } from 'antd'
+import { useEffect, useState } from 'react'
+import usePostListCustomCustomer from '../../../hooks/usePostListCustomCustomer'
+import { SearchOutlined } from '@ant-design/icons'
+import styles from '../../../styles/Username.module.css'
+
+function App () {
+  const [pageNumber, setPageNumber] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(5)
+  const [value, setSearchText] = useState('')
+  const [columnName, setSearchColumn] = useState('')
+  const { loading, postListCustomCustomer, listCustomer } = usePostListCustomCustomer()
+
+  useEffect(() => {
+    const payload = {
+      pageNumber, itemsPerPage
+    }
+    postListCustomCustomer(payload)
+  }, [pageNumber, itemsPerPage, postListCustomCustomer])
+
+  const handlePageChange = (current, pageSize) => {
+    setPageNumber(current)
+    setItemsPerPage(pageSize)
+    const payload = {
+      pageNumber, itemsPerPage
+    }
+    postListCustomCustomer(payload)
+  }
+
+  // console.log({ pageNumber, itemsPerPage })
+
+  function handleSearch (values, column) {
+    setSearchText(values)
+    setSearchColumn(column)
+    // console.log({ columnName, value })
+  }
+
+  useEffect(() => {
+    const payload = {
+
+      filters: [
+        {
+          columnName,
+          value
+        }
+      ]
+    }
+    console.log({ payload })
+    postListCustomCustomer(payload)
+  }, [columnName, value, postListCustomCustomer])
+  const columns = [
+
+    {
+      title: 'Nombres',
+      dataIndex: 'firstName',
+      sorter: (a, b) => a.firstName - b.firstName,
+      filterDropdown: () => { return <Input.Search placeholder='Search' onSearch={values => handleSearch(values, 'Fullname')} type='onSumit' /> },
+      filterIcon: () => {
+        return <SearchOutlined />
+      }
+
+    },
+    {
+      title: 'Apellidos',
+      dataIndex: 'firstLastName',
+      sorter: (a, b) => a.firstLastName - b.firstLastName,
+      filterDropdown: () => { return <Input.Search placeholder='Search' onSearch={values => handleSearch(values, 'Fullname')} type='onSumit' /> },
+      filterIcon: () => {
+        return <SearchOutlined />
+      }
+
+    }, {
+      title: 'Correo',
+      dataIndex: 'email',
+      sorter: (a, b) => a.name - b.name,
+      filterDropdown: () => { return <Input.Search placeholder='Search' onSearch={values => handleSearch(values, 'Email')} type='onSumit' /> },
+      filterIcon: () => {
+        return <SearchOutlined />
+      }
+
+    },
+    {
+      title: 'Telefono',
+      dataIndex: 'phoneNumber',
+      sorter: (a, b) => a.trips - b.trips
+    }
+  ]
+
+  const data = listCustomer?.paginatedData?.map(row => ({
+    firstName: row.firstName,
+    firstLastName: row.firstLastName,
+    email: row.email,
+    phoneNumber: row.phoneNumber
+
+  }))
+
+  return (
+    <form>
+      <div
+        className='flex flex-col mt-12'
+      >
+
+        <Table
+          loading={loading}
+          columns={columns}
+          dataSource={data}
+          pagination={{ current: pageNumber, pageSize: itemsPerPage, onChange: handlePageChange, total: 12 }}
+
+        />
+
+      </div>
+
+    </form>
+  )
+}
+export default App
+>>>>>>> Stashed changes

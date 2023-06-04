@@ -38,7 +38,13 @@ const FirstLogin = () => {
       await changePassword(payload)
       const response = await auth({ token, ...userInformation })
       if (response.status === 200) {
+<<<<<<< Updated upstream
         toast.success('Cambio realizadó con exito, ya puedes ingresar con tu nueva contraseña.')
+=======
+        toast.success(
+          'Cambio realizadó con exito, ya puedes ingresar con tu nueva contraseña.'
+        )
+>>>>>>> Stashed changes
         return router.replace('/auth/login')
       }
       // console.log('error')
@@ -51,12 +57,17 @@ const FirstLogin = () => {
     <>
       <div className='container mx-auto'>
         <div className='flex justify-center items-center h-screen'>
-          <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+          <div className='md:w-[400px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
             <Logo />
 
             <div className='title flex flex-col items-center'>
               <span className=' text-sm w-2/3 text-center text-gray mb-5'>
+<<<<<<< Updated upstream
                 Por favor ingresa la contraseña que se envió a tu correo y cambiala por una personal.
+=======
+                Por favor ingresa la contraseña que se envió a tu correo y
+                cambiala por una personal.
+>>>>>>> Stashed changes
               </span>
             </div>
             <form onSubmit={handleSubmit(firstLoginSubmit)}>

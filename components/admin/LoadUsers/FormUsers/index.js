@@ -3,6 +3,10 @@ import styles from '../../../../styles/Username.module.css'
 import Input from '../../../common/Input'
 import { useEffect } from 'react'
 import usePutDataCustomer from '../../../../hooks/usePutDataCustomer'
+<<<<<<< Updated upstream
+=======
+import { Loading } from '../../../common/Loading'
+>>>>>>> Stashed changes
 
 const DEFAUL_VALUES = {
   fullName: '',
@@ -42,6 +46,10 @@ function RegisterForms ({ users, close }) {
       response && close()
     })
   }
+<<<<<<< Updated upstream
+=======
+  if (loading) return <Loading />
+>>>>>>> Stashed changes
   return (
     <form>
       <div className='flex justify-around text-darkBlue mb-5'>
@@ -56,7 +64,11 @@ function RegisterForms ({ users, close }) {
             type='text'
             placeholder='Primer nombre'
             className={styles.textbox}
+<<<<<<< Updated upstream
             name='fullName'
+=======
+            name='firstName'
+>>>>>>> Stashed changes
             register={register}
           />
           <Input

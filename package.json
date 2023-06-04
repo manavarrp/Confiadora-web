@@ -9,13 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
     "@hookform/resolvers": "^2.9.7",
     "@reduxjs/toolkit": "^1.9.1",
+    "@table-library/react-table-library": "^4.1.4",
+    "antd": "^5.4.7",
     "axios": "^1.2.3",
     "dayjs": "^1.11.7",
+<<<<<<< Updated upstream
     "formik": "^2.2.9",
+=======
+>>>>>>> Stashed changes
     "js-cookie": "^3.0.1",
     "js-cookies": "^1.0.4",
     "jwt-decode": "^3.1.2",
@@ -24,10 +30,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
+<<<<<<< Updated upstream
+=======
+    "react-emotion": "^10.0.0",
+>>>>>>> Stashed changes
     "react-hook-form": "^7.34.2",
     "react-hot-toast": "^2.4.0",
     "react-redux": "^8.0.5",
-    "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.1",
     "redux-devtools-extension": "^2.13.9",
     "styled-components": "^5.3.10",

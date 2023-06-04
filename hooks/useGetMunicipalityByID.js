@@ -9,7 +9,11 @@ const useGetMunicipalityByID = () => {
   const GetDataMunicipality = useCallback(async (id) => {
     const result = await GetMunicipalityById(id)
     setOptions(result?.data.data)
+<<<<<<< Updated upstream
     //console.log(result, 'result')
+=======
+    // console.log(result, 'result')
+>>>>>>> Stashed changes
   }, [])
 
   return { GetDataMunicipality, optionsMunicipality }

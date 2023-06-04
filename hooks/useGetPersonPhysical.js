@@ -1,11 +1,18 @@
+<<<<<<< Updated upstream
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+=======
+import { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+>>>>>>> Stashed changes
 import {
   physicalPersonGet,
   GetList,
   GetMunicipalityById,
   GetCitiesById,
+<<<<<<< Updated upstream
   GetNeighborhoodsById,
 } from "../services/api";
 import { setAllPersonPhysicalForm } from "../features/physicalPersonForm/ppFormSlice";
@@ -59,6 +66,61 @@ const useGetPersonPhysical = () => {
         ? await GetNeighborhoodsById(domicileCityId)
         : DEFAULT_RESPONSE;
       //console.log(data, 'data')
+=======
+  GetNeighborhoodsById
+} from '../services/api'
+import { setAllPersonPhysicalForm } from '../features/physicalPersonForm/ppFormSlice'
+import { useSession } from 'next-auth/react'
+
+const DEFAULT_RESPONSE = {
+  data: {
+    data: []
+  }
+}
+
+const useGetPersonPhysical = () => {
+  const state = useSelector((state) => state.physicalPersonForm)
+  const { data } = useSession()
+  const userId = data.user.sub
+  const [loading, setLoading] = useState(() => !state.personalData)
+  // //console.log(loading)
+  // //console.log(state, "state");
+  // //console.log(physical, "physical");
+  const dispatch = useDispatch()
+
+  const getPersonPhysicalData = useCallback(async () => {
+    try {
+      setLoading(true)
+      const {
+        data: { data: states }
+      } = await GetList('states')
+      const {
+        data: { data: countries }
+      } = await GetList('countries')
+      const {
+        data: { data: economicActivities }
+      } = await GetList('economic-activities')
+
+      const { data } = await physicalPersonGet(userId)
+      const { domicileStateId, domicileMunicipalityId, domicileCityId } =
+        data?.addressInformation || {}
+      const {
+        data: { data: municipalities }
+      } = domicileStateId
+        ? await GetMunicipalityById(domicileStateId)
+        : DEFAULT_RESPONSE
+      const {
+        data: { data: cities }
+      } = domicileMunicipalityId
+        ? await GetCitiesById(domicileMunicipalityId)
+        : DEFAULT_RESPONSE
+      const {
+        data: { data: neighborhoods }
+      } = domicileCityId
+        ? await GetNeighborhoodsById(domicileCityId)
+        : DEFAULT_RESPONSE
+      // console.log(data, 'data')
+>>>>>>> Stashed changes
       // console.log(countries, 'countries')
       dispatch(
         setAllPersonPhysicalForm({
@@ -68,16 +130,29 @@ const useGetPersonPhysical = () => {
           neighborhoods,
           states,
           countries,
+<<<<<<< Updated upstream
           economicActivities,
         })
       );
     } catch (error) {
       // console.log(error, 'error')
       return toast.error(error.response.data.message);
+=======
+          economicActivities
+        })
+      )
+    } catch (error) {
+      // console.log(error, 'error')
+      return toast.error(error.response.data.message)
+>>>>>>> Stashed changes
     } finally {
       setLoading(false);
     }
+<<<<<<< Updated upstream
   }, [dispatch, userId]);
+=======
+  }, [dispatch, userId])
+>>>>>>> Stashed changes
 
   useEffect(() => {
     if (!state.personalData) {

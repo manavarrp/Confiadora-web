@@ -1,9 +1,18 @@
+<<<<<<< Updated upstream
 import React, { useState } from 'react'
 import { UserPlusIcon, UsersIcon } from '@heroicons/react/20/solid'
+=======
+import React, { useEffect, useState } from 'react'
+import { UserPlusIcon } from '@heroicons/react/20/solid'
+>>>>>>> Stashed changes
 import FormCreateConsultant from './FormCreateConsultant'
 import FormEditConsultant from './FormEditConsultant'
 import Modal from '../../common/Modal'
 import HeaderPagesDashboardButt from '../../../components/common/HeaderPagesDashboardButt'
+<<<<<<< Updated upstream
+=======
+import { Table } from 'antd'
+>>>>>>> Stashed changes
 
 const TableDataMock = [{
   id: 1,
@@ -36,6 +45,46 @@ const CreateConsultant = () => {
   const [open, setOpen] = useState(false)
 
   const [openEdit, setOpenEdit] = useState(false)
+<<<<<<< Updated upstream
+=======
+
+  const [dataSource, setDataSource] = useState([])
+
+  const columns = [{
+    title: 'ID',
+    dataIndex: 'id'
+  },
+  {
+    title: 'NOMBRE',
+    dataIndex: 'fullName'
+  },
+  {
+    title: 'EMAIL',
+    dataIndex: 'email',
+    sorter: (a, b) => a.email > b.email
+  },
+  {
+    title: 'EMPRESA',
+    dataIndex: 'company'
+  },
+  {
+    title: 'TELEFONO',
+    dataIndex: 'phone'
+  },
+  {
+    title: 'ACCIONES',
+    dataIndex: 'acciones'
+  }]
+
+  useEffect(() => {
+    setDataSource(TableDataMock)
+  }, [])
+
+  // console.log({ dataSource })
+  const data = dataSource.map(row => ({ id: row.id, fullName: row.fullName, email: row.email, company: row.company, phone: row.phone }))
+
+  // console.log({ data })
+>>>>>>> Stashed changes
   return (
     <>
       <div className='flex justify-between mt-8'>
@@ -51,6 +100,21 @@ const CreateConsultant = () => {
         </button>
 
       </div>
+<<<<<<< Updated upstream
+=======
+      <div className='bg-white h-auto shadow-sm mt-4'>
+        <div className='overflow-x-auto md:col-span-3'>
+
+          <div className='overflow-x-auto items-center'>
+            <Table
+              columns={columns} dataSource={data} pagination={{
+                pageSize: 50
+              }}
+            />
+          </div>
+        </div>
+      </div>
+>>>>>>> Stashed changes
 
       <div className='bg-white h-auto shadow-sm mt-4'>
         <div className='overflow-x-auto md:col-span-3'>

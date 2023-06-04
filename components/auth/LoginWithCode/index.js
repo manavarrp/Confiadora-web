@@ -29,6 +29,7 @@ const LoginWithCode = () => {
     await login(payload)
   }
 
+<<<<<<< Updated upstream
   const resentCodeOtp = () => {
 
   }
@@ -36,6 +37,12 @@ const LoginWithCode = () => {
   return (
 
     <div className='md:w-[350px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center '>
+=======
+  const resentCodeOtp = () => {}
+
+  return (
+    <div className='md:w-[350px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center '>
+>>>>>>> Stashed changes
       <div className='title flex flex-col items-center'>
         <Logo />
         <span className='text-xl w-2/3 text-center text-gray'>OTP</span>
@@ -53,11 +60,15 @@ const LoginWithCode = () => {
             register={register}
           />
 
+<<<<<<< Updated upstream
           <button
             type='submit'
             className={styles.btn}
             disabled={isLoading}
           >
+=======
+          <button type='submit' className={styles.btn} disabled={isLoading}>
+>>>>>>> Stashed changes
             {isLoading ? 'Cargando...' : 'Enviar'}
           </button>
           <div className='text-center py-2 text-gray'>

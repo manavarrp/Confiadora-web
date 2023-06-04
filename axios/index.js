@@ -4,10 +4,17 @@ import { toast } from "react-toastify";
 import { AXIOS_COOKIE } from "../config";
 import { onLogout } from "../utils/auth";
 
+<<<<<<< Updated upstream
 const HOSTED_API_URL =
   "http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/";
 //const HOSTED_API_URL = 'https://localhost:44302/api/v1'
 const CURRENT_API_URL = HOSTED_API_URL;
+=======
+// const HOSTED_API_URL =
+// 'http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/'
+const HOSTED_API_URL = 'https://localhost:44302/api/v1'
+const CURRENT_API_URL = HOSTED_API_URL
+>>>>>>> Stashed changes
 
 const createInstace = () => {
   const instance = axios.create({
@@ -25,6 +32,7 @@ const createInstace = () => {
       return response;
     },
     function (error) {
+<<<<<<< Updated upstream
       if (error?.message === "Error de conexión") {
         toast.error("Error de conexión");
         return;
@@ -36,10 +44,25 @@ const createInstace = () => {
       }
 
       return Promise.reject(error);
+=======
+      if (error?.message === 'Error de conexión') {
+        toast.error('Error de conexión')
+      }
+      if (error?.response?.status === 401) {
+        toast.error('Sessión expirada')
+        onLogout()
+      }
+      return Promise.reject(error)
+>>>>>>> Stashed changes
     }
   );
   return instance;
 };
 
+<<<<<<< Updated upstream
 export { CURRENT_API_URL };
 export default createInstace;
+=======
+export { CURRENT_API_URL }
+export default createInstace
+>>>>>>> Stashed changes

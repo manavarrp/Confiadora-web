@@ -28,7 +28,11 @@ const Login = () => {
 
   // const router = useRouter();
 
+<<<<<<< Updated upstream
   //console.log({ data })
+=======
+  // console.log({ data })
+>>>>>>> Stashed changes
 
   /*
   const { authDetails, isLoading, isSuccess, twoFactor, isError } = useSelector(
@@ -51,7 +55,7 @@ const Login = () => {
 
   return (
     <div className='flex flex-col justify-between flex-no-wrap'>
-      <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center '>
+      <div className='md:w-[400px]  shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center shadow-2xl'>
         <div className='title flex flex-col items-center'>
           <Logo />
           <span className=' text-center text-gray ml-6'>

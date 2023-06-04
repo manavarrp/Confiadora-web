@@ -14,7 +14,11 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 
 const Reset = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
     resolver: yupResolver(resetSchema),
     initialValues: {
       email: ''
@@ -29,7 +33,11 @@ const Reset = () => {
     const payload = {
       email: data.email
     }
+<<<<<<< Updated upstream
     //console.log(payload)
+=======
+    // console.log(payload)
+>>>>>>> Stashed changes
     await authService.forgotPasswordRequest(payload)
     if (isError) {
       toast.error('Ocurrió un error')
@@ -46,12 +54,10 @@ const Reset = () => {
 
   return (
     <>
-      <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-10 my-auto items-center'>
+      <div className='md:w-[400px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-10 my-auto items-center'>
         <div className='title flex flex-col items-center'>
           <Logo />
-          <span className='text-xl w-2/3 text-center text-gray'>
-            Recuperar
-          </span>
+          <span className='text-xl w-2/3 text-center text-gray'>Recuperar</span>
         </div>
         <form onSubmit={handleSubmit(onForgotPasswordFormSubmitted)}>
           <div className='textbox flex flex-col items-center gap-6'>
@@ -67,11 +73,7 @@ const Reset = () => {
               error={errors?.email?.message}
             />
 
-            <button
-              type='submit'
-              className={styles.btn}
-              disabled={isLoading}
-            >
+            <button type='submit' className={styles.btn} disabled={isLoading}>
               {isLoading ? 'Cargando' : 'Enviar'}
             </button>
           </div>

@@ -11,11 +11,19 @@ const useGetListCustomer = () => {
   const getListCustomer = useCallback(async () => {
     try {
       // await changePassword(payload)
+<<<<<<< Updated upstream
       setLoading(false)
+=======
+
+>>>>>>> Stashed changes
       const response = await listCustomerGet()
       console.log({ response })
       setListCustomer(response)
       console.log({ listCustomer })
+<<<<<<< Updated upstream
+=======
+      setLoading(false)
+>>>>>>> Stashed changes
       //  toast.success('Cambio realizadó con exito, ya puedes ingresar con tu nueva contraseña.')
     } catch (e) {
     // console.log('error')

@@ -59,7 +59,11 @@ const Register = () => {
   const onBlurData = (event) => {
     // //console.log(event.target.name);
     // //console.log(event.target.value);
+<<<<<<< Updated upstream
     const { name, value } = event.target;
+=======
+    const { name, value } = event.target
+>>>>>>> Stashed changes
     // //console.log(localDirtyData[name], value);
     if (localDirtyData[name] && localDirtyData[name] !== value) {
       setValue("canRegister", false);
@@ -69,6 +73,7 @@ const Register = () => {
     }
   };
 
+<<<<<<< Updated upstream
   const GetCurpCalculation = useGetCurpCalculation();
   // //console.log(formData);
   const values = getValues();
@@ -77,6 +82,16 @@ const Register = () => {
   // //console.log(values.canRegister);
   watch(["hasAgreementCode"]);
   const [getIdIden, setGetId] = useState("");
+=======
+  const GetCurpCalculation = useGetCurpCalculation()
+  // //console.log(formData);
+  const values = getValues()
+  console.log(errors)
+  // //console.log(values.canRegister);
+  // //console.log(values.canRegister);
+  watch(['hasAgreementCode'])
+  const [getIdIden, setGetId] = useState('')
+>>>>>>> Stashed changes
 
   const identiTypes = idTypes.data;
 
@@ -85,7 +100,11 @@ const Register = () => {
     setGetId(getId);
     resetField("identificationNumber");
 
+<<<<<<< Updated upstream
     setValue("canRegister", getId === "08db3d0b-68af-455c-8739-fecbdd4a0186");
+=======
+    setValue('canRegister', getId === '08db4684-6396-4464-85e1-42fbff98e0e4')
+>>>>>>> Stashed changes
 
     // //console.log(identificationTypeRef.current);
 
@@ -124,13 +143,22 @@ const Register = () => {
   };
   useEffect(() => {
     if (isSuccess) {
+<<<<<<< Updated upstream
       router.push("/auth/login");
+=======
+      router.push('/auth/login')
+>>>>>>> Stashed changes
     }
   }, [isSuccess, router]);
   return (
     <>
+<<<<<<< Updated upstream
       <div className="md:w-[500px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center">
         <div className="title flex flex-col items-center">
+=======
+      <div className='md:w-[500px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+        <div className='title flex flex-col items-center'>
+>>>>>>> Stashed changes
           <Logo />
           <span className=" text-center text-gray ml-6">
             Credito al alcance de todos
@@ -171,9 +199,15 @@ const Register = () => {
                   </span>
                 )}
               </div>
+<<<<<<< Updated upstream
               {getIdIden === "08db3d0b-68a4-4e71-84bc-b1c7370be308" && (
                 <div className="flex flex-col justify-center w-full gap-6 ">
                   <div className="flex justify-center">
+=======
+              {getIdIden === '08db4684-6390-4a56-80e2-cad9fe442805' && (
+                <div className='flex flex-col justify-center w-full gap-6 '>
+                  <div className='flex justify-center'>
+>>>>>>> Stashed changes
                     <button
                       type="submit"
                       className={styles.btn}
@@ -203,9 +237,15 @@ const Register = () => {
                   />
                 </div>
               )}
+<<<<<<< Updated upstream
               {getIdIden === "08db3d0b-68af-455c-8739-fecbdd4a0186" && (
                 <div className=" flex flex-col items-center gap-6 ">
                   <label className="w-full flex justify-center mt-2">
+=======
+              {getIdIden === '08db4684-6396-4464-85e1-42fbff98e0e4' && (
+                <div className=' flex flex-col items-center gap-6 '>
+                  <label className='w-full flex justify-center mt-2'>
+>>>>>>> Stashed changes
                     Por favor ingresa tu numero de extranjeria
                   </label>
                   <input

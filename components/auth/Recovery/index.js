@@ -28,9 +28,7 @@ const ResetPasswordConfirm = () => {
 
   const router = useRouter()
 
-  const { isSuccess, isLoading } = useSelector(
-    (state) => state.auth
-  )
+  const { isSuccess, isLoading } = useSelector((state) => state.auth)
 
   const onForgotPasswordFormSubmitted = async (data) => {
     const payload = {
@@ -41,11 +39,19 @@ const ResetPasswordConfirm = () => {
 
     try {
       const response = await authService.passwordResetConfirm(payload)
+<<<<<<< Updated upstream
       //console.log(response)
       toast.success('Contraseña cambiada con exito')
       router.push('/login')
     } catch (e) {
       //console.log(e)
+=======
+      // console.log(response)
+      toast.success('Contraseña cambiada con exito')
+      router.push('/login')
+    } catch (e) {
+      // console.log(e)
+>>>>>>> Stashed changes
       toast.error('A ocurrido un error')
     }
   }
@@ -58,8 +64,12 @@ const ResetPasswordConfirm = () => {
 
   return (
     <>
+<<<<<<< Updated upstream
 
       <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+=======
+      <div className='md:w-[400px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+>>>>>>> Stashed changes
         <Logo />
         <div className='title flex flex-col items-center'>
           <span className=' text-xl w-2/3 text-center text-gray'>
@@ -79,6 +89,7 @@ const ResetPasswordConfirm = () => {
               register={register}
               error={errors?.newPassword?.message}
             />
+<<<<<<< Updated upstream
 
             <Input
               type='text'
@@ -99,7 +110,24 @@ const ResetPasswordConfirm = () => {
           </div>
         </form>
       </div>
+=======
+>>>>>>> Stashed changes
 
+            <Input
+              type='text'
+              placeholder='Confirmar Contraseña'
+              className={styles.textbox}
+              name='confirmPassword'
+              register={register}
+              error={errors?.confirmPassword?.message}
+            />
+
+            <button type='submit' className={styles.btn} disabled={isLoading}>
+              {isLoading ? 'cargando' : 'Cambiar'}
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   )
 }
