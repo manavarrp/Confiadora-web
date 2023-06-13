@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import { AXIOS_COOKIE } from '../config'
 
 const loginService = (payload) => {
-  return globalAxios.post('auth/login/', payload)
+  return globalAxios().post('auth/login/', payload)
 }
 
 const useLogin = () => {
@@ -20,27 +20,29 @@ const useLogin = () => {
       try {
         setIsLoading(true)
         const { data } = await loginService(payload)
-        console.log(data)
+        // console.log({ data })
 
         if (data.data === true) {
           return router.replace(`/auth/two-factor-auth?e=${payload?.UserName}`)
         }
 
-        const { token, isFirstLogin } = data?.data
+        const { token, isFirstLogin, acceptedTerms = true } = data?.data
 
-        if (!token) return console.log('error')
+        // const { token, isFirstLogin, acceptedTerms } = data?.data
 
-        if (isFirstLogin) return router.replace(`/auth/change-first-password?t=${token}`)
+        if (!token) return // console.log('error')
+
+        if (isFirstLogin) return router.replace(`/auth/change-first-password?t=${token}&term=${acceptedTerms}`)
 
         const userInformation = decodeToken(token) || {}
         const response = await auth({ token, ...userInformation })
         if (response.status === 200) {
           Cookies.set(AXIOS_COOKIE, token)
-          return router.replace('/admin/dashboard')
+          return router.replace('/customer/personal-form/personal-data')
         }
       } catch (error) {
-        console.log(error)
-        toast.error(error.response.data.message)
+        // console.log(error)
+        toast.error(error?.response?.data?.message)
       } finally {
         setIsLoading(false)
       }

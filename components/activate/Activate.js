@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Footer from '../footer/Footer'
 import Logo from '../../common/logo'
 import { useSelector } from 'react-redux'
-import authService from '../../featuress/auth/authServices'
+import authService from '../../features/auth/authServices'
 
 const Activate = () => {
   const { isLoading } = useSelector((state) => state.auth)

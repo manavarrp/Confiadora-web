@@ -1,74 +1,43 @@
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import styles from "../../../styles/Username.module.css";
-import Input from "../../common/Input";
-import Select from "../../common/Select";
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
 
-function RegisterForms() {
-  const router = useRouter();
+import FullAddress from '../../FullAddress'
+
+function RegisterForms () {
+  // const router = useRouter()
   const {
     register,
-    handleSubmit,
+    handleSubmit
     // formState: { errors }
   } = useForm({
     // resolver: yupResolver(loginSchema),
     initialValues: {
-      UserName: "",
-      Password: "",
-    },
-  });
+      UserName: '',
+      Password: ''
+    }
+  })
 
-  const onSubmitPersonFormNext = () => {
-    router.push("/customer/personal-form/work-data");
-  };
-
+  /*  const onSubmitPersonFormNext = () => {
+    router.push('/customer/personal-form/work-data')
+  }
+ */
   return (
-    <div className="">
-      <form className="mx-auto max-w-screen-md">
-        <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
-          <Input
-            type="text"
-            placeholder="Número exterior"
-            className={styles.textbox}
-            name="firstName"
-            register={register}
-
-            // error={errors?.firstName?.message}
-          />
-          <Input
-            type="text"
-            placeholder="Número interior"
-            className={styles.textbox}
-            name="secondName"
-            register={register}
-
-            // error={errors?.secondName?.message}
-          />
+    <div className=''>
+      <form className='mx-auto max-w-screen-md'>
+        <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
+          <FullAddress />
         </div>
-
-        <div className="flex flex-col w-full mb-3 gap-3 sm:flex-row">
-          <Input
-            type="text"
-            placeholder="Código Postal"
-            className={styles.textbox}
-            name="birthDate"
-            register={register}
-
-            // error={errors?.birthDate?.message}
-          />
-        </div>
-
-        <div className="flex justify-between mt-5">
+        <div className='flex justify-between mt-5'>
           <button
-            type="submit"
-            className=" border bg-blue w-1/4 py-4 rounded-lg text-white text-xl shadow-sm text-center"
+            type='submit'
+            className=' border bg-blue w-1/4 py-4 rounded-lg text-white text-xl shadow-sm text-center'
           >
             Confirmar
           </button>
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default RegisterForms;
+export default RegisterForms

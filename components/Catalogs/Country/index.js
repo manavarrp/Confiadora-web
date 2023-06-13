@@ -1,7 +1,6 @@
-import styles from '../../../../styles/Username.module.css'
+import styles from '../../../styles/Username.module.css'
 import { useFormContext } from 'react-hook-form'
-import Select from '../../../common/Select'
-
+import Selects from '../../../components/common/Selects'
 import useGetCountry from '../../../hooks/useGetCountry'
 
 const Country = () => {
@@ -9,26 +8,26 @@ const Country = () => {
 
   const {
     register,
-    getValues,
-    formState: { errors }
+    getValues
+    // formState: { errors }
   } = useFormContext()
 
   const handleCountry = (event) => {
     const getId = event.target.value
-    // console.log(getId);
+    // //console.log(getId);
     getValues(getId)
   }
 
   return (
     <div>
-      <Select
+      <Selects
         className={styles.textbox}
         onChange={handleCountry}
         register={register}
-        name='genderId'
-        options={valuesCity?.data}
-        emptyOptions='Sexo'
-        error={errors?.genderId?.message}
+        name='birthCountryId'
+        options={valuesCity}
+        emptyOptions='País de Nacimiento'
+        // error={errors?.genderId?.message}
       />
     </div>
   )

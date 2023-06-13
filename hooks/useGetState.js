@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import { GetList } from '../services/api'
+import { useSelector } from 'react-redux'
 
 const useGetState = () => {
-  const [valuesGender, setValuesGender] = useState([])
+  const state = useSelector((state) => state.physicalPersonForm)
+  const [valuesState, setValuesState] = useState(() => state.states)
 
   const GetData = useCallback(async () => {
     const result = await GetList('states')
-    setValuesGender(result?.data)
+    setValuesState(result?.data?.data)
   }, [])
-
   useEffect(() => {
-    GetData()
-  }, [GetData])
-  return valuesGender
+    if (!state.states) { GetData() }
+  }, [GetData, state.states])
+  return valuesState
 }
 
 export default useGetState

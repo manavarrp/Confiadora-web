@@ -57,10 +57,10 @@ const Register = () => {
   } = methods
 
   const onBlurData = (event) => {
-    // console.log(event.target.name);
-    // console.log(event.target.value);
+    // //console.log(event.target.name);
+    // //console.log(event.target.value);
     const { name, value } = event.target
-    // console.log(localDirtyData[name], value);
+    // //console.log(localDirtyData[name], value);
     if (localDirtyData[name] && localDirtyData[name] !== value) {
       setValue('canRegister', false)
       setValue('identificationNumber', '')
@@ -70,11 +70,11 @@ const Register = () => {
   }
 
   const GetCurpCalculation = useGetCurpCalculation()
-  // console.log(formData);
+  // //console.log(formData);
   const values = getValues()
   console.log(errors)
-  // console.log(values.canRegister);
-  // console.log(values.canRegister);
+  // //console.log(values.canRegister);
+  // //console.log(values.canRegister);
   watch(['hasAgreementCode'])
   const [getIdIden, setGetId] = useState('')
 
@@ -85,15 +85,15 @@ const Register = () => {
     setGetId(getId)
     resetField('identificationNumber')
 
-    setValue('canRegister', getId === '08db0949-ff18-4dc9-87c2-23d43aaa271b')
+    setValue('canRegister', getId === '08db4684-6396-4464-85e1-42fbff98e0e4')
 
-    // console.log(identificationTypeRef.current);
+    // //console.log(identificationTypeRef.current);
 
     // getValues(getId);
   }
 
   const submitFormCurp = async (data) => {
-    // console.log(data);
+    // //console.log(data);
     const payload = {
       firstName: data.firstName,
       secondName: data.secondName,
@@ -112,11 +112,11 @@ const Register = () => {
   }
 
   // const result = message;
-  // console.log(localDirtyData);
+  // //console.log(localDirtyData);
 
-  // console.log(message.data);
+  // //console.log(message.data);
   const submitFormRegister = async (data) => {
-    // console.log(data);
+    // //console.log(data);
 
     dispatch(registerUser(data))
 
@@ -124,12 +124,12 @@ const Register = () => {
   }
   useEffect(() => {
     if (isSuccess) {
-      router.push('/login')
+      router.push('/auth/login')
     }
   }, [isSuccess, router])
   return (
     <>
-      <div className='md:w-[500px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+      <div className='md:w-[500px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
         <div className='title flex flex-col items-center'>
           <Logo />
           <span className=' text-center text-gray ml-6'>
@@ -152,7 +152,7 @@ const Register = () => {
                   <States onBlurData={onBlurData} />
                 </div>
               </div>
-              <div className='flex flex-col justify-center  w-full mb-3'>
+              <div className='flex flex-col justify-center w-full mb-3'>
                 <select
                   className={styles.textbox}
                   onChange={(e) => handleIdentificationTypes(e)}
@@ -171,7 +171,7 @@ const Register = () => {
                   </span>
                 )}
               </div>
-              {getIdIden === '08db0949-ff0f-42f1-8a22-e6787570f3da' && (
+              {getIdIden === '08db4684-6390-4a56-80e2-cad9fe442805' && (
                 <div className='flex flex-col justify-center w-full gap-6 '>
                   <div className='flex justify-center'>
                     <button
@@ -203,7 +203,7 @@ const Register = () => {
                   />
                 </div>
               )}
-              {getIdIden === '08db0949-ff18-4dc9-87c2-23d43aaa271b' && (
+              {getIdIden === '08db4684-6396-4464-85e1-42fbff98e0e4' && (
                 <div className=' flex flex-col items-center gap-6 '>
                   <label className='w-full flex justify-center mt-2'>
                     Por favor ingresa tu numero de extranjeria

@@ -122,13 +122,13 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    reset: (state) => {
+    /*  reset: (state) => {
       (state.isError = false),
       (state.twoFactor = false),
       (state.isSuccess = false),
       (state.isLoading = false),
       (state.message = '')
-    },
+    }, */
     resetAuthDetails: (state) => {
       state.authDetails = null
     },
@@ -138,7 +138,7 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(login.pending, (state, action) => {
+    /*  .addCase(login.pending, (state, action) => {
         state.isLoading = true
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -156,7 +156,7 @@ export const authSlice = createSlice({
         toast.error(action.payload)
         /*  if (action.payload.includes("New browser")) {
           state.twoFactor = true;
-        } */
+        }
       })
       // isFirsloggin
       .addCase(firstLogin.pending, (state, action) => {
@@ -166,7 +166,7 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.authDetails = { ...state.authDetails, firstLogin: true }
-        // console.log(action)
+        // //console.log(action)
         toast.success('Bienvenido')
       })
       .addCase(firstLogin.rejected, (state, action) => {
@@ -212,7 +212,7 @@ export const authSlice = createSlice({
         state.message = action.payload
         state.user = null
         toast.error(action.payload)
-      })
+      }) */
 
       // Register User
       .addCase(registerUser.pending, (state) => {
@@ -222,8 +222,8 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.isLoggedIn = true
-        toast.success('Registro con exito!')
-        console.log(action.payload)
+        toast.success('Se ha enviado un correo electrónico con las credenciales de ingreso y un enlace de confirmación.')
+        //console.log(action.payload)
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false

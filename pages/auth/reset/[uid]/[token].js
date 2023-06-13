@@ -1,10 +1,12 @@
 import React from 'react'
 import Recovery from '../../../../components/auth/Recovery'
+import Footer from '../../../../components/Footer'
 
 const ConfirmPassword = () => {
   return (
     <>
       <Recovery />
+      <Footer />
     </>
   )
 }

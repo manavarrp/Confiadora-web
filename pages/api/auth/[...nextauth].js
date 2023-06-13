@@ -1,6 +1,7 @@
 
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { decodeToken } from '../../../utils/decodeToken'
 
 const authOptions = {
   providers: [
@@ -28,7 +29,9 @@ const authOptions = {
     async jwt ({ token, user }) {
       if (user) {
         const { token: accessToken, name, isFirstLogin } = user
-        token = { ...token, user: { name, isFirstLogin }, accessToken }
+        const userInformation = decodeToken(accessToken) ?? {}
+
+        token = { ...token, user: { name, isFirstLogin, ...userInformation }, accessToken }
       }
 
       return token

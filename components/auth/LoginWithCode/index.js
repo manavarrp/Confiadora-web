@@ -6,6 +6,7 @@ import Logo from '../../common/Logo'
 import Input from '../../common/Input'
 import Link from 'next/link'
 import useLoginWithCode from '../../../hooks/useLoginWithCode'
+import { useSession } from 'next-auth/react'
 
 const LoginWithCode = () => {
   const router = useRouter()
@@ -15,6 +16,8 @@ const LoginWithCode = () => {
   })
 
   const { e } = router.query
+
+  const { data } = useSession()
 
   const { login, isLoading } = useLoginWithCode()
 
@@ -26,50 +29,41 @@ const LoginWithCode = () => {
     await login(payload)
   }
 
-  return (
-    <div>
-      {' '}
-      <div className='container mx-auto'>
-        <div className='flex justify-center items-center h-screen'>
-          <div className={styles.glass}>
-            <div className='title flex flex-col items-center'>
-              <Logo />
-              <span className='text-xl w-2/3 text-center text-gray'>OTP</span>
-            </div>
-            <form onSubmit={handleSubmit(userLoginWithCode)}>
-              <div className='textbox flex flex-col items-center gap-6'>
-                <span className='py-4 text-sm text-left text-gray'>
-                  Ingresa el codigo de 6 digitos de tu correo
-                </span>
-                <Input
-                  type='text'
-                  placeholder='Codigo OTP'
-                  className={styles.textbox}
-                  name='twoFactorAuthenticationToken'
-                  register={register}
-                />
+  const resentCodeOtp = () => {}
 
-                <button
-                  type='submit'
-                  className={styles.btn}
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Cargando...' : 'Enviar'}
-                </button>
-                <div className='text-center py-2 text-gray'>
-                  <span>
-                    ¿ No llegó el codigo ?
-                    <Link className='text-darkBlue' href='/reset'>
-                      {' '}
-                      Re-enviar
-                    </Link>
-                  </span>
-                </div>
-              </div>
-            </form>
+  return (
+    <div className='md:w-[350px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center '>
+      <div className='title flex flex-col items-center'>
+        <Logo />
+        <span className='text-xl w-2/3 text-center text-gray'>OTP</span>
+      </div>
+      <form onSubmit={handleSubmit(userLoginWithCode)}>
+        <div className='textbox flex flex-col items-center gap-6'>
+          <span className='py-4 text-sm  text-gray text-center'>
+            Ingresa el codigo de 6 digitos enviado a tu correo
+          </span>
+          <Input
+            type='text'
+            placeholder='Codigo OTP'
+            className={styles.textbox}
+            name='twoFactorAuthenticationToken'
+            register={register}
+          />
+
+          <button type='submit' className={styles.btn} disabled={isLoading}>
+            {isLoading ? 'Cargando...' : 'Enviar'}
+          </button>
+          <div className='text-center py-2 text-gray'>
+            {/*  <span>
+              ¿ No llegó el codigo ?
+              <Link className='text-darkBlue' href='' onClick={resentCodeOtp}>
+                {' '}
+                Re-enviar
+              </Link>
+            </span> */}
           </div>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

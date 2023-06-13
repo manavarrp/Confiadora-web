@@ -10,15 +10,21 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { resetSchema } from '../../../utils/formSchema/resetSchema'
 import Footer from '../../Footer'
+import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
 const Reset = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
     resolver: yupResolver(resetSchema),
     initialValues: {
       email: ''
     }
   })
-
+  const { data } = useSession()
   const router = useRouter()
 
   const { isLoading, isSuccess, isError } = useSelector((state) => state.auth)
@@ -27,7 +33,7 @@ const Reset = () => {
     const payload = {
       email: data.email
     }
-    console.log(payload)
+    // console.log(payload)
     await authService.forgotPasswordRequest(payload)
     if (isError) {
       toast.error('Ocurrió un error')
@@ -44,12 +50,10 @@ const Reset = () => {
 
   return (
     <>
-      <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-10 my-auto items-center'>
+      <div className='md:w-[400px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-10 my-auto items-center'>
         <div className='title flex flex-col items-center'>
           <Logo />
-          <span className='text-xl w-2/3 text-center text-gray'>
-            Recuperar
-          </span>
+          <span className='text-xl w-2/3 text-center text-gray'>Recuperar</span>
         </div>
         <form onSubmit={handleSubmit(onForgotPasswordFormSubmitted)}>
           <div className='textbox flex flex-col items-center gap-6'>
@@ -65,13 +69,18 @@ const Reset = () => {
               error={errors?.email?.message}
             />
 
-            <button
-              type='submit'
-              className={styles.btn}
-              disabled={isLoading}
-            >
+            <button type='submit' className={styles.btn} disabled={isLoading}>
               {isLoading ? 'Cargando' : 'Enviar'}
             </button>
+          </div>
+          <div className='text-center text-gray mt-2'>
+            <span>
+              ¿ Tienes tus datos ?
+              <Link className='text-darkBlue' href='/auth/login'>
+                {' '}
+                Ingresar
+              </Link>
+            </span>
           </div>
         </form>
       </div>

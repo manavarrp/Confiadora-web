@@ -1,10 +1,20 @@
-const Select = ({ className, onChange, options = [], emptyOptions, name, register }) => {
+const Select = ({
+  className,
+  onChange,
+  options = [],
+  emptyOptions,
+  name,
+  register,
+  error,
+  ...props
+}) => {
   return (
-    <div>
+    <div className='flex flex-col w-full'>
       <select
-        className={className}
         onChange={onChange}
+        className={className}
         {...register(name)}
+        {...props}
       >
         <option value=''>{emptyOptions}</option>
         {options.map((item) => (
@@ -13,6 +23,7 @@ const Select = ({ className, onChange, options = [], emptyOptions, name, registe
           </option>
         ))}
       </select>
+      {Boolean(error) && <span className='text-red'>{error}</span>}
     </div>
   )
 }

@@ -1,7 +1,13 @@
+import Footer from '../../../components/Footer'
 import LoginWithCode from '../../../components/auth/LoginWithCode'
 
 const TwoFactorAuth = () => {
-  return <LoginWithCode />
+  return (
+    <>
+      <LoginWithCode />
+      <Footer />
+    </>
+  )
 }
 
 export default TwoFactorAuth

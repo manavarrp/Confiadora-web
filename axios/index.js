@@ -4,8 +4,9 @@ import { toast } from 'react-toastify'
 import { AXIOS_COOKIE } from '../config'
 import { onLogout } from '../utils/auth'
 
-const HOSTED_API_URL = 'http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/'
-// const HOSTED_API_URL = 'https://f154-181-51-32-224.ngrok.io/api/v1/'
+// const HOSTED_API_URL =
+// 'http://ec2-54-221-177-27.compute-1.amazonaws.com/identitynomina/api/v1/'
+const HOSTED_API_URL = 'https://localhost:44302/api/v1'
 const CURRENT_API_URL = HOSTED_API_URL
 
 const createInstace = () => {
@@ -26,14 +27,11 @@ const createInstace = () => {
     function (error) {
       if (error?.message === 'Error de conexión') {
         toast.error('Error de conexión')
-        return
       }
       if (error?.response?.status === 401) {
         toast.error('Sessión expirada')
         onLogout()
-        return
       }
-
       return Promise.reject(error)
     }
   )
@@ -41,4 +39,4 @@ const createInstace = () => {
 }
 
 export { CURRENT_API_URL }
-export default createInstace()
+export default createInstace

@@ -1,51 +1,115 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../../features/auth/authSlice'
+import Input from '../common/Input'
+import styles from '../../styles/Username.module.css'
 
-const index = () => {
-  const { authDetails } = useSelector((state) => state.auth)
-  const dispatch = useDispatch()
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    formState: { errors }
-  } = useForm({
-    // resolver: yupResolver(loginSchema),
-    initialValues: {
-      userName: authDetails?.userName,
-      secondName: '',
-      firstLastName: '',
-      secondLastName: '',
-      email: authDetails?.email,
-      phoneNumber: '',
-      birthDate: '',
-      identificationNumber: '',
-      genderId: '',
-      new_password1: '',
-      new_password2: ''
-    }
-  })
+import useGetProfile from '../../hooks/useGetProfile'
+import Loading from '../common/Loading'
+import { Disclosure } from '@headlessui/react'
+import { ChevronUpIcon } from '@heroicons/react/20/solid'
+import ChangePasswordProfile from './ChangePasswordProfile'
+import { IdentificationIcon } from '@heroicons/react/24/solid'
+import HeaderPagesDashboard from '../common/HeaderPagesDashboard'
 
-  const values = getValues()
-  console.log(values)
-  useEffect(() => {
-    dispatch(getUser())
-  }, [dispatch])
+function RegisterForms () {
+  // const router = useRouter()
+
+  const { loading, profile } = useGetProfile()
+
+  if (loading) return <Loading />
 
   return (
     <>
-      <p className='text-gray-dark text-3xl mb-16 font-bold'>Mi Perfil</p>
-      <div className='grid lg:grid-cols-1 gap-5 mb-16'>
-        <div className='bg-white rounded h-20 shadow-sm '>
-          <h6>Primer Nombre: {values.userName}  {values.email}</h6>
+      <HeaderPagesDashboard
+        icon={<IdentificationIcon className='h-10 w-10' color='#477EFA' />}
+        title='Mi Perfil'
+      />
+      <div className='w-full  pt-16'>
+        <div className='mx-auto w-3/4  rounded-2xl bg-white p-2 sm:w-full shadow-2xl'>
+          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row sm:w-full'>
+            <div className='flex flex-col w-full'>
+              <label className='text-sm text-darkBlue'>Nombre Completo</label>
+              <Input
+                type='text'
+                placeholder='Nombres Completos'
+                className={styles.textbox}
+                value={profile?.fullName}
+                readOnly
+              />
+            </div>
+          </div>
 
+          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
+            <div className='flex flex-col w-full'>
+              <label className='text-sm text-darkBlue'>Correo</label>
+              <Input
+                type='text'
+                placeholder='Nombres Completos'
+                className={styles.textbox}
+                value={profile?.email}
+                readOnly
+              />
+            </div>
+            <div className='flex flex-col w-full'>
+              <label className='text-sm text-darkBlue'>
+                Número de telefono
+              </label>
+              <Input
+                type='text'
+                placeholder='Nombres Completos'
+                className={styles.textbox}
+                value={profile?.phoneNumber}
+                readOnly
+              />
+            </div>
+          </div>
+          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row'>
+            <div className='flex flex-col w-full'>
+              <label className='text-sm text-darkBlue'>Tipo de documento</label>
+              <Input
+                type='text'
+                placeholder='Nombres Completos'
+                className={styles.textbox}
+                value={profile?.identificationTypeName}
+                readOnly
+              />
+            </div>
+            <div className='flex flex-col w-full'>
+              <label className='text-sm text-darkBlue'>
+                Número de documento
+              </label>
+              <Input
+                type='text'
+                placeholder='Nombres Completos'
+                className={styles.textbox}
+                value={profile?.identificationNumber}
+                readOnly
+              />
+            </div>
+          </div>
+          <div className='flex flex-col w-full mb-3 gap-3 sm:flex-row' />
+
+          <Disclosure as='div' className='mt-2'>
+            {({ open }) => (
+              <>
+                <Disclosure.Button className='flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75'>
+                  <span className='text-darkBlue font-bold text-lg'>
+                    ¿Deseas cambiar la contraseña?
+                  </span>
+                  <ChevronUpIcon
+                    className={`${
+                      open ? 'rotate-180 transform' : ''
+                    } h-5 w-5 text-purple-500`}
+                  />
+                </Disclosure.Button>
+                <Disclosure.Panel className='px-4 pt-4 pb-2 text-sm text-gray-500'>
+                  <ChangePasswordProfile />
+                </Disclosure.Panel>
+              </>
+            )}
+          </Disclosure>
         </div>
       </div>
     </>
   )
 }
 
-export default index
+export default RegisterForms

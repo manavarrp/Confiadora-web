@@ -28,17 +28,17 @@ const Login = () => {
 
   // const router = useRouter();
 
-  console.log({ data })
+  // console.log({ data })
 
   /*
   const { authDetails, isLoading, isSuccess, twoFactor, isError } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
-  console.log(authDetails);
-
-  //console.log(errors);
   //console.log(authDetails);
+
+  ////console.log(errors);
+  ////console.log(authDetails);
   useEffect(() => {
     if (authDetails && isSuccess) {
       router.push("/profile");
@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <div className='flex flex-col justify-between flex-no-wrap'>
-      <div className='md:w-[400px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center '>
+      <div className='md:w-[400px]  shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center shadow-2xl'>
         <div className='title flex flex-col items-center'>
           <Logo />
           <span className=' text-center text-gray ml-6'>
@@ -97,7 +97,7 @@ const Login = () => {
           <div className='text-center py-2 text-gray'>
             <span>
               ¿ No eres usuario ?
-              <Link className='text-darkBlue' href='/register'>
+              <Link className='text-darkBlue' href='/auth/register'>
                 {' '}
                 Registrate ahora
               </Link>
@@ -106,7 +106,7 @@ const Login = () => {
           <div className='text-center text-gray'>
             <span>
               ¿ No recuerdas tu contraseña ?
-              <Link className='text-darkBlue' href='/reset'>
+              <Link className='text-darkBlue' href='/auth/reset'>
                 {' '}
                 Recuperala
               </Link>

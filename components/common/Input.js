@@ -2,13 +2,16 @@ const Input = ({
   type = 'text',
   placeholder = '',
   className,
-  register,
+  register = () => {
+  },
   name,
   error,
   fullwidth = true,
   ...props
 }) => {
   return (
+    /* register = () => {
+    } */
     <div className={`flex flex-col ${fullwidth ? 'w-full' : ''}`}>
       <input
         type={type}

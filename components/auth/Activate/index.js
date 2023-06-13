@@ -1,4 +1,3 @@
-
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import Footer from '../../footer/Footer'
@@ -21,7 +20,7 @@ const Activate = () => {
     try {
       await authService.activateEmail(payload)
       setTimeout(() => {
-        router.push('/login')
+        router.push('/auth/login')
       }, 5000)
     } catch (e) {
       setErrors('Error al cargar')
@@ -36,8 +35,7 @@ const Activate = () => {
 
   return (
     <>
-
-      <div className='md:w-[600px] shadow-sm shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
+      <div className='md:w-[600px] shadow-xl shadow-gray bg-white w-[100%] mx-auto px-7 py-4 rounded-xl mt-8 items-center'>
         <div className='title flex flex-col items-center'>
           <Logo />
         </div>

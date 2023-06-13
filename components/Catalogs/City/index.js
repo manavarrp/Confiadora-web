@@ -1,33 +1,18 @@
-import styles from '../../../../styles/Username.module.css'
-import { useFormContext } from 'react-hook-form'
-import Select from '../../../common/Select'
-import useGetCity from '../../../hooks/useGetCity'
 
-const City = () => {
-  const valuesCity = useGetCity()
+import Select from '../../common/Select'
 
-  const {
-    register,
-    getValues,
-    formState: { errors }
-  } = useFormContext()
-
-  const handleCity = (event) => {
-    const getId = event.target.value
-    // console.log(getId);
-    getValues(getId)
+const City = ({ ...props }) => {
+  /*  const handlOnChange = (event) => {
+    //console.log(event)
   }
+ */
 
+  // //console.log(props.onChange, 'proponchange')
   return (
     <div>
       <Select
-        className={styles.textbox}
-        onChange={handleCity}
-        register={register}
-        name='genderId'
-        options={valuesCity?.data}
-        emptyOptions='Sexo'
-        error={errors?.genderId?.message}
+        {...props}
+     //   error={errors?.stateId?.message}
       />
     </div>
   )
